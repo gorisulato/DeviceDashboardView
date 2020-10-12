@@ -1,0 +1,839 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Hartama_IOTModelStoreContainer" CdmEntityContainer="Hartama_IOTEntities">
+    <FunctionImportMapping FunctionImportName="PInsertLog" FunctionName="Hartama_IOTModel.Store.PInsertLog" />
+    <FunctionImportMapping FunctionImportName="PTUserInsert" FunctionName="Hartama_IOTModel.Store.PTUserInsert" />
+    <FunctionImportMapping FunctionImportName="PTUserLogin" FunctionName="Hartama_IOTModel.Store.PTUserLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTUserLogin_Result">
+          <ScalarProperty Name="msg" ColumnName="msg" />
+          <ScalarProperty Name="LoginAccept" ColumnName="LoginAccept" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="UserPicture" ColumnName="UserPicture" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTUserSelectByID" FunctionName="Hartama_IOTModel.Store.PTUserSelectByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTUserSelectByID_Result">
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Rolename" ColumnName="Rolename" />
+          <ScalarProperty Name="WorkDesc" ColumnName="WorkDesc" />
+          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+          <ScalarProperty Name="Locked" ColumnName="Locked" />
+          <ScalarProperty Name="FailedLogin" ColumnName="FailedLogin" />
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+          <ScalarProperty Name="LastPasswordChange" ColumnName="LastPasswordChange" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="IDWorkHour" ColumnName="IDWorkHour" />
+          <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTUserUpdate" FunctionName="Hartama_IOTModel.Store.PTUserUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTUserUpdate_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTUserSelectByKeyword" FunctionName="Hartama_IOTModel.Store.PTUserSelectByKeyword">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTUserSelectByKeyword_Result">
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Rolename" ColumnName="Rolename" />
+          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+          <ScalarProperty Name="Locked" ColumnName="Locked" />
+          <ScalarProperty Name="FailedLogin" ColumnName="FailedLogin" />
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+          <ScalarProperty Name="LastPasswordChange" ColumnName="LastPasswordChange" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="IDWorkHour" ColumnName="IDWorkHour" />
+          <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTUserSelectALL" FunctionName="Hartama_IOTModel.Store.PTUserSelectALL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTUserSelectALL_Result">
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTUserDelete" FunctionName="Hartama_IOTModel.Store.PTUserDelete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTUserDelete_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTUserUpdateLocked" FunctionName="Hartama_IOTModel.Store.PTUserUpdateLocked">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTUserUpdateLocked_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTUserUpdateResetPassword" FunctionName="Hartama_IOTModel.Store.PTUserUpdateResetPassword">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTUserUpdateResetPassword_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+          <ScalarProperty Name="NamaUser" ColumnName="NamaUser" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTUserUpdateLastLoginSite" FunctionName="Hartama_IOTModel.Store.PTUserUpdateLastLoginSite" />
+    <FunctionImportMapping FunctionImportName="P_NumberSeri" FunctionName="Hartama_IOTModel.Store.P_NumberSeri" />
+    <FunctionImportMapping FunctionImportName="PTSiteInsert" FunctionName="Hartama_IOTModel.Store.PTSiteInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTSiteInsert_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTSiteUpdate" FunctionName="Hartama_IOTModel.Store.PTSiteUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTSiteUpdate_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTSiteDelete" FunctionName="Hartama_IOTModel.Store.PTSiteDelete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTSiteDelete_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTSiteSelectByKeywordDiscontinue" FunctionName="Hartama_IOTModel.Store.PTSiteSelectByKeywordDiscontinue">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTSiteSelectByKeywordDiscontinue_Result">
+          <ScalarProperty Name="IDSite" ColumnName="IDSite" />
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PICSite" ColumnName="PICSite" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
+          <ScalarProperty Name="timezone_location" ColumnName="timezone_location" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTSiteSelect" FunctionName="Hartama_IOTModel.Store.PTSiteSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTSiteSelect_Result">
+          <ScalarProperty Name="IDSite" ColumnName="IDSite" />
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PICSite" ColumnName="PICSite" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
+          <ScalarProperty Name="SiteLogo" ColumnName="SiteLogo" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+          <ScalarProperty Name="IDTimeZone" ColumnName="IDTimeZone" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTSiteSelectByID" FunctionName="Hartama_IOTModel.Store.PTSiteSelectByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTSiteSelectByID_Result">
+          <ScalarProperty Name="IDSite" ColumnName="IDSite" />
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PICSite" ColumnName="PICSite" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
+          <ScalarProperty Name="SiteLogo" ColumnName="SiteLogo" />
+          <ScalarProperty Name="IDTimeZone" ColumnName="IDTimeZone" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTSiteUserSelectByIDSite" FunctionName="Hartama_IOTModel.Store.PTSiteUserSelectByIDSite">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTSiteUserSelectByIDSite_Result">
+          <ScalarProperty Name="IDSiteUser" ColumnName="IDSiteUser" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Rolename" ColumnName="Rolename" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTSiteUserSelectByIDUser" FunctionName="Hartama_IOTModel.Store.PTSiteUserSelectByIDUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTSiteUserSelectByIDUser_Result">
+          <ScalarProperty Name="SiteCode" ColumnName="SiteCode" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+          <ScalarProperty Name="SiteLogo" ColumnName="SiteLogo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTSiteSelectAll" FunctionName="Hartama_IOTModel.Store.PTSiteSelectAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTSiteSelectAll_Result">
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+          <ScalarProperty Name="IDSite" ColumnName="IDSite" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTLanguageSelectAll" FunctionName="Hartama_IOTModel.Store.PTLanguageSelectAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTLanguageSelectAll_Result">
+          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+          <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+          <ScalarProperty Name="ResourcePath" ColumnName="ResourcePath" />
+          <ScalarProperty Name="ResourceName" ColumnName="ResourceName" />
+          <ScalarProperty Name="LanguageDesc" ColumnName="LanguageDesc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTLanguageSelectByID" FunctionName="Hartama_IOTModel.Store.PTLanguageSelectByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTLanguageSelectByID_Result">
+          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+          <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+          <ScalarProperty Name="ResourcePath" ColumnName="ResourcePath" />
+          <ScalarProperty Name="ResourceName" ColumnName="ResourceName" />
+          <ScalarProperty Name="LanguageDesc" ColumnName="LanguageDesc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTFeatureLanguageSelect" FunctionName="Hartama_IOTModel.Store.PTFeatureLanguageSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTFeatureLanguageSelect_Result">
+          <ScalarProperty Name="IDFeatures" ColumnName="IDFeatures" />
+          <ScalarProperty Name="FeaturesName" ColumnName="FeaturesName" />
+          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+          <ScalarProperty Name="LanguageText" ColumnName="LanguageText" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTModuleLanguageSelect" FunctionName="Hartama_IOTModel.Store.PTModuleLanguageSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTModuleLanguageSelect_Result">
+          <ScalarProperty Name="IDModule" ColumnName="IDModule" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+          <ScalarProperty Name="LanguageText" ColumnName="LanguageText" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTShortcutLanguageSelect" FunctionName="Hartama_IOTModel.Store.PTShortcutLanguageSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTShortcutLanguageSelect_Result">
+          <ScalarProperty Name="IDShortcut" ColumnName="IDShortcut" />
+          <ScalarProperty Name="Shortcut" ColumnName="Shortcut" />
+          <ScalarProperty Name="IDLanguage" ColumnName="IDLanguage" />
+          <ScalarProperty Name="ShortcutNameText" ColumnName="ShortcutNameText" />
+          <ScalarProperty Name="ShortcutInfoText" ColumnName="ShortcutInfoText" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTSiteUserSave" FunctionName="Hartama_IOTModel.Store.PTSiteUserSave">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTSiteUserSave_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTModuleFeaturesSelectAll" FunctionName="Hartama_IOTModel.Store.PTModuleFeaturesSelectAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTModuleFeaturesSelectAll_Result">
+          <ScalarProperty Name="IDfeaturesAccess" ColumnName="IDfeaturesAccess" />
+          <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+          <ScalarProperty Name="Visible" ColumnName="Visible" />
+          <ScalarProperty Name="View" ColumnName="View" />
+          <ScalarProperty Name="New" ColumnName="New" />
+          <ScalarProperty Name="Edit" ColumnName="Edit" />
+          <ScalarProperty Name="Delete" ColumnName="Delete" />
+          <ScalarProperty Name="Printable" ColumnName="Printable" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="SequenceModule" ColumnName="SequenceModule" />
+          <ScalarProperty Name="SequenceModuleFeatures" ColumnName="SequenceModuleFeatures" />
+          <ScalarProperty Name="FeaturesName" ColumnName="FeaturesName" />
+          <ScalarProperty Name="FeaturesCode" ColumnName="FeaturesCode" />
+          <ScalarProperty Name="FeaturesType" ColumnName="FeaturesType" />
+          <ScalarProperty Name="IDFeatures" ColumnName="IDFeatures" />
+          <ScalarProperty Name="IDModule" ColumnName="IDModule" />
+          <ScalarProperty Name="IDModuleFeatures" ColumnName="IDModuleFeatures" />
+          <ScalarProperty Name="PathApp" ColumnName="PathApp" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PModuleFeatureToMenuTree" FunctionName="Hartama_IOTModel.Store.PModuleFeatureToMenuTree">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PModuleFeatureToMenuTree_Result">
+          <ScalarProperty Name="IDFeatures" ColumnName="IDFeatures" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="FeaturesCode" ColumnName="FeaturesCode" />
+          <ScalarProperty Name="FeaturesName" ColumnName="FeaturesName" />
+          <ScalarProperty Name="FeaturesDesc" ColumnName="FeaturesDesc" />
+          <ScalarProperty Name="FeaturesType" ColumnName="FeaturesType" />
+          <ScalarProperty Name="FeaturesAction" ColumnName="FeaturesAction" />
+          <ScalarProperty Name="IsExternal" ColumnName="IsExternal" />
+          <ScalarProperty Name="PathApp" ColumnName="PathApp" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="IconType" ColumnName="IconType" />
+          <ScalarProperty Name="concatenador" ColumnName="concatenador" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTModuleInsert" FunctionName="Hartama_IOTModel.Store.PTModuleInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTModuleInsert_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTModuleUpdate" FunctionName="Hartama_IOTModel.Store.PTModuleUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTModuleUpdate_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTModuleUpdateSequence" FunctionName="Hartama_IOTModel.Store.PTModuleUpdateSequence">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTModuleUpdateSequence_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTModuleDelete" FunctionName="Hartama_IOTModel.Store.PTModuleDelete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTModuleDelete_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTModuleSelect" FunctionName="Hartama_IOTModel.Store.PTModuleSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTModuleSelect_Result">
+          <ScalarProperty Name="IDModule" ColumnName="IDModule" />
+          <ScalarProperty Name="ModuleCode" ColumnName="ModuleCode" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="ModuleDesc" ColumnName="ModuleDesc" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="IDIcon" ColumnName="IDIcon" />
+          <ScalarProperty Name="IconName" ColumnName="IconName" />
+          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+          <ScalarProperty Name="IconType" ColumnName="IconType" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTModuleSelectByID" FunctionName="Hartama_IOTModel.Store.PTModuleSelectByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTModuleSelectByID_Result">
+          <ScalarProperty Name="IDModule" ColumnName="IDModule" />
+          <ScalarProperty Name="ModuleCode" ColumnName="ModuleCode" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="ModuleDesc" ColumnName="ModuleDesc" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="IDIcon" ColumnName="IDIcon" />
+          <ScalarProperty Name="IconName" ColumnName="IconName" />
+          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+          <ScalarProperty Name="IconType" ColumnName="IconType" />
+          <ScalarProperty Name="IconPath" ColumnName="IconPath" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTModuleSelectByKeyword" FunctionName="Hartama_IOTModel.Store.PTModuleSelectByKeyword">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTModuleSelectByKeyword_Result">
+          <ScalarProperty Name="IDModule" ColumnName="IDModule" />
+          <ScalarProperty Name="ModuleCode" ColumnName="ModuleCode" />
+          <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+          <ScalarProperty Name="ModuleDesc" ColumnName="ModuleDesc" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="IDIcon" ColumnName="IDIcon" />
+          <ScalarProperty Name="IconName" ColumnName="IconName" />
+          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTIconSelectLov" FunctionName="Hartama_IOTModel.Store.PTIconSelectLov">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTIconSelectLov_Result">
+          <ScalarProperty Name="IDIcon" ColumnName="IDIcon" />
+          <ScalarProperty Name="IconName" ColumnName="IconName" />
+          <ScalarProperty Name="IconType" ColumnName="IconType" />
+          <ScalarProperty Name="IconCategory" ColumnName="IconCategory" />
+          <ScalarProperty Name="IconDesc" ColumnName="IconDesc" />
+          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+          <ScalarProperty Name="IconPath" ColumnName="IconPath" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTIconSelectLovByKeyword" FunctionName="Hartama_IOTModel.Store.PTIconSelectLovByKeyword">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTIconSelectLovByKeyword_Result">
+          <ScalarProperty Name="IDIcon" ColumnName="IDIcon" />
+          <ScalarProperty Name="IconName" ColumnName="IconName" />
+          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTIconSelectByKeyword" FunctionName="Hartama_IOTModel.Store.PTIconSelectByKeyword">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTIconSelectByKeyword_Result">
+          <ScalarProperty Name="IDIcon" ColumnName="IDIcon" />
+          <ScalarProperty Name="IconName" ColumnName="IconName" />
+          <ScalarProperty Name="IconDesc" ColumnName="IconDesc" />
+          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTIconSelectByKeywordIsDefault" FunctionName="Hartama_IOTModel.Store.PTIconSelectByKeywordIsDefault">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTIconSelectByKeywordIsDefault_Result">
+          <ScalarProperty Name="IDIcon" ColumnName="IDIcon" />
+          <ScalarProperty Name="IconName" ColumnName="IconName" />
+          <ScalarProperty Name="IconType" ColumnName="IconType" />
+          <ScalarProperty Name="IconCategory" ColumnName="IconCategory" />
+          <ScalarProperty Name="IconDesc" ColumnName="IconDesc" />
+          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="IconPath" ColumnName="IconPath" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTIconSelectByID" FunctionName="Hartama_IOTModel.Store.PTIconSelectByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTIconSelectByID_Result">
+          <ScalarProperty Name="IDIcon" ColumnName="IDIcon" />
+          <ScalarProperty Name="IconName" ColumnName="IconName" />
+          <ScalarProperty Name="IconDesc" ColumnName="IconDesc" />
+          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+          <ScalarProperty Name="IconType" ColumnName="IconType" />
+          <ScalarProperty Name="IconPath" ColumnName="IconPath" />
+          <ScalarProperty Name="IconCategory" ColumnName="IconCategory" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTIconInsert" FunctionName="Hartama_IOTModel.Store.PTIconInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTIconInsert_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTIconDelete" FunctionName="Hartama_IOTModel.Store.PTIconDelete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTIconDelete_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTIconUpdate" FunctionName="Hartama_IOTModel.Store.PTIconUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTIconUpdate_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTFeatureInsert" FunctionName="Hartama_IOTModel.Store.PTFeatureInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTFeatureInsert_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTFeatureUpdate" FunctionName="Hartama_IOTModel.Store.PTFeatureUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTFeatureUpdate_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTFeatureUpdateSequence" FunctionName="Hartama_IOTModel.Store.PTFeatureUpdateSequence">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTFeatureUpdateSequence_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTFeatureDelete" FunctionName="Hartama_IOTModel.Store.PTFeatureDelete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTFeatureDelete_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTFeatureMove" FunctionName="Hartama_IOTModel.Store.PTFeatureMove">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTFeatureMove_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTFeatureDuplicate" FunctionName="Hartama_IOTModel.Store.PTFeatureDuplicate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTFeatureDuplicate_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTFeatureSelectByID" FunctionName="Hartama_IOTModel.Store.PTFeatureSelectByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTFeatureSelectByID_Result">
+          <ScalarProperty Name="IDFeatures" ColumnName="IDFeatures" />
+          <ScalarProperty Name="FeaturesCode" ColumnName="FeaturesCode" />
+          <ScalarProperty Name="FeaturesName" ColumnName="FeaturesName" />
+          <ScalarProperty Name="FeaturesDesc" ColumnName="FeaturesDesc" />
+          <ScalarProperty Name="FeaturesType" ColumnName="FeaturesType" />
+          <ScalarProperty Name="FeaturesAction" ColumnName="FeaturesAction" />
+          <ScalarProperty Name="IsExternal" ColumnName="IsExternal" />
+          <ScalarProperty Name="PathApp" ColumnName="PathApp" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="IDIcon" ColumnName="IDIcon" />
+          <ScalarProperty Name="IconName" ColumnName="IconName" />
+          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+          <ScalarProperty Name="IconType" ColumnName="IconType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTFeatureSelectByIDFeatureIDModule" FunctionName="Hartama_IOTModel.Store.PTFeatureSelectByIDFeatureIDModule">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTFeatureSelectByIDFeatureIDModule_Result">
+          <ScalarProperty Name="IDModuleFeatures" ColumnName="IDModuleFeatures" />
+          <ScalarProperty Name="IDModule" ColumnName="IDModule" />
+          <ScalarProperty Name="IDFeatures" ColumnName="IDFeatures" />
+          <ScalarProperty Name="FeaturesCode" ColumnName="FeaturesCode" />
+          <ScalarProperty Name="FeaturesName" ColumnName="FeaturesName" />
+          <ScalarProperty Name="FeaturesDesc" ColumnName="FeaturesDesc" />
+          <ScalarProperty Name="FeaturesType" ColumnName="FeaturesType" />
+          <ScalarProperty Name="FeaturesAction" ColumnName="FeaturesAction" />
+          <ScalarProperty Name="IsExternal" ColumnName="IsExternal" />
+          <ScalarProperty Name="PathApp" ColumnName="PathApp" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="IDIcon" ColumnName="IDIcon" />
+          <ScalarProperty Name="IconClass" ColumnName="IconClass" />
+          <ScalarProperty Name="IconType" ColumnName="IconType" />
+          <ScalarProperty Name="IconPath" ColumnName="IconPath" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTFeatureSelectByIDModule" FunctionName="Hartama_IOTModel.Store.PTFeatureSelectByIDModule">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTFeatureSelectByIDModule_Result">
+          <ScalarProperty Name="IDModuleFeatures" ColumnName="IDModuleFeatures" />
+          <ScalarProperty Name="IDModule" ColumnName="IDModule" />
+          <ScalarProperty Name="IDFeatures" ColumnName="IDFeatures" />
+          <ScalarProperty Name="FeaturesCode" ColumnName="FeaturesCode" />
+          <ScalarProperty Name="FeaturesName" ColumnName="FeaturesName" />
+          <ScalarProperty Name="FeaturesDesc" ColumnName="FeaturesDesc" />
+          <ScalarProperty Name="FeaturesType" ColumnName="FeaturesType" />
+          <ScalarProperty Name="FeaturesAction" ColumnName="FeaturesAction" />
+          <ScalarProperty Name="IsExternal" ColumnName="IsExternal" />
+          <ScalarProperty Name="PathApp" ColumnName="PathApp" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTRoleInsert" FunctionName="Hartama_IOTModel.Store.PTRoleInsert">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTRoleInsert_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTRoleUpdate" FunctionName="Hartama_IOTModel.Store.PTRoleUpdate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTRoleUpdate_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTRoleDelete" FunctionName="Hartama_IOTModel.Store.PTRoleDelete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTRoleDelete_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTRoleSelectByID" FunctionName="Hartama_IOTModel.Store.PTRoleSelectByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTRoleSelectByID_Result">
+          <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+          <ScalarProperty Name="Rolename" ColumnName="Rolename" />
+          <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+          <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PTRoleSelectByKeywordDiscontinue" FunctionName="Hartama_IOTModel.Store.PTRoleSelectByKeywordDiscontinue">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.PTRoleSelectByKeywordDiscontinue_Result">
+          <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+          <ScalarProperty Name="Rolename" ColumnName="Rolename" />
+          <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+          <ScalarProperty Name="Discontinue" ColumnName="Discontinue" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserLastMaintenance" ColumnName="UserLastMaintenance" />
+          <ScalarProperty Name="DateLastMaintenance" ColumnName="DateLastMaintenance" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="TActions">
+      <EntityTypeMapping TypeName="Hartama_IOTModel.TAction">
+        <MappingFragment StoreEntitySet="TAction">
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="UserEntry" ColumnName="UserEntry" />
+          <ScalarProperty Name="ActionDescription" ColumnName="ActionDescription" />
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+          <ScalarProperty Name="Action_ID" ColumnName="Action_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetDataNotifications" FunctionName="Hartama_IOTModel.Store.GetDataNotifications">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDataNotifications_Result">
+          <ScalarProperty Name="Notification_ID" ColumnName="Notification_ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+          <ScalarProperty Name="statustext" ColumnName="statustext" />
+          <ScalarProperty Name="timecreated" ColumnName="timecreated" />
+          <ScalarProperty Name="fulldate" ColumnName="fulldate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ActionCode" ColumnName="ActionCode" />
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="DescAction" ColumnName="DescAction" />
+          <ScalarProperty Name="usertaken" ColumnName="usertaken" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TNotificationSelect" FunctionName="Hartama_IOTModel.Store.TNotificationSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.TNotificationSelect_Result">
+          <ScalarProperty Name="Notification_ID" ColumnName="Notification_ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+          <ScalarProperty Name="statustext" ColumnName="statustext" />
+          <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+          <ScalarProperty Name="timecreated" ColumnName="timecreated" />
+          <ScalarProperty Name="fulldate" ColumnName="fulldate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="totalmessages" ColumnName="totalmessages" />
+          <ScalarProperty Name="unreadmessages" ColumnName="unreadmessages" />
+          <ScalarProperty Name="Device_ID" ColumnName="Device_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAllChart" FunctionName="Hartama_IOTModel.Store.GetAllChart">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetAllChart_Result">
+          <ScalarProperty Name="SensorName" ColumnName="SensorName" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+          <ScalarProperty Name="countnotif" ColumnName="countnotif" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDeviceBySite" FunctionName="Hartama_IOTModel.Store.GetDeviceBySite">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceBySite_Result">
+          <ScalarProperty Name="Device_ID" ColumnName="Device_ID" />
+          <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDeviceChartByID" FunctionName="Hartama_IOTModel.Store.GetDeviceChartByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceChartByID_Result">
+          <ScalarProperty Name="ID_DataLog" ColumnName="ID_DataLog" />
+          <ScalarProperty Name="device_id" ColumnName="device_id" />
+          <ScalarProperty Name="Warning" ColumnName="Warning" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDeviceCategory" FunctionName="Hartama_IOTModel.Store.GetDeviceCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceCategory_Result">
+          <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+          <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+          <ScalarProperty Name="Category_Description" ColumnName="Category_Description" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetSite" FunctionName="Hartama_IOTModel.Store.GetSite">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetSite_Result">
+          <ScalarProperty Name="IDSite" ColumnName="IDSite" />
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertDevice" FunctionName="Hartama_IOTModel.Store.InsertDevice">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.InsertDevice_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDeviceBySiteDatatable" FunctionName="Hartama_IOTModel.Store.GetDeviceBySiteDatatable">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceBySiteDatatable_Result">
+          <ScalarProperty Name="Device_ID" ColumnName="Device_ID" />
+          <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
+          <ScalarProperty Name="Device_Site_ID" ColumnName="Device_Site_ID" />
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+          <ScalarProperty Name="Device_category_ID" ColumnName="Device_category_ID" />
+          <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+          <ScalarProperty Name="Device_Description" ColumnName="Device_Description" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="dateentry" ColumnName="dateentry" />
+          <ScalarProperty Name="userlastmaintenance" ColumnName="userlastmaintenance" />
+          <ScalarProperty Name="datelastmaintenance" ColumnName="datelastmaintenance" />
+          <ScalarProperty Name="mac1" ColumnName="mac1" />
+          <ScalarProperty Name="mac2" ColumnName="mac2" />
+          <ScalarProperty Name="mac3" ColumnName="mac3" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UpdateDevice" FunctionName="Hartama_IOTModel.Store.UpdateDevice">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.UpdateDevice_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DeleteDevice" FunctionName="Hartama_IOTModel.Store.DeleteDevice">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.DeleteDevice_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

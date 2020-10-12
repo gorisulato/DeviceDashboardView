@@ -1,0 +1,273 @@
+﻿@{
+    ViewBag.Title = "Dashboard v.1";
+}
+
+<div id="LockScreenModal" class="gray-bg modal inmodal" aria-hidden="true" role="dialog" tabindex="-1">
+    <div class=" lock-word animated fadeindown">
+        <span class="first-word">LOCKED</span><span>SCREEN</span>
+    </div>
+    <div class="modal-dialog" style="width:100%;">
+
+        <div class="middle-box text-center lockscreen animated fadeInDown">
+            <div>
+                <div class="m-b-md">
+                    <img alt="image" class="img-circle circle-border" src="https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg">
+                </div>
+                <h3>John Smith</h3>
+                <p>Your are in lock screen. Main app was shut down and you need to enter your passwor to go back to app.</p>
+                <form class="m-t" role="form" action="index.html">
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="******" required="">
+                    </div>
+                    <button type="submit" class="btn btn-primary block full-width">Unlock</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/plugins/flot")
+    @Scripts.Render("~/plugins/sparkline")
+    @Scripts.Render("~/plugins/chartJs")
+    @Scripts.Render("~/plugins/peity")
+
+<script src="~/Scripts/jquery.signalR-2.2.1.js" type="text/javascript"></script>
+<script src="~/signalr/hubs"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+           // alert()
+            window.paramdo = window.paramdo || {};
+            window.paramdo.idnotif = "";
+            window.paramdo.iddevice = "";
+            window.paramdo.devicename = "";
+            window.paramdo.site = "";
+            window.paramdo.type = 0;
+            Notification(5)
+
+            $("#NotificationLoadMore").on("click", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                Notification(parseInt($("#NotificationLoadMore").attr('data-offset')) + 5)
+
+            })
+
+            $("#NotificationReadAll").click(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                utility._loadMenuList("../Dashboards/ReadAllNotification", "Notification");
+            });
+        //shortcutPlugin.ShortcutMainInit();
+        //toastr.success('Wellcome To Asset Management Information System .', 'Hello');
+
+         @*var paramsite="@Session["IDSite"].ToString()";
+        utility.ListOfSite(paramsite);
+        var currentLanguage="@Session["CurrentUICulture"].ToString()";
+        utility.ListOfLanguage(currentLanguage);
+        var interval = @Session["Interval"] * 60000;
+        //alert(interval);
+        $(document).idleTimer(interval);*@
+
+        utility.UserLogout();
+
+        $(document).on("idle.idleTimer", function (event, elem, obj) {
+            //$('#LockScreenModal').modal('show');
+            //console.log("asdasd");
+            document.location = "../Login/Logout/"
+        });
+
+        $(document).on("active.idleTimer", function (event, elem, obj, triggerevent) {
+            // function you want to fire when the user becomes active again
+            //toastr.clear();
+            //$('.custom-alert').fadeOut();
+            //toastr.success('Great that you decided to move a mouse.', 'You are back. ');
+
+
+
+        });
+
+
+
+
+        //utility._loadMenuList("/Dashboards/Home","Home")
+        });
+        function TakeActiion(id, type) {
+         
+            var data = JSON.parse(atob(id));
+           
+            paramdo.idnotif = data[0];
+            paramdo.iddevice = data[0];
+            paramdo.devicename = data[3];
+            paramdo.site = data[4];
+            paramdo.type = type;
+            paramdo.arraynotif = new array();
+            if ($("#close-action").length > 0) {
+                $("#close-action").click();
+            }
+            utility._loadMenuList("/Action/Index", "Action")
+
+        }
+
+        function GetNotif(limit) {
+            var a = "";
+
+
+            $.ajax({
+                url: "../TUser/SelectUserNotification?Limit=" + parseInt(limit) + "&Offset=" + parseInt(0),//FEED_URL,
+                type: "GET",
+                dataType: "html",
+                success: function (data) {
+                    $('#AssetNotificationContent .content-messages').remove();
+                    $('#AssetNotificationContent .divider').remove();
+                    var xml = $.parseJSON(data)
+                    for (var z in xml) {
+
+                        var dateISO = new Date(xml["DateCreated"]);
+
+
+                        a = a + '<li id="' + xml[z][0] + '" data-status="' + xml[z][0] + '" class="content-messages">' +
+                            "<div class='feed-element'> " +
+                            '<a href="#" class="pull-left">' +
+                                            '<img alt="image" class="img-circle" src="../Images/warning.png">' +
+                                        '</a>' +
+                            "   <div class='media-body '>  <time class='timeago pull-right' datetime='" + xml[z][8] +
+                            "' ></time> <small>" + xml[z][1] + ' ' + xml[z][2] + "</small>. <br> <small class='text-muted'>" + xml[z][7] + ' at ' + xml[z][9] + "</small> </div></div> " +
+                            ' <span class="btn btn-primary  label-primary notifaction" onclick=TakeActiion("' + btoa(JSON.stringify(xml[z])) + '",2)>Take Action</span>' + ' <span class="btn btn-primary  label-danger notifaction" onclick=TakeActiion("' + btoa(JSON.stringify(xml[z])) + '",3) data-attr="reject" id="Reject' + xml[z][0] + '">Ignore</span>' +
+                            '</li>' +
+                            '<li class="divider"></li>';
+                        // console.log(document.getElementById("warning-chart" + xml[z][12]))
+                        //document.getElementById("warning-chart"+xml[z][12]).innerHTML = "Warning!!!";
+                        //document.getElementById("yourH1_element_Id").innerHTML = "yourTextHere";
+                    }
+
+
+
+
+                    if (xml.length > 0) {
+                        paramdo.arraynotif = xml;
+                        $('#TotalAssetNotification').html(parseInt(xml[0][11]));
+                        $("#AssetNotificationContent").prepend(a);
+                        $("#NotificationLoadMore").attr('data-offset', limit)
+                        if (xml[0][11] < limit) {
+                            $("#NotificationLoadMore").attr('disabled', true);
+                        }
+
+                    }
+                    else {
+                        $('#TotalAssetNotification').html('');
+                    }
+                    //
+
+                }
+            })
+        }
+        function Notification(limit) {
+            
+            var a = "";
+
+
+            $.ajax({
+                url: "../TUser/SelectUserNotification?Limit=" + parseInt(limit) + "&Offset=" + parseInt(0),//FEED_URL,
+                type: "GET",
+                dataType: "html",
+                success: function (data) {
+                    $('#AssetNotificationContent .content-messages').remove();
+                    $('#AssetNotificationContent .divider').remove();
+                    var xml = $.parseJSON(data)
+                    for (var z in xml) {
+
+                        var dateISO = new Date(xml["DateCreated"]);
+
+
+                        a = a + '<li id="' + xml[z][0] + '" data-status="' + xml[z][0] + '" class="content-messages">' +
+                            "<div class='feed-element'> " +
+                            '<a href="#" class="pull-left">' +
+                                            '<img alt="image" class="img-circle" src="../Images/warning.png">' +
+                                        '</a>' +
+                            "   <div class='media-body '>  <time class='timeago pull-right' datetime='" + xml[z][8] +
+                            "' ></time> <small>" + xml[z][1] + ' ' + xml[z][2] + "</small>. <br> <small class='text-muted'>" + xml[z][7] + ' at ' + xml[z][9] + "</small> </div></div> " +
+                            ' <span class="btn btn-primary  label-primary notifaction" onclick=TakeActiion("' + btoa(JSON.stringify(xml[z])) + '",2)>Take Action</span>' + ' <span class="btn btn-primary  label-danger notifaction" onclick=TakeActiion("' + btoa(JSON.stringify(xml[z])) + '",3) data-attr="reject" id="Reject' + xml[z][0] + '">Ignore</span>' +
+                            '</li>' +
+                            '<li class="divider"></li>';
+                        // console.log(document.getElementById("warning-chart" + xml[z][12]))
+                        //document.getElementById("warning-chart"+xml[z][12]).innerHTML = "Warning!!!";
+                        //document.getElementById("yourH1_element_Id").innerHTML = "yourTextHere";
+                    }
+
+
+
+
+                    if (xml.length > 0) {
+                        paramdo.arraynotif = xml;
+                        $('#TotalAssetNotification').html(parseInt(xml[0][11]));
+                        $("#AssetNotificationContent").prepend(a);
+                        $("#NotificationLoadMore").attr('data-offset', limit)
+                        if (xml[0][11] < limit) {
+                            $("#NotificationLoadMore").attr('disabled', true);
+                        }
+
+                    }
+                    else {
+                        $('#TotalAssetNotification').html('');
+                    }
+                    //
+
+                },
+                complete: function (xhr, status) {
+                    $(".timeago").timeago();
+                    $(function () {
+                        var i = 0;
+                        var notifications = $.connection.messagesHub;
+
+                        notifications.client.updateMessages = function () {
+
+
+                            GetNotif(5)
+
+
+
+                        };
+                        $.connection.hub.start().done(function () {
+                            $.ajax({
+                                url: '/TUser/notifdep',
+                                contentType: 'application/html ; charset:utf-8',
+                                type: 'POST',
+                                dataType: 'html'
+                            }).success(function (result) {
+
+
+                                // Notification("", "")
+                            }).error(function () {
+
+                            });
+                        }).fail(function (e) {
+                            //console.log(e);
+                        });
+                    });
+                }
+            });
+
+
+        }
+    //$(document).on("idle.idleTimer", function (event, elem, obj) {
+    //    toastr.options = {
+    //        "positionClass": "toast-top-right",
+    //        "timeOut": 8000
+    //    }
+
+    //    //toastr.warning('You can call any function after idle timeout.', 'Idle time');
+    //    //$('.custom-alert').fadeIn();
+    //    //$('.custom-alert-active').fadeOut();
+
+    //});
+
+    //$(document).on("active.idleTimer", function (event, elem, obj, triggerevent) {
+    //    // function you want to fire when the user becomes active again
+    //    toastr.clear();
+    //    //$('.custom-alert').fadeOut();
+    //    toastr.success('Great that you decided to move a mouse.', 'You are back. ');
+
+
+
+    //});
+    </script>
+}

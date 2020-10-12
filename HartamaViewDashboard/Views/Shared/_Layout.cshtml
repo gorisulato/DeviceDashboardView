@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>  I F S  </title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <!-- Add local styles, mostly for plugins css file -->
+
+
+    <!-- Add jQuery Style direct - used for jQGrid plugin -->
+    <link href="@Url.Content("~/Scripts/plugins/jquery-ui/jquery-ui.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/fonts/font-awesome-4.2.0/css/font-awesome.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/IconPicker/fontawesome-iconpicker.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/tooltips-master/tooltipster.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/jqueryspinner/bootstrap-spinner.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/mapIcons/map-icons.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/plugins/fullcalendar/fullcalendar.css")" rel="stylesheet" type="text/css" />
+    <!-- Primary Inspinia style -->
+    @*<script src="https://maps.googleapis.com/maps/api/js?sensor=true&v=3.20&libraries=places"></script>*@
+     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/Tree")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/Content/plugins/dropzone/dropZoneStyles")
+    @Styles.Render("~/plugins/toastrStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+    @Styles.Render("~/plugins/morrisStyles")
+    @Styles.Render("~/Content/c3.css")
+
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+</head>
+<body class="body-small fixed-sidebar pace-done">
+    <div class="mobile-menu-clicked hide animated"></div>
+    <!-- Skin configuration box -->
+
+
+    <!-- Wrapper-->
+    <!-- PageClass give you ability to specify custom style for specific view based on action -->
+    <div id="wrapper" class="@Html.PageClass()">
+
+        <!-- Navigation -->
+        @Html.Partial("_Navigation")
+
+        <!-- Page wraper -->
+        <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
+
+            <!-- Top Navbar -->
+            @Html.Partial("_TopNavbar")
+            <div id="render-body" class="main-body--z1">
+                <ul class="nav nav-tabs main-tab"></ul>
+                <div class="tab-content main-content">
+                </div>
+                <!-- Main view  -->
+                @*@RenderBody()*@
+                @*<div id="PickSiteModal" class="modal inmodal" aria-hidden="true" role="dialog" tabindex="-1">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content animated fadeIn ">
+                        <div class="modal-header">
+                            <h3" class="modal-title">@Resources.Resource.LabelConfirmation</h3">
+
+                        </div>
+                        <div class="modal-body" id="modal-Render">
+                            @Resources.Resource.LabelChangeSite
+                        </div>
+                        <div class="modal-footer">
+                            <div class="pull-right col-md-4 ">
+                                <input value="@Resources.Resource.ButtonYes" type="button" class="btn btn-primary" id="frm-changesite-btn" />
+                                <input value="@Resources.Resource.ButtonNo" type="button" class="btn btn-white" id="frm-cancel-btn" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+
+                @*<div id="ChangeLanguageModal" class="modal inmodal in" aria-hidden="true" role="dialog" tabindex="-1">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content animated fadeIn ">
+                        <div class="modal-header">
+                            <h3" class="modal-title">@Resources.Resource.LanguageLabelLanguage - @Resources.Resource.LabelChangeLanguageChange</h3">
+
+                        </div>
+                        <div class="alert alert-danger alert-dismissable " aria-hidden="true" style="display :none;" id="errorDiv">
+                            <button class="close" type="button" data-ng-hide="alert" aria-hidden="true">×</button>
+                            <div id="errorMsgDiv"></div>
+                        </div>
+                        <div class="modal-body" id="modal-Render-lang">
+
+                        </div>
+                        <div class="modal-footer">
+                            <input value="@Resources.Resource.ButtonYes" type="button" class="btn btn-primary" id="frm-submit-btn-lang" />
+                            <input value="@Resources.Resource.ButtonNo" type="button" class="btn btn-outline btn-default" id="frm-cancel-btn-lang" />
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+
+
+            </div>
+            <!-- Footer -->
+            @Html.Partial("_Footer")
+
+        </div>
+        <!-- End page wrapper-->
+
+        <!-- Right Sidebar -->
+        @Html.Partial("_RightSidebar")
+        <div id="LogoutModal" class="modal inmodal in" aria-hidden="true" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content animated fadeIn ">
+                    <div class="modal-header">
+                        <h3 class="modal-title">@Resources.Resource.LabelConfirmation</h3>
+
+                    </div>
+                    <div class="modal-body " >
+                         @Resources.Resource.LabelConfirmationLogout
+                    </div>
+                    <div class="modal-footer">
+                        <input value="@Resources.Resource.ButtonNo" type="button" class="btn btn-outline btn-default" id="frm-cancel-btn-logout" />
+                        <input value="@Resources.Resource.ButtonYes" type="button" class="btn btn-primary" id="frm-submit-btn-logout" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End wrapper-->
+
+    <!-- Section for main scripts render -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/plugins/slimScroll")
+    @Scripts.Render("~/bundles/inspinia")
+
+    @Scripts.Render("~/plugins/validate")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/util")
+    @Scripts.Render("~/plugins/qrcode")
+    @Scripts.Render("~/plugins/gauge")
+    @Scripts.Render("~/plugins/fullcalendar")
+    @Scripts.Render("~/plugins/Tree")
+    @Scripts.Render("~/plugins/chartJs")
+    @Scripts.Render("~/plugins/jsPDF")
+    @Scripts.Render("~/plugins/dropZone")
+    @Scripts.Render("~/plugins/nestable")
+    @Scripts.Render("~/plugins/idletimer")
+    @Scripts.Render("~/plugins/toastr")
+    @Scripts.Render("~/plugins/IconPicker")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/tooltips-master")
+    @Scripts.Render("~/plugins/jqueryspinner")
+    @Scripts.Render("~/plugins/flot")
+    @Scripts.Render("~/plugins/peity")
+    @Scripts.Render("~/plugins/morris")
+    @Scripts.Render("~/plugins/timeAgo")
+    <!-- Skin config script - only for demo purpose -->
+
+
+    <!-- Handler for local scripts -->
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            
+        var param = {};
+        param.attribute = {
+
+            "Info": "@Resources.Resource.LabelShowing",
+            "Page": "@Resources.Resource.LabelPage",
+            "Of": "@Resources.Resource.LabelOf",
+            "ZeroResult": "@Resources.Resource.LabelZeroResult",
+            "InfoEmpty": "@Resources.Resource.LabelInfoEmpty",
+            "Previous": "@Resources.Resource.LabelPrev",
+            "Next": "@Resources.Resource.LabelNext",
+            "Last": "@Resources.Resource.LabelLastPage",
+            "First": "@Resources.Resource.LabelFirstPage",
+            "To": "@Resources.Resource.LabelTo",
+            "Entries": "@Resources.Resource.LabelEntries",
+            "AlertPickOneData": "@Resources.Resource.AlertPickOneData",
+            "LabelWarning": "@Resources.Resource.LabelWarning",
+            "Thousand": "@System.Threading.Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencyGroupSeparator",
+            "Decimal": "@System.Threading.Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencyDecimalSeparator",
+            "FormatDate": "@System.Threading.Thread.CurrentThread.CurrentUICulture.DateTimeFormat.ShortDatePattern.Replace("M","m")",
+            "DateSeparator": "@System.Threading.Thread.CurrentThread.CurrentUICulture.DateTimeFormat.DateSeparator",
+            }
+
+            utility.init(param);
+            var param = {};
+            param.attribute = {
+
+                "App": "@Resources.Resource.LabelMenuApplication",
+                "Rpt": "@Resources.Resource.LabelMenuReport",
+
+            }
+            utility.GenerateNavigationMenu(param);
+        });
+    </script>
+</body>
+</html>

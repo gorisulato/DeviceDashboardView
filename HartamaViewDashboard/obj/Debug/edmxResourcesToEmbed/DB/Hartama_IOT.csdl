@@ -1,0 +1,1019 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Hartama_IOTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Hartama_IOTEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="PInsertLog">
+      <Parameter Name="Action" Mode="In" Type="String" />
+      <Parameter Name="TableLog" Mode="In" Type="String" />
+      <Parameter Name="IDTransaction" Mode="In" Type="String" />
+      <Parameter Name="DateTransaction" Mode="In" Type="DateTime" />
+      <Parameter Name="UserTransaction" Mode="In" Type="String" />
+      <Parameter Name="OldValue" Mode="In" Type="String" />
+      <Parameter Name="NewValue" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTUserInsert">
+      <Parameter Name="UserCode" Mode="In" Type="String" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Fullname" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="ExpiredDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Locked" Mode="In" Type="Boolean" />
+      <Parameter Name="IDRole" Mode="In" Type="String" />
+      <Parameter Name="IDWorkHour" Mode="In" Type="String" />
+      <Parameter Name="UserEntry" Mode="In" Type="String" />
+      <Parameter Name="DateEntry" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTUserLogin" ReturnType="Collection(Hartama_IOTModel.PTUserLogin_Result)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTUserSelectByID" ReturnType="Collection(Hartama_IOTModel.PTUserSelectByID_Result)">
+      <Parameter Name="IdUser" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTUserUpdate" ReturnType="Collection(Hartama_IOTModel.PTUserUpdate_Result)">
+      <Parameter Name="IDUser" Mode="In" Type="String" />
+      <Parameter Name="UserCode" Mode="In" Type="String" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Fullname" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="ExpiredDate" Mode="In" Type="DateTime" />
+      <Parameter Name="IDRole" Mode="In" Type="String" />
+      <Parameter Name="IDWorkHour" Mode="In" Type="String" />
+      <Parameter Name="LastLogin" Mode="In" Type="DateTime" />
+      <Parameter Name="LastPasswordChange" Mode="In" Type="DateTime" />
+      <Parameter Name="UserLastMaintanance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintanance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTUserSelectByKeyword" ReturnType="Collection(Hartama_IOTModel.PTUserSelectByKeyword_Result)">
+      <Parameter Name="OrderBy" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+      <Parameter Name="Keyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTUserSelectALL" ReturnType="Collection(Hartama_IOTModel.PTUserSelectALL_Result)" />
+    <FunctionImport Name="PTUserDelete" ReturnType="Collection(Hartama_IOTModel.PTUserDelete_Result)">
+      <Parameter Name="IDUser" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTUserUpdateLocked" ReturnType="Collection(Hartama_IOTModel.PTUserUpdateLocked_Result)">
+      <Parameter Name="IDUser" Mode="In" Type="String" />
+      <Parameter Name="Locked" Mode="In" Type="Boolean" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTUserUpdateResetPassword" ReturnType="Collection(Hartama_IOTModel.PTUserUpdateResetPassword_Result)">
+      <Parameter Name="IDUser" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+      <Parameter Name="LastPasswordChange" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTUserUpdateLastLoginSite">
+      <Parameter Name="IDUser" Mode="In" Type="String" />
+      <Parameter Name="IDSite" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="P_NumberSeri">
+      <Parameter Name="MODUL" Mode="In" Type="String" />
+      <Parameter Name="SPREFIX" Mode="In" Type="String" />
+      <Parameter Name="PANJANG" Mode="In" Type="Int32" />
+      <Parameter Name="NOMORSERI" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTSiteInsert" ReturnType="Collection(Hartama_IOTModel.PTSiteInsert_Result)">
+      <Parameter Name="SiteName" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="PostCode" Mode="In" Type="String" />
+      <Parameter Name="telephone" Mode="In" Type="String" />
+      <Parameter Name="Fax" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="PIC" Mode="In" Type="String" />
+      <Parameter Name="UserEntry" Mode="In" Type="String" />
+      <Parameter Name="DateEntry" Mode="In" Type="DateTime" />
+      <Parameter Name="Discontinue" Mode="In" Type="Boolean" />
+      <Parameter Name="SiteLogo" Mode="In" Type="String" />
+      <Parameter Name="IDTimeZone" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PTSiteUpdate" ReturnType="Collection(Hartama_IOTModel.PTSiteUpdate_Result)">
+      <Parameter Name="IDSite" Mode="In" Type="String" />
+      <Parameter Name="SiteName" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="PostCode" Mode="In" Type="String" />
+      <Parameter Name="telephone" Mode="In" Type="String" />
+      <Parameter Name="Fax" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="PIC" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+      <Parameter Name="Discontinue" Mode="In" Type="Boolean" />
+      <Parameter Name="SiteLogo" Mode="In" Type="String" />
+      <Parameter Name="IDTimeZone" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PTSiteDelete" ReturnType="Collection(Hartama_IOTModel.PTSiteDelete_Result)">
+      <Parameter Name="IDSite" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTSiteSelectByKeywordDiscontinue" ReturnType="Collection(Hartama_IOTModel.PTSiteSelectByKeywordDiscontinue_Result)">
+      <Parameter Name="SiteNameKeyword" Mode="In" Type="String" />
+      <Parameter Name="Discontinue" Mode="In" Type="Boolean" />
+      <Parameter Name="OrderBy" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTSiteSelect" ReturnType="Collection(Hartama_IOTModel.PTSiteSelect_Result)">
+      <Parameter Name="SiteNameKeyword" Mode="In" Type="String" />
+      <Parameter Name="Discontinue" Mode="In" Type="Boolean" />
+      <Parameter Name="OrderBy" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+      <Parameter Name="Limit" Mode="In" Type="Int32" />
+      <Parameter Name="OffSet" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PTSiteSelectByID" ReturnType="Collection(Hartama_IOTModel.PTSiteSelectByID_Result)">
+      <Parameter Name="IDSite" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTSiteUserSelectByIDSite" ReturnType="Collection(Hartama_IOTModel.PTSiteUserSelectByIDSite_Result)">
+      <Parameter Name="IDSite" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTSiteUserSelectByIDUser" ReturnType="Collection(Hartama_IOTModel.PTSiteUserSelectByIDUser_Result)">
+      <Parameter Name="IDUser" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTSiteSelectAll" ReturnType="Collection(Hartama_IOTModel.PTSiteSelectAll_Result)" />
+    <FunctionImport Name="PTLanguageSelectAll" ReturnType="Collection(Hartama_IOTModel.PTLanguageSelectAll_Result)" />
+    <FunctionImport Name="PTLanguageSelectByID" ReturnType="Collection(Hartama_IOTModel.PTLanguageSelectByID_Result)">
+      <Parameter Name="IDLanguage" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTFeatureLanguageSelect" ReturnType="Collection(Hartama_IOTModel.PTFeatureLanguageSelect_Result)">
+      <Parameter Name="IDLanguage" Mode="In" Type="String" />
+      <Parameter Name="Keyword" Mode="In" Type="String" />
+      <Parameter Name="OrderBy" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+      <Parameter Name="Limit" Mode="In" Type="Int32" />
+      <Parameter Name="OffSet" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PTModuleLanguageSelect" ReturnType="Collection(Hartama_IOTModel.PTModuleLanguageSelect_Result)">
+      <Parameter Name="IDLanguage" Mode="In" Type="String" />
+      <Parameter Name="Keyword" Mode="In" Type="String" />
+      <Parameter Name="OrderBy" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+      <Parameter Name="Limit" Mode="In" Type="Int32" />
+      <Parameter Name="OffSet" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PTShortcutLanguageSelect" ReturnType="Collection(Hartama_IOTModel.PTShortcutLanguageSelect_Result)">
+      <Parameter Name="IDLanguage" Mode="In" Type="String" />
+      <Parameter Name="Keyword" Mode="In" Type="String" />
+      <Parameter Name="OrderBy" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+      <Parameter Name="Limit" Mode="In" Type="Int32" />
+      <Parameter Name="OffSet" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PTSiteUserSave" ReturnType="Collection(Hartama_IOTModel.PTSiteUserSave_Result)">
+      <Parameter Name="IDSite" Mode="In" Type="String" />
+      <Parameter Name="ValueList" Mode="In" Type="String" />
+      <Parameter Name="UserEntry" Mode="In" Type="String" />
+      <Parameter Name="DateEntry" Mode="In" Type="DateTime" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTModuleFeaturesSelectAll" ReturnType="Collection(Hartama_IOTModel.PTModuleFeaturesSelectAll_Result)">
+      <Parameter Name="IDRole" Mode="In" Type="String" />
+      <Parameter Name="IDSite" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PModuleFeatureToMenuTree" ReturnType="Collection(Hartama_IOTModel.PModuleFeatureToMenuTree_Result)">
+      <Parameter Name="IDRole" Mode="In" Type="String" />
+      <Parameter Name="IDSite" Mode="In" Type="String" />
+      <Parameter Name="IDLanguage" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTModuleInsert" ReturnType="Collection(Hartama_IOTModel.PTModuleInsert_Result)">
+      <Parameter Name="ModuleCode" Mode="In" Type="String" />
+      <Parameter Name="ModuleName" Mode="In" Type="String" />
+      <Parameter Name="ModuleDesc" Mode="In" Type="String" />
+      <Parameter Name="UserEntry" Mode="In" Type="String" />
+      <Parameter Name="DateEntry" Mode="In" Type="DateTime" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+      <Parameter Name="Sequence" Mode="In" Type="Int32" />
+      <Parameter Name="IsDefault" Mode="In" Type="Boolean" />
+      <Parameter Name="IDIcon" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTModuleUpdate" ReturnType="Collection(Hartama_IOTModel.PTModuleUpdate_Result)">
+      <Parameter Name="IDModule" Mode="In" Type="String" />
+      <Parameter Name="ModuleCode" Mode="In" Type="String" />
+      <Parameter Name="ModuleName" Mode="In" Type="String" />
+      <Parameter Name="ModuleDesc" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+      <Parameter Name="Sequence" Mode="In" Type="Int32" />
+      <Parameter Name="IsDefault" Mode="In" Type="Boolean" />
+      <Parameter Name="IDIcon" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTModuleUpdateSequence" ReturnType="Collection(Hartama_IOTModel.PTModuleUpdateSequence_Result)">
+      <Parameter Name="IDModule" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTModuleDelete" ReturnType="Collection(Hartama_IOTModel.PTModuleDelete_Result)">
+      <Parameter Name="IDModule" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTModuleSelect" ReturnType="Collection(Hartama_IOTModel.PTModuleSelect_Result)">
+      <Parameter Name="OrderBy" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+      <Parameter Name="Limit" Mode="In" Type="Int32" />
+      <Parameter Name="OffSet" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PTModuleSelectByID" ReturnType="Collection(Hartama_IOTModel.PTModuleSelectByID_Result)">
+      <Parameter Name="IDModule" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTModuleSelectByKeyword" ReturnType="Collection(Hartama_IOTModel.PTModuleSelectByKeyword_Result)">
+      <Parameter Name="Keyword" Mode="In" Type="String" />
+      <Parameter Name="Limit" Mode="In" Type="Int32" />
+      <Parameter Name="Offset" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PTIconSelectLov" ReturnType="Collection(Hartama_IOTModel.PTIconSelectLov_Result)">
+      <Parameter Name="OrderBy" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+      <Parameter Name="Keyword" Mode="In" Type="String" />
+      <Parameter Name="Limit" Mode="In" Type="Int32" />
+      <Parameter Name="Offset" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PTIconSelectLovByKeyword" ReturnType="Collection(Hartama_IOTModel.PTIconSelectLovByKeyword_Result)">
+      <Parameter Name="OrderBy" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+      <Parameter Name="Keyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTIconSelectByKeyword" ReturnType="Collection(Hartama_IOTModel.PTIconSelectByKeyword_Result)">
+      <Parameter Name="OrderBy" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+      <Parameter Name="Keyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTIconSelectByKeywordIsDefault" ReturnType="Collection(Hartama_IOTModel.PTIconSelectByKeywordIsDefault_Result)">
+      <Parameter Name="OrderBy" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+      <Parameter Name="Keyword" Mode="In" Type="String" />
+      <Parameter Name="IsDefault" Mode="In" Type="Boolean" />
+      <Parameter Name="Limit" Mode="In" Type="Int32" />
+      <Parameter Name="Offset" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PTIconSelectByID" ReturnType="Collection(Hartama_IOTModel.PTIconSelectByID_Result)">
+      <Parameter Name="IDIcon" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTIconInsert" ReturnType="Collection(Hartama_IOTModel.PTIconInsert_Result)">
+      <Parameter Name="IconName" Mode="In" Type="String" />
+      <Parameter Name="IconDesc" Mode="In" Type="String" />
+      <Parameter Name="IconClass" Mode="In" Type="String" />
+      <Parameter Name="IconType" Mode="In" Type="String" />
+      <Parameter Name="IconPath" Mode="In" Type="String" />
+      <Parameter Name="IconCategory" Mode="In" Type="String" />
+      <Parameter Name="isDefault" Mode="In" Type="Boolean" />
+      <Parameter Name="UserEntry" Mode="In" Type="String" />
+      <Parameter Name="DateEntry" Mode="In" Type="DateTime" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTIconDelete" ReturnType="Collection(Hartama_IOTModel.PTIconDelete_Result)">
+      <Parameter Name="IDIcon" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTIconUpdate" ReturnType="Collection(Hartama_IOTModel.PTIconUpdate_Result)">
+      <Parameter Name="IDIcon" Mode="In" Type="String" />
+      <Parameter Name="IconName" Mode="In" Type="String" />
+      <Parameter Name="IconDesc" Mode="In" Type="String" />
+      <Parameter Name="IconClass" Mode="In" Type="String" />
+      <Parameter Name="IconType" Mode="In" Type="String" />
+      <Parameter Name="IconPath" Mode="In" Type="String" />
+      <Parameter Name="IconCategory" Mode="In" Type="String" />
+      <Parameter Name="isDefault" Mode="In" Type="Boolean" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTFeatureInsert" ReturnType="Collection(Hartama_IOTModel.PTFeatureInsert_Result)">
+      <Parameter Name="IDModule" Mode="In" Type="String" />
+      <Parameter Name="FeaturesCode" Mode="In" Type="String" />
+      <Parameter Name="FeaturesName" Mode="In" Type="String" />
+      <Parameter Name="FeaturesDesc" Mode="In" Type="String" />
+      <Parameter Name="FeaturesType" Mode="In" Type="String" />
+      <Parameter Name="FeaturesAction" Mode="In" Type="String" />
+      <Parameter Name="IsExternal" Mode="In" Type="Boolean" />
+      <Parameter Name="PathApp" Mode="In" Type="String" />
+      <Parameter Name="UserEntry" Mode="In" Type="String" />
+      <Parameter Name="DateEntry" Mode="In" Type="DateTime" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+      <Parameter Name="IDIcon" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTFeatureUpdate" ReturnType="Collection(Hartama_IOTModel.PTFeatureUpdate_Result)">
+      <Parameter Name="IDFeature" Mode="In" Type="String" />
+      <Parameter Name="FeaturesCode" Mode="In" Type="String" />
+      <Parameter Name="FeaturesName" Mode="In" Type="String" />
+      <Parameter Name="FeaturesDesc" Mode="In" Type="String" />
+      <Parameter Name="FeaturesType" Mode="In" Type="String" />
+      <Parameter Name="FeaturesAction" Mode="In" Type="String" />
+      <Parameter Name="IsExternal" Mode="In" Type="Boolean" />
+      <Parameter Name="PathApp" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+      <Parameter Name="IDIcon" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTFeatureUpdateSequence" ReturnType="Collection(Hartama_IOTModel.PTFeatureUpdateSequence_Result)">
+      <Parameter Name="IDModule" Mode="In" Type="String" />
+      <Parameter Name="IDFeature" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+      <Parameter Name="FeatureType" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTFeatureDelete" ReturnType="Collection(Hartama_IOTModel.PTFeatureDelete_Result)">
+      <Parameter Name="IDModule" Mode="In" Type="String" />
+      <Parameter Name="IDFeature" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTFeatureMove" ReturnType="Collection(Hartama_IOTModel.PTFeatureMove_Result)">
+      <Parameter Name="IDFeature" Mode="In" Type="String" />
+      <Parameter Name="IDModule" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTFeatureDuplicate" ReturnType="Collection(Hartama_IOTModel.PTFeatureDuplicate_Result)">
+      <Parameter Name="IDModule" Mode="In" Type="String" />
+      <Parameter Name="IDFeature" Mode="In" Type="String" />
+      <Parameter Name="UserEntry" Mode="In" Type="String" />
+      <Parameter Name="DateEntry" Mode="In" Type="DateTime" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTFeatureSelectByID" ReturnType="Collection(Hartama_IOTModel.PTFeatureSelectByID_Result)">
+      <Parameter Name="IDFeature" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTFeatureSelectByIDFeatureIDModule" ReturnType="Collection(Hartama_IOTModel.PTFeatureSelectByIDFeatureIDModule_Result)">
+      <Parameter Name="IDFeature" Mode="In" Type="String" />
+      <Parameter Name="IDModule" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTFeatureSelectByIDModule" ReturnType="Collection(Hartama_IOTModel.PTFeatureSelectByIDModule_Result)">
+      <Parameter Name="IDModule" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTRoleInsert" ReturnType="Collection(Hartama_IOTModel.PTRoleInsert_Result)">
+      <Parameter Name="RoleName" Mode="In" Type="String" />
+      <Parameter Name="RoleDesc" Mode="In" Type="String" />
+      <Parameter Name="Discontinue" Mode="In" Type="Boolean" />
+      <Parameter Name="UserEntry" Mode="In" Type="String" />
+      <Parameter Name="DateEntry" Mode="In" Type="DateTime" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTRoleUpdate" ReturnType="Collection(Hartama_IOTModel.PTRoleUpdate_Result)">
+      <Parameter Name="IDRole" Mode="In" Type="String" />
+      <Parameter Name="RoleName" Mode="In" Type="String" />
+      <Parameter Name="RoleDesc" Mode="In" Type="String" />
+      <Parameter Name="Discontinue" Mode="In" Type="Boolean" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTRoleDelete" ReturnType="Collection(Hartama_IOTModel.PTRoleDelete_Result)">
+      <Parameter Name="IDRole" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PTRoleSelectByID" ReturnType="Collection(Hartama_IOTModel.PTRoleSelectByID_Result)">
+      <Parameter Name="IDRole" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PTRoleSelectByKeywordDiscontinue" ReturnType="Collection(Hartama_IOTModel.PTRoleSelectByKeywordDiscontinue_Result)">
+      <Parameter Name="OrderBy" Mode="In" Type="String" />
+      <Parameter Name="Direction" Mode="In" Type="String" />
+      <Parameter Name="Keyword" Mode="In" Type="String" />
+      <Parameter Name="Discontinue" Mode="In" Type="Boolean" />
+      <Parameter Name="Limit" Mode="In" Type="Int32" />
+      <Parameter Name="Offset" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="TActions" EntityType="Hartama_IOTModel.TAction" />
+    <FunctionImport Name="GetDataNotifications" ReturnType="Collection(Hartama_IOTModel.GetDataNotifications_Result)">
+      <Parameter Name="RoleID" Mode="In" Type="String" />
+      <Parameter Name="offset" Mode="In" Type="Int32" />
+      <Parameter Name="limit" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="TNotificationSelect" ReturnType="Collection(Hartama_IOTModel.TNotificationSelect_Result)">
+      <Parameter Name="Role" Mode="In" Type="String" />
+      <Parameter Name="offset" Mode="In" Type="Int32" />
+      <Parameter Name="limit" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetAllChart" ReturnType="Collection(Hartama_IOTModel.GetAllChart_Result)">
+      <Parameter Name="DeviceID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetDeviceBySite" ReturnType="Collection(Hartama_IOTModel.GetDeviceBySite_Result)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetDeviceChartByID" ReturnType="Collection(Hartama_IOTModel.GetDeviceChartByID_Result)">
+      <Parameter Name="DeviceID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetDeviceCategory" ReturnType="Collection(Hartama_IOTModel.GetDeviceCategory_Result)">
+      <Parameter Name="offset" Mode="In" Type="Int32" />
+      <Parameter Name="limit" Mode="In" Type="Int32" />
+      <Parameter Name="keyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetSite" ReturnType="Collection(Hartama_IOTModel.GetSite_Result)">
+      <Parameter Name="offset" Mode="In" Type="Int32" />
+      <Parameter Name="limit" Mode="In" Type="Int32" />
+      <Parameter Name="keyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertDevice" ReturnType="Collection(Hartama_IOTModel.InsertDevice_Result)">
+      <Parameter Name="Device_Name" Mode="In" Type="String" />
+      <Parameter Name="Device_category_ID" Mode="In" Type="String" />
+      <Parameter Name="Device_Site_ID" Mode="In" Type="String" />
+      <Parameter Name="Device_Description" Mode="In" Type="String" />
+      <Parameter Name="UserEntry" Mode="In" Type="String" />
+      <Parameter Name="DateEntry" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="DateLastMaintenance" Mode="In" Type="String" />
+      <Parameter Name="user" Mode="In" Type="String" />
+      <Parameter Name="MacAdress1" Mode="In" Type="String" />
+      <Parameter Name="MacAdress2" Mode="In" Type="String" />
+      <Parameter Name="MacAdress3" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetDeviceBySiteDatatable" ReturnType="Collection(Hartama_IOTModel.GetDeviceBySiteDatatable_Result)">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="limit" Mode="In" Type="Int32" />
+      <Parameter Name="offset" Mode="In" Type="Int32" />
+      <Parameter Name="keyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateDevice" ReturnType="Collection(Hartama_IOTModel.UpdateDevice_Result)">
+      <Parameter Name="DeviceID" Mode="In" Type="String" />
+      <Parameter Name="DeviceName" Mode="In" Type="String" />
+      <Parameter Name="DeviceCategoryID" Mode="In" Type="String" />
+      <Parameter Name="DeviceSiteID" Mode="In" Type="String" />
+      <Parameter Name="Mac1" Mode="In" Type="String" />
+      <Parameter Name="Mac2" Mode="In" Type="String" />
+      <Parameter Name="Mac3" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="UserLastMaintenance" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteDevice" ReturnType="Collection(Hartama_IOTModel.DeleteDevice_Result)">
+      <Parameter Name="IDDevice" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="PTUserLogin_Result">
+    <Property Type="String" Name="msg" Nullable="true" />
+    <Property Type="String" Name="LoginAccept" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IDUser" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UserCode" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IDRole" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="RoleName" Nullable="true" />
+    <Property Type="String" Name="UserPicture" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTUserSelectByID_Result">
+    <Property Type="String" Name="IDUser" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="UserCode" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="Fullname" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Rolename" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="WorkDesc" Nullable="false" MaxLength="1" />
+    <Property Type="DateTime" Name="ExpiredDate" Nullable="true" />
+    <Property Type="Boolean" Name="Locked" Nullable="false" />
+    <Property Type="Int32" Name="FailedLogin" Nullable="true" />
+    <Property Type="DateTime" Name="LastLogin" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="LastPasswordChange" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UserEntry" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+    <Property Type="String" Name="IDWorkHour" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IDRole" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PTUserUpdate_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTUserSelectByKeyword_Result">
+    <Property Type="String" Name="IDUser" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="UserCode" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="Fullname" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Rolename" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="ExpiredDate" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Locked" Nullable="false" />
+    <Property Type="Int32" Name="FailedLogin" Nullable="true" />
+    <Property Type="DateTime" Name="LastLogin" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="LastPasswordChange" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UserEntry" Nullable="false" MaxLength="15" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="15" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+    <Property Type="String" Name="IDWorkHour" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IDRole" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PTUserSelectALL_Result">
+    <Property Type="String" Name="IDUser" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="PTUserDelete_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTUserUpdateLocked_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTUserUpdateResetPassword_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+    <Property Type="String" Name="NamaUser" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PTSiteInsert_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTSiteUpdate_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTSiteDelete_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTSiteSelectByKeywordDiscontinue_Result">
+    <Property Type="String" Name="IDSite" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="SiteName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="PostCode" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="TelephoneNo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="FaxNo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="350" />
+    <Property Type="String" Name="PICSite" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UserEntry" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="15" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Discontinue" Nullable="true" />
+    <Property Type="String" Name="timezone_location" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="PTSiteSelect_Result">
+    <Property Type="String" Name="IDSite" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="SiteName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="PostCode" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="TelephoneNo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="FaxNo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="350" />
+    <Property Type="String" Name="PICSite" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UserEntry" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="15" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Discontinue" Nullable="true" />
+    <Property Type="String" Name="SiteLogo" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+    <Property Type="Int32" Name="IDTimeZone" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTSiteSelectByID_Result">
+    <Property Type="String" Name="IDSite" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="SiteName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="PostCode" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="TelephoneNo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="FaxNo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="350" />
+    <Property Type="String" Name="PICSite" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UserEntry" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="Discontinue" Nullable="true" />
+    <Property Type="String" Name="SiteLogo" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="IDTimeZone" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTSiteUserSelectByIDSite_Result">
+    <Property Type="Int32" Name="IDSiteUser" Nullable="false" />
+    <Property Type="String" Name="IDUser" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="UserCode" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Fullname" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Rolename" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PTSiteUserSelectByIDUser_Result">
+    <Property Type="String" Name="SiteCode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="IDUser" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="SiteName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="SiteLogo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTSiteSelectAll_Result">
+    <Property Type="String" Name="SiteName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IDSite" Nullable="false" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="PTLanguageSelectAll_Result">
+    <Property Type="String" Name="IDLanguage" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="LanguageName" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="ResourcePath" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="ResourceName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="LanguageDesc" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="PTLanguageSelectByID_Result">
+    <Property Type="String" Name="IDLanguage" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="LanguageName" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="ResourcePath" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="ResourceName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="LanguageDesc" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="PTFeatureLanguageSelect_Result">
+    <Property Type="String" Name="IDFeatures" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="FeaturesName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IDLanguage" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="LanguageText" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTModuleLanguageSelect_Result">
+    <Property Type="String" Name="IDModule" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="ModuleName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IDLanguage" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="LanguageText" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTShortcutLanguageSelect_Result">
+    <Property Type="String" Name="IDShortcut" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Shortcut" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="IDLanguage" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="ShortcutNameText" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ShortcutInfoText" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTSiteUserSave_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTModuleFeaturesSelectAll_Result">
+    <Property Type="String" Name="IDfeaturesAccess" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="IDRole" Nullable="true" MaxLength="15" />
+    <Property Type="Boolean" Name="Visible" Nullable="true" />
+    <Property Type="Boolean" Name="View" Nullable="true" />
+    <Property Type="Boolean" Name="New" Nullable="true" />
+    <Property Type="Boolean" Name="Edit" Nullable="true" />
+    <Property Type="Boolean" Name="Delete" Nullable="true" />
+    <Property Type="Boolean" Name="Printable" Nullable="true" />
+    <Property Type="String" Name="ModuleName" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="SequenceModule" Nullable="false" />
+    <Property Type="Int32" Name="SequenceModuleFeatures" Nullable="true" />
+    <Property Type="String" Name="FeaturesName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="FeaturesCode" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="FeaturesType" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="IDFeatures" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IDModule" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IDModuleFeatures" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="PathApp" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PModuleFeatureToMenuTree_Result">
+    <Property Type="String" Name="IDFeatures" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="ParentID" Nullable="true" MaxLength="259" />
+    <Property Type="String" Name="FeaturesCode" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="FeaturesName" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="FeaturesDesc" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="FeaturesType" Nullable="true" MaxLength="259" />
+    <Property Type="String" Name="FeaturesAction" Nullable="true" MaxLength="259" />
+    <Property Type="Boolean" Name="IsExternal" Nullable="true" />
+    <Property Type="String" Name="PathApp" Nullable="true" MaxLength="259" />
+    <Property Type="Int32" Name="Sequence" Nullable="true" />
+    <Property Type="String" Name="icon" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="IconType" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="concatenador" Nullable="true" MaxLength="25" />
+  </ComplexType>
+  <ComplexType Name="PTModuleInsert_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTModuleUpdate_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTModuleUpdateSequence_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTModuleDelete_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTModuleSelect_Result">
+    <Property Type="String" Name="IDModule" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="ModuleCode" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ModuleName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ModuleDesc" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="UserEntry" Nullable="true" MaxLength="15" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="15" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Sequence" Nullable="false" />
+    <Property Type="Boolean" Name="IsDefault" Nullable="false" />
+    <Property Type="String" Name="IDIcon" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IconName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IconClass" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="IconType" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTModuleSelectByID_Result">
+    <Property Type="String" Name="IDModule" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="ModuleCode" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ModuleName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ModuleDesc" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="UserEntry" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Sequence" Nullable="false" />
+    <Property Type="Boolean" Name="IsDefault" Nullable="false" />
+    <Property Type="String" Name="IDIcon" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IconName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IconClass" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IconType" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IconPath" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="PTModuleSelectByKeyword_Result">
+    <Property Type="String" Name="IDModule" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="ModuleCode" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ModuleName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ModuleDesc" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="UserEntry" Nullable="true" MaxLength="15" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="15" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Sequence" Nullable="false" />
+    <Property Type="Boolean" Name="IsDefault" Nullable="false" />
+    <Property Type="String" Name="IDIcon" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IconName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IconClass" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTIconSelectLov_Result">
+    <Property Type="String" Name="IDIcon" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IconName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IconType" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IconCategory" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="IconDesc" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="IconClass" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IconPath" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PTIconSelectLovByKeyword_Result">
+    <Property Type="String" Name="IDIcon" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IconName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IconClass" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="PTIconSelectByKeyword_Result">
+    <Property Type="String" Name="IDIcon" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IconName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IconDesc" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="IconClass" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="PTIconSelectByKeywordIsDefault_Result">
+    <Property Type="String" Name="IDIcon" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IconName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IconType" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IconCategory" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="IconDesc" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="IconClass" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="IsDefault" Nullable="true" />
+    <Property Type="String" Name="IconPath" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PTIconSelectByID_Result">
+    <Property Type="String" Name="IDIcon" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IconName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IconDesc" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="IconClass" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IconType" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IconPath" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="IconCategory" Nullable="true" MaxLength="255" />
+    <Property Type="Boolean" Name="IsDefault" Nullable="true" />
+    <Property Type="String" Name="UserEntry" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="true" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTIconInsert_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTIconDelete_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTIconUpdate_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTFeatureInsert_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTFeatureUpdate_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTFeatureUpdateSequence_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTFeatureDelete_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTFeatureMove_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTFeatureDuplicate_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTFeatureSelectByID_Result">
+    <Property Type="String" Name="IDFeatures" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="FeaturesCode" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="FeaturesName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="FeaturesDesc" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="FeaturesType" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="FeaturesAction" Nullable="false" MaxLength="20" />
+    <Property Type="Boolean" Name="IsExternal" Nullable="false" />
+    <Property Type="String" Name="PathApp" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="UserEntry" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IsDefault" Nullable="true" />
+    <Property Type="String" Name="IDIcon" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IconName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="IconClass" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IconType" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="PTFeatureSelectByIDFeatureIDModule_Result">
+    <Property Type="String" Name="IDModuleFeatures" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IDModule" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IDFeatures" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="FeaturesCode" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="FeaturesName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="FeaturesDesc" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="FeaturesType" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="FeaturesAction" Nullable="true" MaxLength="20" />
+    <Property Type="Boolean" Name="IsExternal" Nullable="true" />
+    <Property Type="String" Name="PathApp" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="Sequence" Nullable="true" />
+    <Property Type="String" Name="UserEntry" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+    <Property Type="String" Name="IDIcon" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="IconClass" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="IconType" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="IconPath" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="PTFeatureSelectByIDModule_Result">
+    <Property Type="String" Name="IDModuleFeatures" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IDModule" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="IDFeatures" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="FeaturesCode" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="FeaturesName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="FeaturesDesc" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="FeaturesType" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="FeaturesAction" Nullable="false" MaxLength="20" />
+    <Property Type="Boolean" Name="IsExternal" Nullable="false" />
+    <Property Type="String" Name="PathApp" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="Sequence" Nullable="true" />
+    <Property Type="String" Name="UserEntry" Nullable="true" MaxLength="15" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="15" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTRoleInsert_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTRoleUpdate_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTRoleDelete_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PTRoleSelectByID_Result">
+    <Property Type="String" Name="IDRole" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Rolename" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="RoleDesc" Nullable="true" MaxLength="500" />
+    <Property Type="Boolean" Name="Discontinue" Nullable="false" />
+    <Property Type="String" Name="UserEntry" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="PTRoleSelectByKeywordDiscontinue_Result">
+    <Property Type="String" Name="IDRole" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="Rolename" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="RoleDesc" Nullable="true" MaxLength="500" />
+    <Property Type="Boolean" Name="Discontinue" Nullable="false" />
+    <Property Type="String" Name="UserEntry" Nullable="false" MaxLength="15" />
+    <Property Type="DateTime" Name="DateEntry" Nullable="false" Precision="23" />
+    <Property Type="String" Name="UserLastMaintenance" Nullable="true" MaxLength="15" />
+    <Property Type="DateTime" Name="DateLastMaintenance" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="TAction">
+    <Key>
+      <PropertyRef Name="Action_ID" />
+    </Key>
+    <Property Name="Action_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NotificationID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ActionType" Type="Int32" Nullable="false" />
+    <Property Name="ActionDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="UserEntry" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="DateEntry" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <ComplexType Name="GetDataNotifications_Result">
+    <Property Type="String" Name="Notification_ID" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Device_Name" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SiteName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="statustext" Nullable="false" MaxLength="21" />
+    <Property Type="String" Name="timecreated" Nullable="false" MaxLength="25" />
+    <Property Type="DateTime" Name="fulldate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="ActionCode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ActionType" Nullable="false" MaxLength="12" />
+    <Property Type="String" Name="DescAction" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="usertaken" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="TNotificationSelect_Result">
+    <Property Type="String" Name="Notification_ID" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Device_Name" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="SiteName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="statustext" Nullable="false" MaxLength="21" />
+    <Property Type="DateTime" Name="datecreated" Nullable="true" />
+    <Property Type="String" Name="timecreated" Nullable="false" MaxLength="25" />
+    <Property Type="DateTime" Name="fulldate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="status" Nullable="true" />
+    <Property Type="Int32" Name="totalmessages" Nullable="true" />
+    <Property Type="Int32" Name="unreadmessages" Nullable="true" />
+    <Property Type="String" Name="Device_ID" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetAllChart_Result">
+    <Property Type="String" Name="SensorName" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="value" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="DateTime" Name="dateCreated" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="countnotif" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetDeviceBySite_Result">
+    <Property Type="String" Name="Device_ID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Device_Name" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="GetDeviceChartByID_Result">
+    <Property Type="String" Name="ID_DataLog" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="device_id" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="Warning" Nullable="true" />
+    <Property Type="Decimal" Name="value" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="51" />
+  </ComplexType>
+  <ComplexType Name="GetDeviceCategory_Result">
+    <Property Type="String" Name="Category_ID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Category_Name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Category_Description" Nullable="false" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetSite_Result">
+    <Property Type="String" Name="IDSite" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="SiteName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="InsertDevice_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetDeviceBySiteDatatable_Result">
+    <Property Type="String" Name="Device_ID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Device_Name" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Device_Site_ID" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="SiteName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Device_category_ID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Device_Description" Nullable="true" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="dateentry" Nullable="true" />
+    <Property Type="String" Name="userlastmaintenance" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="datelastmaintenance" Nullable="false" Precision="23" />
+    <Property Type="String" Name="mac1" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="mac2" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="mac3" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="UpdateDevice_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DeleteDevice_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+</Schema>

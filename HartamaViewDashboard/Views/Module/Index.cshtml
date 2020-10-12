@@ -1,0 +1,337 @@
+﻿@model HartamaViewDashboard.Models.TModuleModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Resources.Resource.ModuleLabelModule</title>
+</head>
+
+<body>
+    <input id="IDRole" type="text" value="@(ViewBag.Role.IDRole)" hidden />
+
+    <input id="PathApp" type="text" value="@(ViewBag.Role.PathApp)" hidden />
+
+    <input id="View" type="text" value="@(ViewBag.Role.BindView)" hidden />
+
+    <input id="New" type="text" value="@(ViewBag.Role.BindNew)" hidden />
+
+    <input id="Edit" type="text" value="@(ViewBag.Role.BindEdit)" hidden />
+
+    <input id="Delete" type="text" value="@(ViewBag.Role.BindDelete)" hidden />
+
+    <input id="Print" type="text" value="@(ViewBag.Role.BindPrintable)" hidden />
+
+    <div id="body">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-8">
+                <h2>@Resources.Resource.ModuleLabelModule</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#" onclick="utility._loadMenu('../Dashboards/Home')">@Resources.Resource.LabelHome</a>
+                    </li>
+                    <li class="active" id="ftr-name">
+                        <strong>@Resources.Resource.ModuleLabelModule</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="ibox-tools">
+                <a><i class="fa fa-question"></i></a>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeIn">
+            <div class="row" id="render-body">
+                <div class="col-lg-12">
+                    @*<div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>@Resources.Resource.Search</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link" data-toggle="collapse" data-target="#searchModule"><i class="fa fa-chevron-down"></i></a>
+                                </div>
+                            </div>
+                                <div id="searchModule" class="ibox-content collapse">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.ModuleLabelModuleCode</label>
+                                                <div class="col-sm-9 col-lg-8">
+                                                    @Html.TextBox("ModCodeSearch", null, new { @class = "form-control", @MaxLength = "50" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.ModuleLabelModuleName</label>
+                                                <div class="col-sm-9 col-lg-8">
+                                                    @Html.TextBox("ModNameSearch", null, new { @class = "form-control", @MaxLength = "50" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.ModuleLabelModuleDescription</label>
+                                                <div class="col-sm-9 col-lg-8">
+                                                    @Html.TextArea("ModDescSearch", null, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group text-right">
+                                                <div class="col-sm-12">
+                                                    <button class="btn btn-primary" type="button" id="btnAccSearchRow"><i class="fa fa-search"></i> @Resources.Resource.ButtonSearch </button>
+                                                    <button class="btn btn-outline btn-default" type="button" id="btnAccResetRow"><i class="fa fa-undo"></i> @Resources.Resource.ButtonReset </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>*@
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5> @Resources.Resource.DataList </h5>
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div id="ModuleMessage" class="col-sm-12">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-primary" type="button" id="btnModAddRow"><i class="fa fa-plus"></i> @Resources.Resource.ButtonAdd </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <label class="col-sm-3 col-lg-4 control-label"><span class="pull-left">Show</span></label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                <div class="input-group">
+                                                    <select class="form-control left-element" name="page_length" id="page-length">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                    </select>
+                                                    <span class="input-group-addon">Entries</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="button-custom-style">
+                                            <div class="btn-group">
+                                                <input type="hidden" value="" name="lastidmodule" id="lastidmodule" />
+                                                <button class="btn btn-outline btn-default" type="button" id="btnModuleUpRow"><i class="fa fa-level-up"></i> @Resources.Resource.ButtonUp</button>
+                                                <button class="btn btn-outline btn-default" type="button" id="btnModuleDownRow"><i class="fa fa-level-down"></i> @Resources.Resource.ButtonDown</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert alert-danger alert-dismissable " aria-hidden="true" style="display :none;" id="errorDivUpdate">
+                                <button class="close" type="button" data-ng-hide="alert" aria-hidden="true">×</button>
+                                <div id="errorMsgDivUpdate"></div>
+                            </div>
+                            <div class="alert alert-success" id="successDiv">
+                            </div>
+                            <input type="hidden" id="hiddenID" value="" /> @* Add element hidden by Egi Apriandi at 25-08-2015 *@
+                            <table id="MODULETMODULE" class="table table-striped table-bordered table-hover dataTables-example custom_table_scroll">
+                                <thead>
+                                    <tr>
+                                        <th>@Resources.Resource.ModuleLabelModuleCode</th>
+                                        <th>@Resources.Resource.ModuleLabelModuleName</th>
+                                        <th>@Resources.Resource.ModuleLabelModuleDescription</th>
+                                        <th>@Resources.Resource.LabelIcon</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="ibox float-e-margins" id="Modinformation">
+                        <div class="ibox-title">
+                            <h5>@Resources.Resource.Information</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "Form-Module", id = "Form-Module", @tabindex = "0", @enctype = "multipart/form-data", @xxx = "Create" }))
+                                {
+                                    <div class="form-horizontal">
+                                        @Html.HiddenFor(model => Model.IDModule)
+                                        @Html.HiddenFor(model => Model.Sequence)
+                                        <div class="form-group">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.ModuleLabelModuleCode</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                @Html.TextBoxFor(model => Model.ModuleCode, new { @class = "form-control", @required = "required", @MaxLength = "20" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.ModuleLabelModuleName</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                @Html.TextBoxFor(model => Model.ModuleName, new { @class = "form-control", @required = "required", @MaxLength = "100" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.ModuleLabelModuleDescription</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                @Html.TextAreaFor(model => Model.ModuleDesc, new { @class = "form-control", @MaxLength = "500" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 col-lg-4 control-label ">@Resources.Resource.LabelIcon</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                <div class="input-group m-b">
+                                                    @Html.HiddenFor(model => Model.IDIconModule)
+                                                    @Html.TextBoxFor(model => Model.IconName, new
+                                               {
+                                                   @class = "form-control",
+                                                   @required = "required",  @*Add Attribut readonly By Egi Apriandi at 25-08-2015*@ @readonly = "readonly"
+                                               })
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-primary" href="#LOV-Icon" data-toggle="modal" type="button" id="frm-lov-btn"><i class="fa fa-search"></i></button>
+                                                    </span>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divuserentry">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelUserEntry</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                @Html.TextBoxFor(model => Model.UserEntry, new { @class = "form-control", @readonly = "readonly" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divdateentry">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelDateEntry</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                @Html.TextBoxFor(model => Model.DateEntry, new { @class = "form-control", @readonly = "readonly" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divuserlastmaintenance">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelUserLastMaintenance</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                @Html.TextBoxFor(model => Model.UserLastMaintenance, new { @class = "form-control", @readonly = "readonly" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divdatelastmaintenance">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelDateLastMaintenance</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                @Html.TextBoxFor(model => Model.DateLastMaintenance, new { @class = "form-control", @readonly = "readonly" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="button-custom-style col-sm-12">
+                                                <button class="btn btn-primary" type="button" id="btnSaveRow"><i class="fa fa-save"></i> @Resources.Resource.ButtonSave </button>
+                                                <button class="btn btn-primary" type="button" id="btnDeleteRow"><i class="fa fa-trash"></i> @Resources.Resource.ButtonDelete </button>
+                                                <button class="btn btn-outline btn-default" type="button" id="btnCancelRow"><i class="fa fa-close"></i> @Resources.Resource.ButtonCancel </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="DeleteModal" class="modal inmodal" aria-hidden="true" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content animated fadeIn ">
+                    <div class="modal-header">
+                        <h3 class="modal-title">@Resources.Resource.ModuleLabelModule - @Resources.Resource.ButtonDelete</h3>
+                        <div class="ibox-tools">
+                            <a class="active-tooltips">
+                                <span class="tooltipster-icon">
+                                    <i class="fa fa-question "></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="modal-body col-md-12" id="modal-Render">
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-xs-12 col-sm-9 col-md-10 delete-caption">
+                            @Resources.Resource.LabelDelete
+                        </div>
+                        <div class=" col-xs-12 col-sm-3 col-md-2 pull-right">
+                            <input value="@Resources.Resource.ButtonNo" type="button" class="btn btn-default btn-outline" id="frm-cancel-btn" />
+                            <input value="@Resources.Resource.ButtonYes" type="button" class="btn btn-default" id="frm-submit-btn" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="LOV-Icon" class="modal inmodal" aria-hidden="true" role="dialog" tabindex="-2">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content animated fadeIn ">
+                    <div class="modal-header">
+                        <h3 class="modal-title">@Resources.Resource.LabelLOVIcon</h3>
+                    </div>
+                    <div class="modal-body" id="modal-Render-Icon-Module">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline btn-default" data-dismiss="modal" id="closeModal">@Resources.Resource.ButtonClose</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    //function OnloadFunction() { }
+    $(document).ready(function () {
+
+        $.getScript("../Scripts/main/Module.js", {
+            cache: true
+        }).done(
+            function () {
+                var param = {};
+                param.attribute = {
+
+                    "Info": "@Resources.Resource.LabelShowing",
+                    "Page": "@Resources.Resource.LabelPage",
+                    "Of": "@Resources.Resource.LabelOf",
+                    "ZeroResult": "@Resources.Resource.LabelZeroResult",
+                    "InfoEmpty": "@Resources.Resource.LabelInfoEmpty",
+                    "Previous": "@Resources.Resource.LabelPrev",
+                    "Next": "@Resources.Resource.LabelNext",
+                    "Last": "@Resources.Resource.LabelLastPage",
+                    "First": "@Resources.Resource.LabelFirstPage",
+                    "To": "@Resources.Resource.LabelTo",
+                    "Entries": "@Resources.Resource.LabelEntries",
+                    "Warning": "@Resources.Resource.LabelWarning",
+                    "PickOneData": "@Resources.Resource.AlertPickOneData",
+                    "CanDelete": "@ViewBag.Role.BindDelete.ToString()",
+                    "CanSave": "@ViewBag.Role.BindNew.ToString()",
+                    "CanEdit": "@ViewBag.Role.BindEdit.ToString()",
+                    "CanView": "@ViewBag.Role.BindView.ToString()",
+                    "CanPrint": "@ViewBag.Role.BindPrintable.ToString()"
+                }
+                param.validation = {
+                    "required": "@Resources.Resource.ValidateRequired",
+                    "minLength": "@Resources.Resource.ValidateMinLength",
+                    "maxLength": "@Resources.Resource.ValidateMaxLength"
+                }
+                Module.init(param);
+
+                }
+            )
+        });
+    </script>
+
+    @*<style>
+           table.dataTable tbody tr.row_selected {
+        background-color: #b0bed9;
+            }
+        </style>*@
+
+</body>
+
+</html>

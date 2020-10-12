@@ -1,0 +1,129 @@
+﻿@model HartamaViewDashboard.Models.TFeatureModel
+@{
+    Layout = null;
+}
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "Form-Feature", id = "Form-Feature", @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => Model.IconType)
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => Model.IDModule)
+        @Html.HiddenFor(model => Model.IDFeatures)
+        <div class="alert alert-danger alert-dismissable" aria-hidden="true" style="display :none;" id="errorDiv">
+            <button class="close" type="button" data-ng-hide="alert" aria-hidden="true">×</button>
+            <div id="errorMsgDiv"></div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelFeatureCode</label>
+            <div class="col-sm-9 col-lg-8">
+                @Html.TextBoxFor(model => Model.FeaturesCode, new { @class = "form-control", @required = "required", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelFeatureName</label>
+            <div class="col-sm-9 col-lg-8">
+                @Html.TextBoxFor(model => Model.FeaturesName, new { @class = "form-control", @required = "required", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelFeatureDescription</label>
+            <div class="col-sm-9 col-lg-8">
+                @Html.TextAreaFor(model => Model.FeaturesDesc, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelFeatureType</label>
+            <div class="col-sm-9 col-lg-8">
+                @Html.TextBoxFor(model => Model.FeaturesType, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelFeatureAction</label>
+            <div class="col-sm-9 col-lg-8">
+                @Html.TextBoxFor(model => Model.FeaturesAction, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelExternalFeature</label>
+                <div class="col-sm-9 col-lg-8">
+
+                    <input class="i-checks" type="checkbox" name="checkIsExternal" id="checkIsExternal" disabled>
+                    <input type="hidden" id="IsExternal" name="IsExternal" />
+
+                </div>
+            </div>*@
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label ">@Resources.Resource.LabelIcon</label>
+            <div class="col-sm-9 col-lg-8 checkbox" id="iconClass">
+                <i class="fa @Model.IconClass"></i>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelUserEntry</label>
+            <div class="col-sm-9 col-lg-8">
+                @Html.TextBoxFor(model => Model.UserEntry, new { @class = "form-control", @readonly = "readonly" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelDateEntry</label>
+            <div class="col-sm-9 col-lg-8">
+                @Html.TextBoxFor(model => Model.DateEntry, new { @class = "form-control", @readonly = "readonly" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelUserLastMaintenance</label>
+            <div class="col-sm-9 col-lg-8">
+                @Html.TextBoxFor(model => Model.UserLastMaintenance, new { @class = "form-control", @readonly = "readonly" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelDateLastMaintenance</label>
+            <div class="col-sm-9 col-lg-8">
+                @Html.TextBoxFor(model => Model.DateLastMaintenance, new { @class = "form-control", @readonly = "readonly" })
+
+            </div>
+        </div>
+        @*<div class="form-group text-center">
+                <label>@Resources.Resource.LabelDelete</label>
+            </div>*@
+
+    </div>
+}
+
+
+
+<script>
+    $(document).ready(function () {
+        $.getScript("../Scripts/main/Feature.js", {
+            cache: true
+        }).done(
+            function () {
+                FeatureDelete.init();
+                var selected = "@Model.FeaturesType";
+                $("#FeaturesType").val(selected);
+                selected = "@Model.FeaturesAction";
+                $("#FeaturesAction").val(selected);
+                selected = "@Model.IsExternal";
+                FeatureDelete.initIsExternal(selected);
+                var icon = $('#IconType').val();
+
+                if (icon == 'Image') {
+                    var isi = '<img alt="image" src="@Model.IconPath">';
+                    //console.log(icon);
+
+                }
+                else {
+                    var isi = '<i class="fa @Model.IconClass"></i>';
+
+                }
+                $("#iconClass").html(isi);
+                }
+            )
+  });
+</script>

@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Hartama_IOTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TAction">
+    <Key>
+      <PropertyRef Name="Action_ID" />
+    </Key>
+    <Property Name="Action_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NotificationID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ActionType" Type="int" Nullable="false" />
+    <Property Name="ActionDescription" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="UserEntry" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="DateEntry" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Function Name="DeleteDevice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDDevice" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetAllChart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DeviceID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetDataNotifications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleID" Type="nvarchar" Mode="In" />
+    <Parameter Name="offset" Type="int" Mode="In" />
+    <Parameter Name="limit" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetDeviceBySite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetDeviceBySiteDatatable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="limit" Type="int" Mode="In" />
+    <Parameter Name="offset" Type="int" Mode="In" />
+    <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="GetDeviceCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="offset" Type="int" Mode="In" />
+    <Parameter Name="limit" Type="int" Mode="In" />
+    <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="GetDeviceChartByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DeviceID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetSite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="offset" Type="int" Mode="In" />
+    <Parameter Name="limit" Type="int" Mode="In" />
+    <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="InsertDevice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Device_Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Device_category_ID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Device_Site_ID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Device_Description" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserEntry" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateEntry" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="user" Type="nvarchar" Mode="In" />
+    <Parameter Name="MacAdress1" Type="nvarchar" Mode="In" />
+    <Parameter Name="MacAdress2" Type="nvarchar" Mode="In" />
+    <Parameter Name="MacAdress3" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="P_NumberSeri" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MODUL" Type="nvarchar" Mode="In" />
+    <Parameter Name="SPREFIX" Type="nvarchar" Mode="In" />
+    <Parameter Name="PANJANG" Type="int" Mode="In" />
+    <Parameter Name="NOMORSERI" Type="nvarchar" Mode="InOut" />
+  </Function>
+  <Function Name="PInsertLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Action" Type="nvarchar" Mode="In" />
+    <Parameter Name="TableLog" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDTransaction" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateTransaction" Type="datetime" Mode="In" />
+    <Parameter Name="UserTransaction" Type="nvarchar" Mode="In" />
+    <Parameter Name="OldValue" Type="varchar(max)" Mode="In" />
+    <Parameter Name="NewValue" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="PModuleFeatureToMenuTree" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDRole" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDSite" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDLanguage" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTFeatureDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDModule" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDFeature" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTFeatureDuplicate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDModule" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDFeature" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserEntry" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateEntry" Type="datetime" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTFeatureInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDModule" Type="nvarchar" Mode="In" />
+    <Parameter Name="FeaturesCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="FeaturesName" Type="nvarchar" Mode="In" />
+    <Parameter Name="FeaturesDesc" Type="nvarchar" Mode="In" />
+    <Parameter Name="FeaturesType" Type="nvarchar" Mode="In" />
+    <Parameter Name="FeaturesAction" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsExternal" Type="bit" Mode="In" />
+    <Parameter Name="PathApp" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserEntry" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateEntry" Type="datetime" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+    <Parameter Name="IDIcon" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTFeatureLanguageSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDLanguage" Type="varchar" Mode="In" />
+    <Parameter Name="Keyword" Type="varchar" Mode="In" />
+    <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+    <Parameter Name="Direction" Type="varchar" Mode="In" />
+    <Parameter Name="Limit" Type="int" Mode="In" />
+    <Parameter Name="OffSet" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PTFeatureMove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDFeature" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDModule" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTFeatureSelectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDFeature" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTFeatureSelectByIDFeatureIDModule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDFeature" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDModule" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTFeatureSelectByIDModule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDModule" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTFeatureUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDFeature" Type="nvarchar" Mode="In" />
+    <Parameter Name="FeaturesCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="FeaturesName" Type="nvarchar" Mode="In" />
+    <Parameter Name="FeaturesDesc" Type="nvarchar" Mode="In" />
+    <Parameter Name="FeaturesType" Type="nvarchar" Mode="In" />
+    <Parameter Name="FeaturesAction" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsExternal" Type="bit" Mode="In" />
+    <Parameter Name="PathApp" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+    <Parameter Name="IDIcon" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTFeatureUpdateSequence" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDModule" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDFeature" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direction" Type="nvarchar" Mode="In" />
+    <Parameter Name="FeatureType" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTIconDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDIcon" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTIconInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IconName" Type="nvarchar" Mode="In" />
+    <Parameter Name="IconDesc" Type="nvarchar" Mode="In" />
+    <Parameter Name="IconClass" Type="nvarchar" Mode="In" />
+    <Parameter Name="IconType" Type="nvarchar" Mode="In" />
+    <Parameter Name="IconPath" Type="nvarchar" Mode="In" />
+    <Parameter Name="IconCategory" Type="nvarchar" Mode="In" />
+    <Parameter Name="isDefault" Type="bit" Mode="In" />
+    <Parameter Name="UserEntry" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateEntry" Type="datetime" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTIconSelectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDIcon" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTIconSelectByKeyword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direction" Type="nvarchar" Mode="In" />
+    <Parameter Name="Keyword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTIconSelectByKeywordIsDefault" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direction" Type="nvarchar" Mode="In" />
+    <Parameter Name="Keyword" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsDefault" Type="bit" Mode="In" />
+    <Parameter Name="Limit" Type="int" Mode="In" />
+    <Parameter Name="Offset" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PTIconSelectLov" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direction" Type="nvarchar" Mode="In" />
+    <Parameter Name="Keyword" Type="nvarchar" Mode="In" />
+    <Parameter Name="Limit" Type="int" Mode="In" />
+    <Parameter Name="Offset" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PTIconSelectLovByKeyword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direction" Type="nvarchar" Mode="In" />
+    <Parameter Name="Keyword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTIconUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDIcon" Type="nvarchar" Mode="In" />
+    <Parameter Name="IconName" Type="nvarchar" Mode="In" />
+    <Parameter Name="IconDesc" Type="nvarchar" Mode="In" />
+    <Parameter Name="IconClass" Type="nvarchar" Mode="In" />
+    <Parameter Name="IconType" Type="nvarchar" Mode="In" />
+    <Parameter Name="IconPath" Type="nvarchar" Mode="In" />
+    <Parameter Name="IconCategory" Type="nvarchar" Mode="In" />
+    <Parameter Name="isDefault" Type="bit" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTLanguageSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PTLanguageSelectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDLanguage" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PTModuleDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDModule" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTModuleFeaturesSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDRole" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDSite" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTModuleInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ModuleCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModuleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModuleDesc" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserEntry" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateEntry" Type="datetime" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+    <Parameter Name="Sequence" Type="int" Mode="In" />
+    <Parameter Name="IsDefault" Type="bit" Mode="In" />
+    <Parameter Name="IDIcon" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTModuleLanguageSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDLanguage" Type="varchar" Mode="In" />
+    <Parameter Name="Keyword" Type="varchar" Mode="In" />
+    <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+    <Parameter Name="Direction" Type="varchar" Mode="In" />
+    <Parameter Name="Limit" Type="int" Mode="In" />
+    <Parameter Name="OffSet" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PTModuleSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direction" Type="nvarchar" Mode="In" />
+    <Parameter Name="Limit" Type="int" Mode="In" />
+    <Parameter Name="OffSet" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PTModuleSelectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDModule" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTModuleSelectByKeyword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Keyword" Type="nvarchar" Mode="In" />
+    <Parameter Name="Limit" Type="int" Mode="In" />
+    <Parameter Name="Offset" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PTModuleUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDModule" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModuleCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModuleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ModuleDesc" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+    <Parameter Name="Sequence" Type="int" Mode="In" />
+    <Parameter Name="IsDefault" Type="bit" Mode="In" />
+    <Parameter Name="IDIcon" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTModuleUpdateSequence" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDModule" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direction" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTRoleDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDRole" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="date" Mode="In" />
+  </Function>
+  <Function Name="PTRoleInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="RoleDesc" Type="nvarchar" Mode="In" />
+    <Parameter Name="Discontinue" Type="bit" Mode="In" />
+    <Parameter Name="UserEntry" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateEntry" Type="datetime" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTRoleSelectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDRole" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTRoleSelectByKeywordDiscontinue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direction" Type="nvarchar" Mode="In" />
+    <Parameter Name="Keyword" Type="nvarchar" Mode="In" />
+    <Parameter Name="Discontinue" Type="bit" Mode="In" />
+    <Parameter Name="Limit" Type="int" Mode="In" />
+    <Parameter Name="Offset" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PTRoleUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDRole" Type="nvarchar" Mode="In" />
+    <Parameter Name="RoleName" Type="nvarchar" Mode="In" />
+    <Parameter Name="RoleDesc" Type="nvarchar" Mode="In" />
+    <Parameter Name="Discontinue" Type="bit" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTShortcutLanguageSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDLanguage" Type="varchar" Mode="In" />
+    <Parameter Name="Keyword" Type="varchar" Mode="In" />
+    <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+    <Parameter Name="Direction" Type="varchar" Mode="In" />
+    <Parameter Name="Limit" Type="int" Mode="In" />
+    <Parameter Name="OffSet" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PTSiteDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSite" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="date" Mode="In" />
+  </Function>
+  <Function Name="PTSiteInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SiteName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar" Mode="In" />
+    <Parameter Name="PostCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="telephone" Type="nvarchar" Mode="In" />
+    <Parameter Name="Fax" Type="nvarchar" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="PIC" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserEntry" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateEntry" Type="datetime" Mode="In" />
+    <Parameter Name="Discontinue" Type="bit" Mode="In" />
+    <Parameter Name="SiteLogo" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDTimeZone" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PTSiteSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SiteNameKeyword" Type="nvarchar" Mode="In" />
+    <Parameter Name="Discontinue" Type="bit" Mode="In" />
+    <Parameter Name="OrderBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direction" Type="nvarchar" Mode="In" />
+    <Parameter Name="Limit" Type="int" Mode="In" />
+    <Parameter Name="OffSet" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PTSiteSelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PTSiteSelectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSite" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTSiteSelectByKeywordDiscontinue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SiteNameKeyword" Type="nvarchar" Mode="In" />
+    <Parameter Name="Discontinue" Type="bit" Mode="In" />
+    <Parameter Name="OrderBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direction" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTSiteUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSite" Type="nvarchar" Mode="In" />
+    <Parameter Name="SiteName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar" Mode="In" />
+    <Parameter Name="PostCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="telephone" Type="nvarchar" Mode="In" />
+    <Parameter Name="Fax" Type="nvarchar" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="PIC" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+    <Parameter Name="Discontinue" Type="bit" Mode="In" />
+    <Parameter Name="SiteLogo" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDTimeZone" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PTSiteUserSave" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSite" Type="nvarchar" Mode="In" />
+    <Parameter Name="ValueList" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="UserEntry" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateEntry" Type="datetime" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTSiteUserSelectByIDSite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSite" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTSiteUserSelectByIDUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDUser" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTUserDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTUserInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="Fullname" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="ExpiredDate" Type="datetime" Mode="In" />
+    <Parameter Name="Locked" Type="bit" Mode="In" />
+    <Parameter Name="IDRole" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDWorkHour" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserEntry" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateEntry" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTUserSelectALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PTUserSelectByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdUser" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTUserSelectByKeyword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direction" Type="nvarchar" Mode="In" />
+    <Parameter Name="Keyword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTUserUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="Password" Type="nvarchar" Mode="In" />
+    <Parameter Name="Fullname" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="ExpiredDate" Type="datetime" Mode="In" />
+    <Parameter Name="IDRole" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDWorkHour" Type="nvarchar" Mode="In" />
+    <Parameter Name="LastLogin" Type="datetime" Mode="In" />
+    <Parameter Name="LastPasswordChange" Type="datetime" Mode="In" />
+    <Parameter Name="UserLastMaintanance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintanance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTUserUpdateLastLoginSite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDSite" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PTUserUpdateLocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="Locked" Type="bit" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PTUserUpdateResetPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDUser" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateLastMaintenance" Type="datetime" Mode="In" />
+    <Parameter Name="LastPasswordChange" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="TNotificationSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Role" Type="nvarchar" Mode="In" />
+    <Parameter Name="offset" Type="int" Mode="In" />
+    <Parameter Name="limit" Type="int" Mode="In" />
+  </Function>
+  <Function Name="UpdateDevice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DeviceID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DeviceName" Type="nvarchar" Mode="In" />
+    <Parameter Name="DeviceCategoryID" Type="nvarchar" Mode="In" />
+    <Parameter Name="DeviceSiteID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mac1" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mac2" Type="nvarchar" Mode="In" />
+    <Parameter Name="Mac3" Type="nvarchar" Mode="In" />
+    <Parameter Name="Description" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="Hartama_IOTModelStoreContainer">
+    <EntitySet Name="TAction" EntityType="Self.TAction" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

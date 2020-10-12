@@ -1,0 +1,132 @@
+﻿@{
+    Layout = null;
+}
+<div id="body">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <input id="IDRole" type="text" value="@(ViewBag.Role.IDRole)" hidden />
+
+        <input id="PathApp" type="text" value="@(ViewBag.Role.PathApp)" hidden />
+
+        <input id="View" type="text" value="@(ViewBag.Role.BindView)" hidden />
+
+        <input id="New" type="text" value="@(ViewBag.Role.BindNew)" hidden />
+
+        <input id="Edit" type="text" value="@(ViewBag.Role.BindEdit)" hidden />
+
+        <input id="Delete" type="text" value="@(ViewBag.Role.BindDelete)" hidden />
+
+        <input id="Print" type="text" value="@(ViewBag.Role.BindPrintable)" hidden />
+        <div class="col-lg-8">
+            <h2>@Resources.Resource.LabelRoleAccess</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="#" onclick="utility._loadMenu('../Dashboards/Home')">@Resources.Resource.LabelHome</a>
+                </li>
+                <li class="active" id="ftr-name">
+                </li>
+            </ol>
+        </div>
+        <div class="ibox-tools">
+            <a>
+                <i class="fa fa-question"></i>
+            </a>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeIn">
+        <div class="row" id="render-body">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <button class="btn btn-primary" type="button" id="save">@Resources.Resource.ButtonSave</button>
+                        <button class="btn btn-outline btn-default" type="button" id="selectAll"> @Resources.Resource.ButtonSelectAll</button>
+                        <button class="btn btn-outline btn-default" type="button" id="unselectAll"> @Resources.Resource.ButtonUnselectAll</button>
+                        <button class="btn btn-outline btn-default" type="button" id="cancel"> @Resources.Resource.ButtonCancel</button>
+                    </div>
+                </div>
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div class="alert alert-success" id="successDivRole">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mobile-view">
+                                <h3>@Resources.Resource.LabelRoleName</h3>
+                                @Html.DropDownList("RoleSelect", (IEnumerable<SelectListItem>)ViewBag.RoleSelect, new { @class = "form-control m-b" })
+                            </div>
+                            <div class="col-md-4 col-lg-3 desktop-view">
+                                <input type="hidden" id="hiddenIDRole" />
+                                <table id="TRole1" class="table table-striped table-bordered table-hover dataTables-example custom_table_scroll ">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>@Resources.Resource.LabelRoleName</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="col-md-8 col-lg-9">
+                                @using (Html.BeginForm("Save", null, FormMethod.Post, new { name = "Form-RoleAccess", id = "Form-RoleAccess", @enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" id="hiddenID" name="IDRole" />
+                                    <input type="hidden" id="hiddenVisible" name="BindVisible" />
+                                    <input type="hidden" id="hiddenView" name="BindView" />
+                                    <input type="hidden" id="hiddenNew" name="BindNew" />
+                                    <input type="hidden" id="hiddenEdit" name="BindEdit" />
+                                    <input type="hidden" id="hiddenDelete" name="BindDelete" />
+                                    <input type="hidden" id="hiddenPrintable" name="BindPrintable" />
+                                    <input type="hidden" id="hiddenIDFeatureAccess" name="BindIDFeatureAccess" />
+                                    <input type="hidden" id="hiddenIDModuleFeatures" name="BindIDModuleFeatures" />
+                                    <input type="hidden" id="hiddenAction" name="BindAction" />
+                                    <table id="TModuleFeatures1" class="table table-striped table-bordered table-hover dataTables-example custom_table_scroll">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th>@Resources.Resource.FeatureLabelFeatureCode</th>
+                                                <th>@Resources.Resource.FeatureLabelFeatureName</th>
+                                                <th class="sm-width">@Resources.Resource.RoleAccessLabelVisible</th>
+                                                <th class="sm-width">@Resources.Resource.RoleAccessLabelView</th>
+                                                <th class="sm-width">@Resources.Resource.RoleAccessLabelNew</th>
+                                                <th class="sm-width">@Resources.Resource.RoleAccessLabelEdit</th>
+                                                <th class="sm-width">@Resources.Resource.RoleAccessLabelDelete</th>
+                                                <th class="sm-width">@Resources.Resource.RoleAccessLabelPrint</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.getScript("../Scripts/main/RoleAccess.js", {
+            cache: true
+        }).done(function () {
+            var param = {};
+            param.attribute = {
+                "Warning": "@Resources.Resource.LabelWarning",
+                "PickOneData": "@Resources.Resource.LabelErroDidntChangeData",
+
+                "CanDelete": "@ViewBag.Role.BindDelete.ToString()",
+                "CanSave": "@ViewBag.Role.BindNew.ToString()",
+                "CanEdit": "@ViewBag.Role.BindEdit.ToString()",
+                "CanView": "@ViewBag.Role.BindView.ToString()",
+                "CanPrint": "@ViewBag.Role.BindPrintable.ToString()"
+            };
+            RoleAccess.init(param);
+        });
+
+    })
+</script>

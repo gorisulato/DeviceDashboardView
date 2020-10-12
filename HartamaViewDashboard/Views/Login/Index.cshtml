@@ -1,0 +1,99 @@
+﻿@model HartamaViewDashboard.Models.AuthModel
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>I F S | Login</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/fav_.png" />
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
+    @Styles.Render("~/plugins/toastrStyles")
+</head>
+
+<body class="gray-bg">
+
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div class="login-logo">
+
+                <img src="~/Images/logo.jpeg" alt="logo" />
+
+            </div>
+
+            <div id="login">
+                <h3>Login</h3>
+                @*<p>@Resources.Resource.LoginParagrafDescriptionLogin</p>*@
+                <div id="alert" class="alert alert-warning">@ViewBag.Message</div>
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "FormLogin", id = "FormLogin", @enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @*<input type="email" class="form-control" placeholder="Username" required="">*@
+                        @Html.TextBox("userName", null, new { @class = "form-control", @placeholder = @Resources.Resource.LoginPlaceholderUsername, @required = "" })
+                        @Html.ValidationMessageFor(model => model.userName)
+                    </div>
+                        <div class="form-group">
+                            @*<input type="password" class="form-control" placeholder="Password" required="">*@
+                            @Html.TextBox("password", null, new { @class = "form-control", @placeholder = @Resources.Resource.LoginPlaceholderPassword, @required = "", @type = "password" })
+                            @Html.ValidationMessageFor(model => model.password)
+                        </div>
+                        @*<div class="form-group select-language">
+
+                            @Html.DropDownList("SelectCulture", ViewData["Language"] as SelectList, new { @class = "form-control m-b" })
+                        </div>*@
+                        <button class="btn btn-primary block full-width m-b" id="LoginSubmit">@Resources.Resource.ButtonLogin</button>
+
+                        @*<a href="#"><small>@Resources.Resource.LoginLabelForgotPassword</small></a>*@
+
+                }
+            </div>
+           
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/plugins/validate")
+    @Scripts.Render("~/plugins/toastr")
+    <script src="~/Scripts/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $.getScript("../Scripts/main/Login.js", {
+            cache: true
+        }).done(
+          function () {
+              var param = {};
+              var errorsite = "@Resources.Resource.LabelLoginNoSite";
+              //console.log(errorsite);
+              param.attribute = {
+                  "PickOneData":"@Resources.Resource.AlertPickOneData",
+                  "errornosite": errorsite
+              }
+              Login.init(param);
+          }
+      )
+
+
+    });
+
+
+    </script>
+</body>
+
+</html>
+
+

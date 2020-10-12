@@ -1,0 +1,117 @@
+﻿@model HartamaViewDashboard.Models.TModuleModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Details TModule</h5>
+                    </div>
+                    <div class="ibox-content">
+
+
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ModuleCode)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.ModuleCode)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ModuleName)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.ModuleName)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ModuleDesc)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.ModuleDesc)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.UserEntry)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UserEntry)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DateEntry)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.DateEntry)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.UserLastMaintenance)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UserLastMaintenance)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DateLastMaintenance)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.DateLastMaintenance)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Sequence)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Sequence)
+                            </dd>
+
+                        </dl>
+
+
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.IDModule }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white" })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+﻿@{
+    string UserPicture = Session["UserPicture"] != null ? Session["UserPicture"].ToString() : "";
+}
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="custom-logo">
+                <a href="#" onclick="utility._loadMenuList('/Dashboards/Home', 'Home')">
+                    <img src="~/Images/ifs-wh.png" alt="logo" />
+                </a>
+            </li>
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span>
+                        @{
+                            if (UserPicture != "")
+                            {
+                                <img alt="image" width="64" height="64"class="img-circle" src="data:image/png;base64,@UserPicture" />
+                            }
+                            else
+                            {
+                                <img alt="image" width="64" height="64" class="img-circle" src="~/Images/icon/user-default.jpg" />
+                            }
+}
+                        
+                    </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">@ViewBag.UserName</strong>
+                            </span> <span class="text-muted text-xs block">@ViewBag.RN<b class="caret"></b></span>
+                        </span>
+                    </a> 
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="#" id="changepassword">Change Password</a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("Index", "Login")">Logout</a></li>
+                    </ul>
+                </div>
+                
+            </li>
+            <li>
+
+            </li>
+            
+            
+           </ul>
+</div>
+</nav>
+<div id="ChangePasswordModal" class="modal inmodal" aria-hidden="true" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content animated fadeIn ">
+            <div class="modal-header">
+                <h4 class="modal-title">Change Password</h4>
+                <a class="pull-right"><i class="fa fa-question"></i></a>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    @using (Html.BeginForm("UpdatePassword", "User", FormMethod.Post, new { name = "Form-UpdatePassword", id = "Form-UpdatePassword", @tabindex = "0", @enctype = "multipart/form-data", @xxx = "Create" }))
+                    {
+                        <div class="info alert-dismissable" id="errorDiv">
+                            <button class="close" type="button" data-ng-hide="alert" aria-hidden="true">×</button>
+                            <div id="errorMsgDiv"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Password Criteria</label>
+                            <div class="col-md-6 col-sm-9">
+                                <input type="text" value="@ViewBag.PC" id="PasswordCriteria" name="PasswordCriteria" class="form-control" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">New Password</label>
+                            <div class="col-md-6 col-sm-9">
+                                @Html.Password("Password", null, new { @class = "form-control", @MaxLength = "100", @required = "" })
+                            </div>
+                        </div>
+                    }
+                </div>
+        </div>
+        <div class="modal-footer">
+            <div class="form-group ">
+                <div class=" col-lg-12 delete-caption">
+                    <strong id="modalCaption"></strong>
+                </div>
+                <div class="col-lg-12 text-right">
+                    <input value="Change Password" type="button" class="btn btn-outline btn-default" id="btn-changepassword" />
+                    <input value="Cancel" type="button" class="btn btn-primary" id="btn-cancelChangePassword" />
+                </div>
+            </div>
+        </div>
+            </div>
+    </div>
+</div>

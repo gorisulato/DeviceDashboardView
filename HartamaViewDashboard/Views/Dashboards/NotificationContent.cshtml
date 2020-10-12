@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+<table class="table table-hover table-mail" id="TNotification">
+    <tbody>
+        @{
+            foreach (var notif in ViewBag.Notification)
+            {
+                <tr id="@notif.Notification_ID" class="@notif.status" data-status="@notif.status">
+                    @*<td class="mail-ontact"><a href="#">@notif.NotificationType</a></td>*@
+                    <td class="mail-subject"><a href="#">@notif.Description</a></td>
+                    <td class="text-right mail-date">@notif.datecreated</td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        utility.updateNotificationIndex();
+        if ("@ViewBag.Direction" == "Prev") {
+            $("#NextNotification").removeAttr('disabled');
+            $("#NextNotification").attr('data-offset', parseInt($("#NextNotification").attr('data-offset')) - parseInt($("#NextNotification").attr('data-limit')));
+            $("#PrevNotification").attr('data-offset', parseInt($("#PrevNotification").attr('data-offset')) - parseInt($("#PrevNotification").attr('data-limit')));
+        } else if ("@ViewBag.Direction" == "Next") {
+            $("#PrevNotification").removeAttr('disabled');
+            $("#NextNotification").attr('data-offset', parseInt($("#NextNotification").attr('data-offset')) + parseInt($("#NextNotification").attr('data-limit')));
+            $("#PrevNotification").attr('data-offset', parseInt($("#PrevNotification").attr('data-offset')) + parseInt($("#PrevNotification").attr('data-limit')));
+        }
+
+        if (parseInt($("#PrevNotification").attr('data-offset')) < 0) {
+            $("#PrevNotification").attr('disabled', 'disabled');
+        }
+        if (parseInt($("#NextNotification").attr('data-offset')) >= parseInt($('#NotificationContent').attr('data-total-records'))) {
+            $("#NextNotification").attr('disabled', 'disabled');
+        }
+
+    })
+</script>

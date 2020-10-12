@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Dashboard v.1";
+}
+
+<div id="LockScreenModal" class="gray-bg modal inmodal" aria-hidden="true" role="dialog" tabindex="-1">
+    <div class=" lock-word animated fadeindown">
+        <span class="first-word">LOCKED</span><span>SCREEN</span>
+    </div>
+    <div class="modal-dialog" style="width:100%;">
+
+        <div class="middle-box text-center lockscreen animated fadeInDown">
+            <div>
+                <div class="m-b-md">
+                    <img alt="image" class="img-circle circle-border" src="https://s3.amazonaws.com/uifaces/faces/twitter/ok/128.jpg">
+                </div>
+                <h3>John Smith</h3>
+                <p>Your are in lock screen. Main app was shut down and you need to enter your passwor to go back to app.</p>
+                <form class="m-t" role="form" action="index.html">
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="******" required="">
+                    </div>
+                    <button type="submit" class="btn btn-primary block full-width">Unlock</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/plugins/flot")
+    @Scripts.Render("~/plugins/sparkline")
+    @Scripts.Render("~/plugins/chartJs")
+    @Scripts.Render("~/plugins/peity")
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        //shortcutPlugin.ShortcutMainInit();
+        //toastr.success('Wellcome To Asset Management Information System .', 'Hello');
+
+        var paramsite="@Session["IDSite"].ToString()";
+        utility.ListOfSite(paramsite);
+        var currentLanguage="@Session["CurrentUICulture"].ToString()";
+        utility.ListOfLanguage(currentLanguage);
+        var interval = @Session["Interval"] * 60000;
+        //alert(interval);
+        $(document).idleTimer(interval);
+        console.log(interval);
+        utility.UserLogout();
+
+        $(document).on("idle.idleTimer", function (event, elem, obj) {
+            //$('#LockScreenModal').modal('show');
+            //console.log("asdasd");
+            document.location = "../Login/Logout/"
+        });
+
+        $(document).on("active.idleTimer", function (event, elem, obj, triggerevent) {
+            // function you want to fire when the user becomes active again
+            //toastr.clear();
+            //$('.custom-alert').fadeOut();
+            //toastr.success('Great that you decided to move a mouse.', 'You are back. ');
+
+
+
+        });
+
+
+
+
+        //utility._loadMenuList("/Dashboards/Home","Home")
+    });
+    //$(document).on("idle.idleTimer", function (event, elem, obj) {
+    //    toastr.options = {
+    //        "positionClass": "toast-top-right",
+    //        "timeOut": 8000
+    //    }
+
+    //    //toastr.warning('You can call any function after idle timeout.', 'Idle time');
+    //    //$('.custom-alert').fadeIn();
+    //    //$('.custom-alert-active').fadeOut();
+
+    //});
+
+    //$(document).on("active.idleTimer", function (event, elem, obj, triggerevent) {
+    //    // function you want to fire when the user becomes active again
+    //    toastr.clear();
+    //    //$('.custom-alert').fadeOut();
+    //    toastr.success('Great that you decided to move a mouse.', 'You are back. ');
+
+
+
+    //});
+    </script>
+}

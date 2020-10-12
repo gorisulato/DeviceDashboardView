@@ -1,0 +1,2853 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ButtonAdd" xml:space="preserve">
+    <value>Tambah</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Batal</value>
+  </data>
+  <data name="ButtonClose" xml:space="preserve">
+    <value>Keluar</value>
+  </data>
+  <data name="ButtonCreateAccount" xml:space="preserve">
+    <value>Buat Akun</value>
+  </data>
+  <data name="ButtonDelete" xml:space="preserve">
+    <value>Hapus</value>
+  </data>
+  <data name="ButtonDown" xml:space="preserve">
+    <value>Bawah</value>
+  </data>
+  <data name="ButtonEdit" xml:space="preserve">
+    <value>Ubah</value>
+  </data>
+  <data name="ButtonLocked" xml:space="preserve">
+    <value>Kunci</value>
+  </data>
+  <data name="ButtonLogin" xml:space="preserve">
+    <value>Masuk</value>
+  </data>
+  <data name="ButtonNo" xml:space="preserve">
+    <value>Tidak</value>
+  </data>
+  <data name="ButtonResetPassword" xml:space="preserve">
+    <value>Reset Kata Kunci</value>
+  </data>
+  <data name="ButtonRetrieve" xml:space="preserve">
+    <value>Cari</value>
+  </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>Simpan</value>
+  </data>
+  <data name="ButtonTestSend" xml:space="preserve">
+    <value>Test Kirim</value>
+  </data>
+  <data name="ButtonUnlocked" xml:space="preserve">
+    <value>Buka</value>
+  </data>
+  <data name="ButtonUp" xml:space="preserve">
+    <value>Atas</value>
+  </data>
+  <data name="ButtonYes" xml:space="preserve">
+    <value>Ya</value>
+  </data>
+  <data name="EmailServerLabelContent" xml:space="preserve">
+    <value>Konten</value>
+  </data>
+  <data name="EmailServerLabelEmail" xml:space="preserve">
+    <value>Surat Elektronik</value>
+  </data>
+  <data name="EmailServerLabelEmailAddress" xml:space="preserve">
+    <value>Alamat Surat Elektronik</value>
+  </data>
+  <data name="EmailServerLabelEmailProtocolRetrieve" xml:space="preserve">
+    <value>Protok Terima Surat Elektronik</value>
+  </data>
+  <data name="LabelEmailServer" xml:space="preserve">
+    <value>Server Surat Elektronik</value>
+  </data>
+  <data name="EmailServerLabelEnableSSLSend" xml:space="preserve">
+    <value>Mengaktifkan SSL Kirim</value>
+  </data>
+  <data name="EmailServerLabelEnableSSLRetrieve" xml:space="preserve">
+    <value>Mengaktifkan SSL Terima</value>
+  </data>
+  <data name="EmailServerLabelHostnameSend" xml:space="preserve">
+    <value>Hostname Kirim</value>
+  </data>
+  <data name="EmailServerLabelmailProtocolSend" xml:space="preserve">
+    <value>Protokol Kirim Surat Elektronik</value>
+  </data>
+  <data name="EmailServerLabelPortRetrieve" xml:space="preserve">
+    <value>Port Terima</value>
+  </data>
+  <data name="EmailServerLabelPortSend" xml:space="preserve">
+    <value>Port Kirim</value>
+  </data>
+  <data name="EmailServerLabelSettingEmailRetrieve" xml:space="preserve">
+    <value>Pengaturan Email Terima</value>
+  </data>
+  <data name="EmailServerLabelSettingEmailSend" xml:space="preserve">
+    <value>Pengaturan Email Kirim</value>
+  </data>
+  <data name="EmailServerLabelTestEmail" xml:space="preserve">
+    <value>Test Email</value>
+  </data>
+  <data name="EmailServerLabelTimeOutSend" xml:space="preserve">
+    <value>Timeout Kirim</value>
+  </data>
+  <data name="EmailServerLabelTo" xml:space="preserve">
+    <value>Kepada</value>
+  </data>
+  <data name="EmailSeverLabelSubject" xml:space="preserve">
+    <value>Subjek</value>
+  </data>
+  <data name="IconLabelIcon" xml:space="preserve">
+    <value>Ikon</value>
+  </data>
+  <data name="LabelDateEntry" xml:space="preserve">
+    <value>Tanggal Masuk</value>
+  </data>
+  <data name="LabelDelete" xml:space="preserve">
+    <value>Apakah Anda Yakin Akan Menghapus Data</value>
+  </data>
+  <data name="LabelPassword" xml:space="preserve">
+    <value>Kata Kunci</value>
+  </data>
+  <data name="LabelRoleName" xml:space="preserve">
+    <value>Hak Akses</value>
+  </data>
+  <data name="LabelUser" xml:space="preserve">
+    <value>Pengguna</value>
+  </data>
+  <data name="LabelUserEntry" xml:space="preserve">
+    <value>Pembuat</value>
+  </data>
+  <data name="LabelUserLastMaintenance" xml:space="preserve">
+    <value>Pengubah</value>
+  </data>
+  <data name="LabelUserName" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="LabelDateLastMaintenance" xml:space="preserve">
+    <value>Tanggal Ubah</value>
+  </data>
+  <data name="LoginButtonLogin" xml:space="preserve">
+    <value>Selamat Datang Di Asset Management</value>
+  </data>
+  <data name="LoginLabelForgotPassword" xml:space="preserve">
+    <value>Lupa Password ?</value>
+  </data>
+  <data name="LoginParagrafDescriptionLogin" xml:space="preserve">
+    <value>Login in. To see it in action.</value>
+  </data>
+  <data name="ModuleLabelModule" xml:space="preserve">
+    <value>Module</value>
+  </data>
+  <data name="ModuleLabelModuleCode" xml:space="preserve">
+    <value>Kode Modul</value>
+  </data>
+  <data name="ModuleLabelModuleDescription" xml:space="preserve">
+    <value>Deskripsi Modul</value>
+  </data>
+  <data name="ModuleLabelModuleName" xml:space="preserve">
+    <value>Nama Modul</value>
+  </data>
+  <data name="TitleLogin" xml:space="preserve">
+    <value>Asset Management</value>
+  </data>
+  <data name="UserLabelAreYouSureWantToLockUser" xml:space="preserve">
+    <value>Apakah Anda Yakin Akan Mengkunci Pengguna</value>
+  </data>
+  <data name="UserLabelAreYouSureWantToResetPasswordUser" xml:space="preserve">
+    <value>Apakah Anda Yakin Akan Mereset Kata Kunci Pengguna</value>
+  </data>
+  <data name="UserLabelAreYouSureWantToUnlockUser" xml:space="preserve">
+    <value>Apakah Anda Yakin Akan Membuka Pengguna</value>
+  </data>
+  <data name="UserLabelExpiredDate" xml:space="preserve">
+    <value>Tanggal Kadaluarsa</value>
+  </data>
+  <data name="UserLabelFailedLogin" xml:space="preserve">
+    <value>Login Gagal</value>
+  </data>
+  <data name="UserLabelIDUser" xml:space="preserve">
+    <value>ID Pengguna</value>
+  </data>
+  <data name="UserLabelLastLogin" xml:space="preserve">
+    <value>Terakhir Login</value>
+  </data>
+  <data name="UserLabelLastPasswordChange" xml:space="preserve">
+    <value>Terakhir Ganti Kata Kunci</value>
+  </data>
+  <data name="UserLabelLocked" xml:space="preserve">
+    <value>Kunci</value>
+  </data>
+  <data name="UserLabelUserCode" xml:space="preserve">
+    <value>Kode Pengguna</value>
+  </data>
+  <data name="UserLabelUsername" xml:space="preserve">
+    <value>Nama Pengguna</value>
+  </data>
+  <data name="ValidateAlpha" xml:space="preserve">
+    <value>Nama Lengkap Tidak Bisa Diisi Dengan Angka</value>
+  </data>
+  <data name="ValidateDigit" xml:space="preserve">
+    <value>Harus Berisi Angka</value>
+  </data>
+  <data name="ValidateEmail" xml:space="preserve">
+    <value>Harap Masukan Format Email Yang Benar</value>
+  </data>
+  <data name="ValidateMaxLength" xml:space="preserve">
+    <value>Maksimal Karakter</value>
+  </data>
+  <data name="ValidateMinLength" xml:space="preserve">
+    <value>Minimal Karakter</value>
+  </data>
+  <data name="ValidateRequired" xml:space="preserve">
+    <value>Harus Diisi</value>
+  </data>
+  <data name="ValidateTime24" xml:space="preserve">
+    <value>Harap Masukan Format Waktu</value>
+  </data>
+  <data name="WorkhourLabelFullday" xml:space="preserve">
+    <value>Fullday</value>
+  </data>
+  <data name="EmailServerLabelHostnameRetrieve" xml:space="preserve">
+    <value>Hostname Terima</value>
+  </data>
+  <data name="WorkhourLabelWorkEnd" xml:space="preserve">
+    <value>Jam Berakhir</value>
+  </data>
+  <data name="WorkhourLabelWorkDescription" xml:space="preserve">
+    <value>Deskripsi Jam Kerja</value>
+  </data>
+  <data name="WorkhourLabelWorkHour" xml:space="preserve">
+    <value>Jam Kerja</value>
+  </data>
+  <data name="WorkhourLabelWorkStart" xml:space="preserve">
+    <value>Jam Mulai</value>
+  </data>
+  <data name="LoginPlaceholderPassword" xml:space="preserve">
+    <value>Kata Kunci</value>
+  </data>
+  <data name="LoginPlaceholderUsername" xml:space="preserve">
+    <value>Nama Pengguna</value>
+  </data>
+  <data name="UserLabelEmail" xml:space="preserve">
+    <value>Surat Elektronik</value>
+  </data>
+  <data name="UserLabelFullname" xml:space="preserve">
+    <value>Nama Lengkap</value>
+  </data>
+  <data name="LabelConfirmation" xml:space="preserve">
+    <value>Konfirmasi</value>
+  </data>
+  <data name="LabelEntries" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="LabelInfoEmpty" xml:space="preserve">
+    <value>0 Data</value>
+  </data>
+  <data name="LabelNext" xml:space="preserve">
+    <value>Lanjut</value>
+  </data>
+  <data name="LabelOf" xml:space="preserve">
+    <value>Dari</value>
+  </data>
+  <data name="LabelPage" xml:space="preserve">
+    <value>Halaman</value>
+  </data>
+  <data name="LabelPasswordPolicy" xml:space="preserve">
+    <value>Password Policy</value>
+  </data>
+  <data name="LabelPrev" xml:space="preserve">
+    <value>Kembali</value>
+  </data>
+  <data name="LabelShowing" xml:space="preserve">
+    <value>Menampilkan</value>
+  </data>
+  <data name="LabelTo" xml:space="preserve">
+    <value>Sampai</value>
+  </data>
+  <data name="LabelZeroResult" xml:space="preserve">
+    <value>Data Tidak Ditemukan</value>
+  </data>
+  <data name="PasswordPolicyLabelAdvancedNotice" xml:space="preserve">
+    <value>Advanced Notice</value>
+  </data>
+  <data name="PasswordPolicyLabelDefaultPassword" xml:space="preserve">
+    <value>Kata Kunci Awal</value>
+  </data>
+  <data name="PasswordPolicyLabelEncryptKey" xml:space="preserve">
+    <value>Kunci Enkripsi</value>
+  </data>
+  <data name="PasswordPolicyLabelMaxFailedLogin" xml:space="preserve">
+    <value>Maksimal Gagal Login</value>
+  </data>
+  <data name="PasswordPolicyLabelMaxLength" xml:space="preserve">
+    <value>Panjang Maksimal</value>
+  </data>
+  <data name="PasswordPolicyLabelMinLength" xml:space="preserve">
+    <value>Panjang Minimal</value>
+  </data>
+  <data name="PasswordPolicyLabelPasswordAgingControl" xml:space="preserve">
+    <value>Password Aging Control</value>
+  </data>
+  <data name="PasswordPolicyLabelPasswordAgingInterval" xml:space="preserve">
+    <value>Password Aging Interval</value>
+  </data>
+  <data name="PasswordPolicyLabelPasswordCriteria" xml:space="preserve">
+    <value>Kriteria Kata Kunci</value>
+  </data>
+  <data name="LabelDiscontinue" xml:space="preserve">
+    <value>Discontinue</value>
+  </data>
+  <data name="LabelRole" xml:space="preserve">
+    <value>Hak</value>
+  </data>
+  <data name="RoleLabelRoleDescription" xml:space="preserve">
+    <value>Deskripsi Hak Akses</value>
+  </data>
+  <data name="RoleLabelRoleName" xml:space="preserve">
+    <value>Nama Hak Akses</value>
+  </data>
+  <data name="AlertPickOneData" xml:space="preserve">
+    <value>Pilih Satu Data !</value>
+  </data>
+  <data name="ButtonSearch" xml:space="preserve">
+    <value>Cari</value>
+  </data>
+  <data name="ButtonGo" xml:space="preserve">
+    <value>Lanjut</value>
+  </data>
+  <data name="LabelChooseYourSite" xml:space="preserve">
+    <value>Pilih Site</value>
+  </data>
+  <data name="AutoLogoutLabelAutoLogout" xml:space="preserve">
+    <value>Keluar Otomatis</value>
+  </data>
+  <data name="AutoLogoutLabelInterval" xml:space="preserve">
+    <value>Jeda</value>
+  </data>
+  <data name="AutoLogoutLabelIsAutoLogout" xml:space="preserve">
+    <value>Otomatis Keluar ?</value>
+  </data>
+  <data name="ButtonDuplicate" xml:space="preserve">
+    <value>Gandakan</value>
+  </data>
+  <data name="ButtonMove" xml:space="preserve">
+    <value>Pindahkan</value>
+  </data>
+  <data name="FeatureLabelExternalFeature" xml:space="preserve">
+    <value>Fitur Luar</value>
+  </data>
+  <data name="FeatureLabelFeature" xml:space="preserve">
+    <value>Fitur</value>
+  </data>
+  <data name="FeatureLabelFeatureAction" xml:space="preserve">
+    <value>Tindakan Fitur</value>
+  </data>
+  <data name="FeatureLabelFeatureCode" xml:space="preserve">
+    <value>Kode Fitur</value>
+  </data>
+  <data name="FeatureLabelFeatureDescription" xml:space="preserve">
+    <value>Deskripsi Fitur</value>
+  </data>
+  <data name="FeatureLabelFeatureName" xml:space="preserve">
+    <value>Nama Fitur</value>
+  </data>
+  <data name="FeatureLabelFeatureType" xml:space="preserve">
+    <value>Tipe Fitur</value>
+  </data>
+  <data name="FeatureLabelPathURL" xml:space="preserve">
+    <value>Path / URL</value>
+  </data>
+  <data name="IconLabelIconCategory" xml:space="preserve">
+    <value>Kategori Ikon</value>
+  </data>
+  <data name="IconLabelIconClass" xml:space="preserve">
+    <value>Kelas Ikon</value>
+  </data>
+  <data name="IconLabelIconDescription" xml:space="preserve">
+    <value>Keterangan Ikon</value>
+  </data>
+  <data name="IconLabelIconName" xml:space="preserve">
+    <value>Nama Ikon</value>
+  </data>
+  <data name="IconLabelIconType" xml:space="preserve">
+    <value>Tipe Ikon</value>
+  </data>
+  <data name="LabelDay" xml:space="preserve">
+    <value>Hari</value>
+  </data>
+  <data name="LabelFile" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="LabelHour" xml:space="preserve">
+    <value>Jam</value>
+  </data>
+  <data name="LabelIcon" xml:space="preserve">
+    <value>Ikon</value>
+  </data>
+  <data name="LabelIsDefault" xml:space="preserve">
+    <value>Is Default</value>
+  </data>
+  <data name="LabelLOVIcon" xml:space="preserve">
+    <value>Daftar Ikon</value>
+  </data>
+  <data name="LabelMinute" xml:space="preserve">
+    <value>Menit</value>
+  </data>
+  <data name="LabelMonth" xml:space="preserve">
+    <value>Bulan</value>
+  </data>
+  <data name="LabelPreview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="LabelSecond" xml:space="preserve">
+    <value>Detik</value>
+  </data>
+  <data name="LabelWeek" xml:space="preserve">
+    <value>Minggu</value>
+  </data>
+  <data name="LabelYear" xml:space="preserve">
+    <value>Tahun</value>
+  </data>
+  <data name="LabelApplication" xml:space="preserve">
+    <value>Aplikasi</value>
+  </data>
+  <data name="LabelHome" xml:space="preserve">
+    <value>Beranda</value>
+  </data>
+  <data name="LabelReport" xml:space="preserve">
+    <value>Laporan</value>
+  </data>
+  <data name="SystemAdminLabelSystemAdmin" xml:space="preserve">
+    <value>Admin Sistem</value>
+  </data>
+  <data name="DepartmentLabelDepartment" xml:space="preserve">
+    <value>Departemen</value>
+  </data>
+  <data name="DepartmentLabelDepartmentCode" xml:space="preserve">
+    <value>Kode Departemen</value>
+  </data>
+  <data name="DepartmentLabelDepartmentName" xml:space="preserve">
+    <value>Nama Departemen</value>
+  </data>
+  <data name="DepartmentLabelDepartmentNumber" xml:space="preserve">
+    <value>Nomor Departemen</value>
+  </data>
+  <data name="DepartmentLabelDescription" xml:space="preserve">
+    <value>Keterangan</value>
+  </data>
+  <data name="DepartmentLabelSiteName" xml:space="preserve">
+    <value>Nama Cabang</value>
+  </data>
+  <data name="DepartmentPlaceholderSearch" xml:space="preserve">
+    <value>Nama Departemen</value>
+  </data>
+  <data name="LabelAccess" xml:space="preserve">
+    <value>Akses</value>
+  </data>
+  <data name="SiteLabelSiteName" xml:space="preserve">
+    <value>Nama Site</value>
+  </data>
+  <data name="SiteUserLabelSiteUser" xml:space="preserve">
+    <value>Pengguna &amp; Site</value>
+  </data>
+  <data name="UserLabelName" xml:space="preserve">
+    <value>Nama</value>
+  </data>
+  <data name="LabelRoleAccess" xml:space="preserve">
+    <value>Role Access</value>
+  </data>
+  <data name="LabelSite" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="LanguageLabelLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LanguageLabelName" xml:space="preserve">
+    <value>Label Name</value>
+  </data>
+  <data name="LanguageLabelValue" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="RoleAccessLabelDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="RoleAccessLabelEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="RoleAccessLabelNew" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="RoleAccessLabelPrint" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="RoleAccessLabelView" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="RoleAccessLabelVisible" xml:space="preserve">
+    <value>Visible</value>
+  </data>
+  <data name="SiteLabelLogo" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="LabelKeyword" xml:space="preserve">
+    <value>Kata Kunci</value>
+  </data>
+  <data name="PasswordPolicyLabelPasswordAging" xml:space="preserve">
+    <value>Umur Password</value>
+  </data>
+  <data name="PasswordPolicyLabelPasswordSetting" xml:space="preserve">
+    <value>Setting Password</value>
+  </data>
+  <data name="SiteLabelAddress" xml:space="preserve">
+    <value>Alamat</value>
+  </data>
+  <data name="SiteLabelFax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="SiteLabelIDSite" xml:space="preserve">
+    <value>ID Site</value>
+  </data>
+  <data name="SiteLabelPIC" xml:space="preserve">
+    <value>PIC</value>
+  </data>
+  <data name="SiteLabelPostCode" xml:space="preserve">
+    <value>Kode Pos</value>
+  </data>
+  <data name="SiteLabelTelephone" xml:space="preserve">
+    <value>Telepon</value>
+  </data>
+  <data name="LabelTitle" xml:space="preserve">
+    <value>Jabatan</value>
+  </data>
+  <data name="LabelUserLoginAudit" xml:space="preserve">
+    <value>Audit Login</value>
+  </data>
+  <data name="LabelMenuApplication" xml:space="preserve">
+    <value>Aplikasi</value>
+  </data>
+  <data name="LabelMenuReport" xml:space="preserve">
+    <value>Laporan</value>
+  </data>
+  <data name="TooltipsButtonSave" xml:space="preserve">
+    <value>Klik untuk menyimpan data</value>
+  </data>
+  <data name="TooltipsRoleDescInput" xml:space="preserve">
+    <value>Ketik sebelah sini bla bla bla</value>
+  </data>
+  <data name="TooltipsRoleNameInput" xml:space="preserve">
+    <value>Ketik disini bla bla bla</value>
+  </data>
+  <data name="LabelFeatures" xml:space="preserve">
+    <value>Fitur</value>
+  </data>
+  <data name="LabelModule" xml:space="preserve">
+    <value>Modul</value>
+  </data>
+  <data name="LanguageLabelLabel" xml:space="preserve">
+    <value>Label</value>
+  </data>
+  <data name="LanguageLabelLanguageText" xml:space="preserve">
+    <value>Bahasa</value>
+  </data>
+  <data name="LabelLoginNoSite" xml:space="preserve">
+    <value>Akun anda belum terdaftar di site manapun . mohon kontak administrator</value>
+  </data>
+  <data name="LabelChangeLanguageChange" xml:space="preserve">
+    <value>Ubah</value>
+  </data>
+  <data name="LabelChangeLanguageConfirmation" xml:space="preserve">
+    <value>Apakah anda ingin merubah bahasa ke</value>
+  </data>
+  <data name="LabelChangeSite" xml:space="preserve">
+    <value>Apakah anda ingin pindah Site ?</value>
+  </data>
+  <data name="LabelWarning" xml:space="preserve">
+    <value>Peringatan</value>
+  </data>
+  <data name="LabelWarningPickOneData" xml:space="preserve">
+    <value>Pilih Satu Data</value>
+  </data>
+  <data name="LabelLogout" xml:space="preserve">
+    <value>Keluar</value>
+  </data>
+  <data name="ValidateMinimal" xml:space="preserve">
+    <value>Minimal</value>
+  </data>
+  <data name="LabelErroDidntChangeData" xml:space="preserve">
+    <value>Tidak ada data yang dirubah</value>
+  </data>
+  <data name="ValidateAlphaNumeric" xml:space="preserve">
+    <value>Special Character Not Allowed</value>
+  </data>
+  <data name="ValidateAlphaNumericSpesialCharacter" xml:space="preserve">
+    <value>Space Not Allowed</value>
+  </data>
+  <data name="ValidateCharacter" xml:space="preserve">
+    <value>Only Character !!!</value>
+  </data>
+  <data name="ValidateNumeric" xml:space="preserve">
+    <value>Only Numeric !!!</value>
+  </data>
+  <data name="ButtonSelectAll" xml:space="preserve">
+    <value>Pilih Semua</value>
+  </data>
+  <data name="ButtonUnselectAll" xml:space="preserve">
+    <value>Tidak Dipilih Semua</value>
+  </data>
+  <data name="LabelSettingEmailRetrieve" xml:space="preserve">
+    <value>Setting Email Retrieve</value>
+  </data>
+  <data name="LabelSettingEmailSend" xml:space="preserve">
+    <value>Setting Email Send</value>
+  </data>
+  <data name="LabelUserLocked" xml:space="preserve">
+    <value>User sudah dikunci</value>
+  </data>
+  <data name="LabelUserUnlocked" xml:space="preserve">
+    <value>User sudah tidak dikunci</value>
+  </data>
+  <data name="LabelConfirmationLogout" xml:space="preserve">
+    <value>Apakah anda yakin ingin keluar?</value>
+  </data>
+  <data name="ButtonRetrieveEmail" xml:space="preserve">
+    <value>Terima Email</value>
+  </data>
+  <data name="LabelRetrieveEmail" xml:space="preserve">
+    <value>Terima Surat Elektronik</value>
+  </data>
+  <data name="LabelSendEmail" xml:space="preserve">
+    <value>Kirim Surat Elektronik</value>
+  </data>
+  <data name="ShortcutLabelShortcut" xml:space="preserve">
+    <value>Jalan Pintas</value>
+  </data>
+  <data name="ShortcutLabelShortcutInfo" xml:space="preserve">
+    <value>Informasi Jalan Pintas</value>
+  </data>
+  <data name="ShortcutLabelShortcutName" xml:space="preserve">
+    <value>Nama Jalan Pintas</value>
+  </data>
+  <data name="LabelTax" xml:space="preserve">
+    <value>Pajak</value>
+  </data>
+  <data name="TaxLabelCode" xml:space="preserve">
+    <value>Kode Pajak</value>
+  </data>
+  <data name="TaxLabelDescription" xml:space="preserve">
+    <value>Keterangan</value>
+  </data>
+  <data name="TaxLabelTaxRate" xml:space="preserve">
+    <value>Rate Pajak</value>
+  </data>
+  <data name="AlertCannotDelete" xml:space="preserve">
+    <value>data tidak bisa dihapus</value>
+  </data>
+  <data name="BillToLabelAddress1" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="BillToLabelAddress2" xml:space="preserve">
+    <value>Address2</value>
+  </data>
+  <data name="BillToLabelCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="BillToLabelContact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="BillToLabelCountry" xml:space="preserve">
+    <value>Negara</value>
+  </data>
+  <data name="BillToLabelNameBillTo" xml:space="preserve">
+    <value>Bill To</value>
+  </data>
+  <data name="BillToLabelNote" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="BillToLabelPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="BillToLabelPostalCode" xml:space="preserve">
+    <value>Post Code</value>
+  </data>
+  <data name="BillToLabelProvince" xml:space="preserve">
+    <value>Province</value>
+  </data>
+  <data name="BillToLabelState" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="LabelBillTo" xml:space="preserve">
+    <value>BillTo</value>
+  </data>
+  <data name="ShipToLabelAddress1" xml:space="preserve">
+    <value>Alamat 1</value>
+  </data>
+  <data name="ShipToLabelAddress2" xml:space="preserve">
+    <value>Alamat 2</value>
+  </data>
+  <data name="ShipToLabelCity" xml:space="preserve">
+    <value>Kota</value>
+  </data>
+  <data name="ShipToLabelContact" xml:space="preserve">
+    <value>Kontak</value>
+  </data>
+  <data name="ShipToLabelCountry" xml:space="preserve">
+    <value>Kota</value>
+  </data>
+  <data name="ShipToLabelNameShipTo" xml:space="preserve">
+    <value>Dikirim Ke</value>
+  </data>
+  <data name="ShipToLabelNote" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="ShipToLabelPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="ShipToLabelPostalCode" xml:space="preserve">
+    <value>Post Code</value>
+  </data>
+  <data name="ShipToLabelProvince" xml:space="preserve">
+    <value>Province</value>
+  </data>
+  <data name="ShipToLabelState" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="LabelShipTo" xml:space="preserve">
+    <value>Dikirim Ke</value>
+  </data>
+  <data name="LabelWorkArea" xml:space="preserve">
+    <value>Work Area</value>
+  </data>
+  <data name="WorkAreaLabelWorkAreaDescription" xml:space="preserve">
+    <value>Work Area Description</value>
+  </data>
+  <data name="WorkAreaLabelWorkAreaName" xml:space="preserve">
+    <value>Work Area Name</value>
+  </data>
+  <data name="WorkClassLabelWorkClassCode" xml:space="preserve">
+    <value>Work Class Code</value>
+  </data>
+  <data name="WorkClassLabelWorkClassDescription" xml:space="preserve">
+    <value>Work Class Description</value>
+  </data>
+  <data name="LabelWorkClass" xml:space="preserve">
+    <value>Work Class</value>
+  </data>
+  <data name="LabelPurchaseType" xml:space="preserve">
+    <value>Purchase Type</value>
+  </data>
+  <data name="PurchaseTypeLabelPurchaseTypeCode" xml:space="preserve">
+    <value>Type Code</value>
+  </data>
+  <data name="PurchaseTypeLabelPurchaseTypeDescription" xml:space="preserve">
+    <value>Type Desc</value>
+  </data>
+  <data name="PurchasePriorityLabelPriorityCode" xml:space="preserve">
+    <value>Priority Code</value>
+  </data>
+  <data name="PurchasePriorityLabelPriorityDescription" xml:space="preserve">
+    <value>Priority Description</value>
+  </data>
+  <data name="PurchasePriorityLabelPriorityDiscontinue" xml:space="preserve">
+    <value>Discontinue</value>
+  </data>
+  <data name="PurchasePriorityLabelPriorityRequestDateCount" xml:space="preserve">
+    <value>Request Date Count</value>
+  </data>
+  <data name="LabelPurchasePriority" xml:space="preserve">
+    <value>Purchase Priority</value>
+  </data>
+  <data name="CriticaFactorLabelCriticalDescription" xml:space="preserve">
+    <value>Critical Description</value>
+  </data>
+  <data name="CriticaFactorLabelCriticalName" xml:space="preserve">
+    <value>Critical Name</value>
+  </data>
+  <data name="LabelCriticalFactor" xml:space="preserve">
+    <value>Critical Factor</value>
+  </data>
+  <data name="LabelWorkAction" xml:space="preserve">
+    <value>Work Action</value>
+  </data>
+  <data name="WorkActionLabelWorkActionCode" xml:space="preserve">
+    <value>Action Code</value>
+  </data>
+  <data name="WorkActionLabelWorkActionDescription" xml:space="preserve">
+    <value>Action Discontinue</value>
+  </data>
+  <data name="WorkActionLabelWorkActionDiscontinue" xml:space="preserve">
+    <value>Discontinue</value>
+  </data>
+  <data name="AccountingPeriodeLabelBegin" xml:space="preserve">
+    <value>Begin</value>
+  </data>
+  <data name="AccountingPeriodeLabelBeginDate" xml:space="preserve">
+    <value>Tanggal Awal</value>
+  </data>
+  <data name="AccountingPeriodeLabelBudgetYear" xml:space="preserve">
+    <value>Dana Tahunan</value>
+  </data>
+  <data name="AccountingPeriodeLabelEndDate" xml:space="preserve">
+    <value>Tanggal Akhir</value>
+  </data>
+  <data name="AccountingPeriodeLabelName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AccountingPeriodeLabelPeriode1" xml:space="preserve">
+    <value>Periode 1</value>
+  </data>
+  <data name="AccountingPeriodeLabelPeriode10" xml:space="preserve">
+    <value>Periode 10</value>
+  </data>
+  <data name="AccountingPeriodeLabelPeriode11" xml:space="preserve">
+    <value>Periode 11</value>
+  </data>
+  <data name="AccountingPeriodeLabelPeriode12" xml:space="preserve">
+    <value>Periode 12</value>
+  </data>
+  <data name="AccountingPeriodeLabelPeriode2" xml:space="preserve">
+    <value>Periode 2</value>
+  </data>
+  <data name="AccountingPeriodeLabelPeriode3" xml:space="preserve">
+    <value>Periode 3</value>
+  </data>
+  <data name="AccountingPeriodeLabelPeriode4" xml:space="preserve">
+    <value>Periode 4</value>
+  </data>
+  <data name="AccountingPeriodeLabelPeriode5" xml:space="preserve">
+    <value>Periode 5</value>
+  </data>
+  <data name="AccountingPeriodeLabelPeriode6" xml:space="preserve">
+    <value>Periode 6</value>
+  </data>
+  <data name="AccountingPeriodeLabelPeriode7" xml:space="preserve">
+    <value>Periode 7</value>
+  </data>
+  <data name="AccountingPeriodeLabelPeriode8" xml:space="preserve">
+    <value>Periode 8</value>
+  </data>
+  <data name="AccountingPeriodeLabelPeriode9" xml:space="preserve">
+    <value>Periode 9</value>
+  </data>
+  <data name="LabelAccountingPeriode" xml:space="preserve">
+    <value>Accounting Periode</value>
+  </data>
+  <data name="AccountingPeriodeLabelEndOfYear" xml:space="preserve">
+    <value>Akhir Tahun</value>
+  </data>
+  <data name="LabelApril" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="LabelFebuary" xml:space="preserve">
+    <value>Febuary</value>
+  </data>
+  <data name="LabelJanuary" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="LabelMaret" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="LabelMei" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="LabelWorkStatus" xml:space="preserve">
+    <value>Work Status</value>
+  </data>
+  <data name="WorkStatusLabelAutoSendEmail" xml:space="preserve">
+    <value>Auto Send Email</value>
+  </data>
+  <data name="WorkStatusLabelEmailStatus" xml:space="preserve">
+    <value>Email Status</value>
+  </data>
+  <data name="WorkStatusLabelEmailTemplate" xml:space="preserve">
+    <value>Email Template</value>
+  </data>
+  <data name="WorkStatusLabelStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="WorkStatusLabelStatusType" xml:space="preserve">
+    <value>Status Type</value>
+  </data>
+  <data name="EmployeeGroupLabelGroupDesc" xml:space="preserve">
+    <value>Group Description</value>
+  </data>
+  <data name="EmployeeGroupLabelGroupName" xml:space="preserve">
+    <value>Group Name</value>
+  </data>
+  <data name="LabelEmployeeGroup" xml:space="preserve">
+    <value>Employee Group</value>
+  </data>
+  <data name="LabelMaterialGroup" xml:space="preserve">
+    <value>Material Group</value>
+  </data>
+  <data name="MaterialGroupLabelStockGroupCode" xml:space="preserve">
+    <value>Stock Group Code</value>
+  </data>
+  <data name="MaterialGroupLabelStockGroupDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="LabelPurchaseContractGroup" xml:space="preserve">
+    <value>Purchase Contract Group</value>
+  </data>
+  <data name="PurchaseContractGroupLabelDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="PurchaseContractGroupLabelGroupCode" xml:space="preserve">
+    <value>Purchase Group Code</value>
+  </data>
+  <data name="EmployeeLabelFullName" xml:space="preserve">
+    <value>Nama Lengkap</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Kode</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Kurensi</value>
+  </data>
+  <data name="CurrencyRate" xml:space="preserve">
+    <value>Nilai Tukar</value>
+  </data>
+  <data name="DataList" xml:space="preserve">
+    <value>List Data</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Deskripsi</value>
+  </data>
+  <data name="EffectiveDate" xml:space="preserve">
+    <value>Tanggal Efektif</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Informasi</value>
+  </data>
+  <data name="LocationOfGoods" xml:space="preserve">
+    <value>Lokasi Barang</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nama</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Kurs</value>
+  </data>
+  <data name="SalesArea" xml:space="preserve">
+    <value>Area Sales</value>
+  </data>
+  <data name="Salesman" xml:space="preserve">
+    <value>Salesman</value>
+  </data>
+  <data name="Tax" xml:space="preserve">
+    <value>Pajak</value>
+  </data>
+  <data name="TypeOfSupplies" xml:space="preserve">
+    <value>Tipe Persediaan</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Akun</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="Clasification" xml:space="preserve">
+    <value>Klasifikasi</value>
+  </data>
+  <data name="HeaderAccount" xml:space="preserve">
+    <value>Perkiraan Induk</value>
+  </data>
+  <data name="HeaderOrDetail" xml:space="preserve">
+    <value>Umum / Detail</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Mutation" xml:space="preserve">
+    <value>Mutasi</value>
+  </data>
+  <data name="NormalBalance" xml:space="preserve">
+    <value>Saldo Normal</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="CustomerType" xml:space="preserve">
+    <value>Jenis Pelanggan</value>
+  </data>
+  <data name="GroupAssets" xml:space="preserve">
+    <value>Kelompok Aset</value>
+  </data>
+  <data name="SupplierType" xml:space="preserve">
+    <value>Jenis Supplier</value>
+  </data>
+  <data name="TypeAssets" xml:space="preserve">
+    <value>Jenis Aset</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Tanggal</value>
+  </data>
+  <data name="Debit" xml:space="preserve">
+    <value>Debit</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Tanggal Akhir</value>
+  </data>
+  <data name="InvoiceNumber" xml:space="preserve">
+    <value>No Invoice</value>
+  </data>
+  <data name="LastDateProcess" xml:space="preserve">
+    <value>Tanggal Terakhir Di Proses</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Tanggal Mulai</value>
+  </data>
+  <data name="DebtAge" xml:space="preserve">
+    <value>Usia Hutang</value>
+  </data>
+  <data name="DebtAgeLabelLowerLimit" xml:space="preserve">
+    <value>Batas Minimal</value>
+  </data>
+  <data name="DebtAgeLabelUpperLimit" xml:space="preserve">
+    <value>Batas Maksimal</value>
+  </data>
+  <data name="CheckNumber" xml:space="preserve">
+    <value>No Cek</value>
+  </data>
+  <data name="DisbursementDate" xml:space="preserve">
+    <value>Tanggal Pembayaran</value>
+  </data>
+  <data name="PayableCheckBack" xml:space="preserve">
+    <value>Hutang Cek Mundur</value>
+  </data>
+  <data name="RejectDate" xml:space="preserve">
+    <value>Tanggal Pembatalan</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="VoidDate" xml:space="preserve">
+    <value>Tanggal tidak berlaku</value>
+  </data>
+  <data name="ReceiveableAge" xml:space="preserve">
+    <value>Umur Piutang</value>
+  </data>
+  <data name="ReceiveableAgeLabelLowerLimit" xml:space="preserve">
+    <value>Batas Minimal</value>
+  </data>
+  <data name="ReceiveableAgeLabelUpperLimit" xml:space="preserve">
+    <value>Batas Maksimal</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Pelanggan</value>
+  </data>
+  <data name="CustomerLabelAddress1" xml:space="preserve">
+    <value>Alamat Pelanggan 1</value>
+  </data>
+  <data name="CustomerLabelAddress2" xml:space="preserve">
+    <value>AlamatPelanggan 2</value>
+  </data>
+  <data name="CustomerLabelARCode" xml:space="preserve">
+    <value>Akun Piutang</value>
+  </data>
+  <data name="CustomerLabelCity" xml:space="preserve">
+    <value>Kota</value>
+  </data>
+  <data name="CustomerLabelCode" xml:space="preserve">
+    <value>Kode Pelanggan</value>
+  </data>
+  <data name="CustomerLabelContactPerson" xml:space="preserve">
+    <value>Kontak Person Pelanggan</value>
+  </data>
+  <data name="CustomerLabelCreditLimit" xml:space="preserve">
+    <value>Batas Kredit</value>
+  </data>
+  <data name="CustomerLabelCreditPeriod" xml:space="preserve">
+    <value>Periode Kredit</value>
+  </data>
+  <data name="CustomerLabelCurrencyCode1" xml:space="preserve">
+    <value>Mata Uang</value>
+  </data>
+  <data name="CustomerLabelDescription" xml:space="preserve">
+    <value>Deskripsi</value>
+  </data>
+  <data name="CustomerLabelDPCode" xml:space="preserve">
+    <value>Kode DP</value>
+  </data>
+  <data name="CustomerLabelEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="CustomerLabelFaxNo" xml:space="preserve">
+    <value>Nomor Fax</value>
+  </data>
+  <data name="CustomerLabelName" xml:space="preserve">
+    <value>Nama Pelanggan</value>
+  </data>
+  <data name="CustomerLabelPhoneNo" xml:space="preserve">
+    <value>Nomor Telepon</value>
+  </data>
+  <data name="CustomerLabelSalesAreaCode" xml:space="preserve">
+    <value>Sales Area</value>
+  </data>
+  <data name="CustomerLabelSalesmanCode" xml:space="preserve">
+    <value>Salesman</value>
+  </data>
+  <data name="CustomerLabelType" xml:space="preserve">
+    <value>Tipe Pelanggan</value>
+  </data>
+  <data name="CustomerLabelZipCode" xml:space="preserve">
+    <value>Kode POS</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Alamat</value>
+  </data>
+  <data name="ARCode" xml:space="preserve">
+    <value>Kode Akun Terima</value>
+  </data>
+  <data name="Batch" xml:space="preserve">
+    <value>Tumpukan</value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Merek</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Kota</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Warna</value>
+  </data>
+  <data name="ContactPerson" xml:space="preserve">
+    <value>Contact Person</value>
+  </data>
+  <data name="CreditLimit" xml:space="preserve">
+    <value>Batas kredit</value>
+  </data>
+  <data name="CreditPeriod" xml:space="preserve">
+    <value>Periode Kredit</value>
+  </data>
+  <data name="CurrencyCode" xml:space="preserve">
+    <value>Kude Mata Uang</value>
+  </data>
+  <data name="Division" xml:space="preserve">
+    <value>Divisi</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="Limit" xml:space="preserve">
+    <value>Batas</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Nomor Telepon</value>
+  </data>
+  <data name="Sequence" xml:space="preserve">
+    <value>Urutan</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Jasa</value>
+  </data>
+  <data name="ShipTo" xml:space="preserve">
+    <value>Dikirim ke</value>
+  </data>
+  <data name="UnitOfMeasure" xml:space="preserve">
+    <value>Satuan ukuran</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Kode Pos</value>
+  </data>
+  <data name="Measure" xml:space="preserve">
+    <value>Ukuran</value>
+  </data>
+  <data name="ReceiveableCheckBack" xml:space="preserve">
+    <value>Piutang Cek Mundur</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Kolom Pencarian</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Jumlah</value>
+  </data>
+  <data name="AmountFC" xml:space="preserve">
+    <value>Nilai Valas</value>
+  </data>
+  <data name="Method" xml:space="preserve">
+    <value>Method</value>
+  </data>
+  <data name="RecurringJournal" xml:space="preserve">
+    <value>Jurnal Berulang</value>
+  </data>
+  <data name="RecurringJournalCode" xml:space="preserve">
+    <value>Kode Jurnal Berulang</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TotalAmountCredit" xml:space="preserve">
+    <value>Total Jumlah Kredit</value>
+  </data>
+  <data name="TotalAmountDebet" xml:space="preserve">
+    <value>Total Jumlah Debit</value>
+  </data>
+  <data name="Qty" xml:space="preserve">
+    <value>Kuantitas</value>
+  </data>
+  <data name="TaxRegistrationNumber" xml:space="preserve">
+    <value>NPWP</value>
+  </data>
+  <data name="TRNLabelTaxableVATEntityConfirmationNumber" xml:space="preserve">
+    <value>Nomor Konfirmasi PPN Badan Kena Pajak</value>
+  </data>
+  <data name="TRNLabelTaxpayerRegistrationNumber" xml:space="preserve">
+    <value>Nomor Pendaftaran Pajak</value>
+  </data>
+  <data name="GroupSupplies" xml:space="preserve">
+    <value>Kelompok Persediaan</value>
+  </data>
+  <data name="Gramation" xml:space="preserve">
+    <value>Gramasi</value>
+  </data>
+  <data name="InventoryMethod" xml:space="preserve">
+    <value>Metode H.P.P</value>
+  </data>
+  <data name="InventoryType" xml:space="preserve">
+    <value>Tipe Pesediaan</value>
+  </data>
+  <data name="LargeUnit" xml:space="preserve">
+    <value>Satuan Besar</value>
+  </data>
+  <data name="LargeUnitCost" xml:space="preserve">
+    <value>H.P.P Satuan Besar </value>
+  </data>
+  <data name="LargeUnitPrice" xml:space="preserve">
+    <value>Harga Satuan Besar</value>
+  </data>
+  <data name="MaximumStock" xml:space="preserve">
+    <value>Stock Maksimal</value>
+  </data>
+  <data name="MinimumStock" xml:space="preserve">
+    <value>Stok Minimal</value>
+  </data>
+  <data name="Picture" xml:space="preserve">
+    <value>Gambar</value>
+  </data>
+  <data name="SmallUnit" xml:space="preserve">
+    <value>Satuan Kecil</value>
+  </data>
+  <data name="SmallUnitCost" xml:space="preserve">
+    <value>H.P.P Satuan Kecil</value>
+  </data>
+  <data name="SmallUnitPrice" xml:space="preserve">
+    <value>Harga Satuan Kecil</value>
+  </data>
+  <data name="DataEntry" xml:space="preserve">
+    <value>Data Masukan</value>
+  </data>
+  <data name="Inventory" xml:space="preserve">
+    <value>Persediaan</value>
+  </data>
+  <data name="AccountCostCode" xml:space="preserve">
+    <value>H.P Penjualan</value>
+  </data>
+  <data name="AccountInventoryCode" xml:space="preserve">
+    <value>Dist. Persediaan</value>
+  </data>
+  <data name="AccountPurchaseCode" xml:space="preserve">
+    <value>Dist. Pembelian</value>
+  </data>
+  <data name="AccountPurchaseDiscountCode" xml:space="preserve">
+    <value>Dist. Potongan Pembelian</value>
+  </data>
+  <data name="AccountPurchaseReturnCode" xml:space="preserve">
+    <value>Dist. Retur Pembalian</value>
+  </data>
+  <data name="AccountSalesCode" xml:space="preserve">
+    <value>Dist. Penjualan</value>
+  </data>
+  <data name="AccountSalesDiscountCode" xml:space="preserve">
+    <value>Dist. Potongan Penjualan</value>
+  </data>
+  <data name="AccountSalesReturnCode" xml:space="preserve">
+    <value>Dist. Retur Penjualan </value>
+  </data>
+  <data name="UnitOfValue" xml:space="preserve">
+    <value>Isi Satuan</value>
+  </data>
+  <data name="Barcode" xml:space="preserve">
+    <value>Barcode</value>
+  </data>
+  <data name="BatchNo" xml:space="preserve">
+    <value>No Batch</value>
+  </data>
+  <data name="InventoryBatch" xml:space="preserve">
+    <value>Tumpukan Persediaan</value>
+  </data>
+  <data name="InventoryName" xml:space="preserve">
+    <value>Nama Persediaan</value>
+  </data>
+  <data name="InventoryNo" xml:space="preserve">
+    <value>No Persediaan</value>
+  </data>
+  <data name="TransferBarcode" xml:space="preserve">
+    <value>Transfer Barcode</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>Diskon</value>
+  </data>
+  <data name="InvoiceNo" xml:space="preserve">
+    <value>No Invoice</value>
+  </data>
+  <data name="ItemDiscount" xml:space="preserve">
+    <value>Diskon Item</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Harga</value>
+  </data>
+  <data name="PurchaseDate" xml:space="preserve">
+    <value>Tanggal Pembelian</value>
+  </data>
+  <data name="PurchasePrice" xml:space="preserve">
+    <value>Harga Beli</value>
+  </data>
+  <data name="ReceiptNo" xml:space="preserve">
+    <value>No Receipt</value>
+  </data>
+  <data name="SalesDate" xml:space="preserve">
+    <value>Tanggal Penjualan</value>
+  </data>
+  <data name="SalesPrice" xml:space="preserve">
+    <value>Harga Jual</value>
+  </data>
+  <data name="TotalDiscount" xml:space="preserve">
+    <value>Total Diskon</value>
+  </data>
+  <data name="TotalPrice" xml:space="preserve">
+    <value>Total Harga</value>
+  </data>
+  <data name="SupplierlblAddress2" xml:space="preserve">
+    <value>Alamat 2</value>
+  </data>
+  <data name="GoodsReceipt" xml:space="preserve">
+    <value>Penerimaan Barang</value>
+  </data>
+  <data name="GoodsReceiptlblDeliveryOrderDate" xml:space="preserve">
+    <value>Tanggal Pengiriman Pesanan</value>
+  </data>
+  <data name="GoodsReceiptlblDeliveryOrderNumber" xml:space="preserve">
+    <value>Nomor Pengiriman Pesanan</value>
+  </data>
+  <data name="GoodsReceiptlblDescription" xml:space="preserve">
+    <value>Deskripsi</value>
+  </data>
+  <data name="GoodsReceiptlblDiscount2" xml:space="preserve">
+    <value>Discount2</value>
+  </data>
+  <data name="GoodsReceiptlblDiscount3" xml:space="preserve">
+    <value>Discount3</value>
+  </data>
+  <data name="GoodsReceiptlblDiscount1" xml:space="preserve">
+    <value>Discount1</value>
+  </data>
+  <data name="GoodsReceiptlblGoodReceiptType" xml:space="preserve">
+    <value>Jenis Penerimaan</value>
+  </data>
+  <data name="GoodsReceiptlblLocationOfGoodsName" xml:space="preserve">
+    <value>Nama Lokasi Barang</value>
+  </data>
+  <data name="GoodsReceiptlblPaymentPeriod" xml:space="preserve">
+    <value>Periode Pembayaran</value>
+  </data>
+  <data name="GoodsReceiptlblPaymentType" xml:space="preserve">
+    <value>Jenis Pembayaran</value>
+  </data>
+  <data name="GoodsReceiptlblPCurrencyCode" xml:space="preserve">
+    <value>Kode Mata Uang</value>
+  </data>
+  <data name="GoodsReceiptlblPCurrencyName" xml:space="preserve">
+    <value>Nama Mata Uang</value>
+  </data>
+  <data name="GoodsReceiptlblPDivisionCode" xml:space="preserve">
+    <value>Kode Divisi</value>
+  </data>
+  <data name="GoodsReceiptlblPDivisionName" xml:space="preserve">
+    <value>Nama Divisi</value>
+  </data>
+  <data name="GoodsReceiptlblPLocationOfGoodsCode" xml:space="preserve">
+    <value>Kode Lokasi Barang</value>
+  </data>
+  <data name="GoodsReceiptlblPSupplierCode" xml:space="preserve">
+    <value>Kode Supplier</value>
+  </data>
+  <data name="GoodsReceiptlblPSupplierName" xml:space="preserve">
+    <value>Nama Supplier</value>
+  </data>
+  <data name="GoodsReceiptlblRate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="GoodsReceiptlblReceiptDate" xml:space="preserve">
+    <value>Tanggal Penerimaan</value>
+  </data>
+  <data name="GoodsReceiptlblReceiptNumber" xml:space="preserve">
+    <value>Nomor Penerimaan</value>
+  </data>
+  <data name="GoodsReceiptlblTax" xml:space="preserve">
+    <value>Pajak</value>
+  </data>
+  <data name="GoodsReceiptlblTaxInvoice" xml:space="preserve">
+    <value>Invoice Pajak</value>
+  </data>
+  <data name="GoodsReceiptlblTaxInvoiceDate" xml:space="preserve">
+    <value>Tanggal Invoice Pajak</value>
+  </data>
+  <data name="GoodsReceiptlblValueAddedTaxType" xml:space="preserve">
+    <value>Jenis PPN</value>
+  </data>
+  <data name="GoodsReceiptlblVATAccountCode" xml:space="preserve">
+    <value>Kode Akun PPN</value>
+  </data>
+  <data name="GoodsReceiptlblVATAccountName" xml:space="preserve">
+    <value>Nama Akun PPN</value>
+  </data>
+  <data name="GoodsReceiptlblVatPercentage" xml:space="preserve">
+    <value>% PPN</value>
+  </data>
+  <data name="CurrencyConversion" xml:space="preserve">
+    <value>Kurs Konversi</value>
+  </data>
+  <data name="DateDelivered" xml:space="preserve">
+    <value>Tanggal Pengiriman</value>
+  </data>
+  <data name="Discount1" xml:space="preserve">
+    <value>Diskon 1</value>
+  </data>
+  <data name="Discount2" xml:space="preserve">
+    <value>Diskon 2</value>
+  </data>
+  <data name="Discount3" xml:space="preserve">
+    <value>Diskon 3</value>
+  </data>
+  <data name="NetPrice" xml:space="preserve">
+    <value>Harga Netto</value>
+  </data>
+  <data name="NoQo" xml:space="preserve">
+    <value>No Penawaran</value>
+  </data>
+  <data name="PaymentType" xml:space="preserve">
+    <value>Jenis Pembayaran</value>
+  </data>
+  <data name="PODetail" xml:space="preserve">
+    <value>Purchase Order Details</value>
+  </data>
+  <data name="TotalPriceForeignCurrency" xml:space="preserve">
+    <value>Jumlah (FC)</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Harga Satuan</value>
+  </data>
+  <data name="UOM" xml:space="preserve">
+    <value>UOM</value>
+  </data>
+  <data name="ValueAddedTaxType" xml:space="preserve">
+    <value>Nilai Pajak</value>
+  </data>
+  <data name="VATPercentage" xml:space="preserve">
+    <value>Persen Pajak</value>
+  </data>
+  <data name="PurchaseRequest" xml:space="preserve">
+    <value>Permintaan Pembelian</value>
+  </data>
+  <data name="PurchaseRequestDetail" xml:space="preserve">
+    <value>Detil Permintaan Pembelian</value>
+  </data>
+  <data name="PurchaseRequestService" xml:space="preserve">
+    <value>Permintaan Pemberlian Jasa</value>
+  </data>
+  <data name="AssignTo" xml:space="preserve">
+    <value>Ditugaskan Kepada</value>
+  </data>
+  <data name="AssignDate" xml:space="preserve">
+    <value>Tanggal Penugasan</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="ServiceName" xml:space="preserve">
+    <value>Nama Jasa</value>
+  </data>
+  <data name="ServiceNo" xml:space="preserve">
+    <value>Nomor Jasa</value>
+  </data>
+  <data name="PurchaseRequestDate" xml:space="preserve">
+    <value>Tanggal Permintaan Pembelian</value>
+  </data>
+  <data name="TPurchaseOrderServiceAndCost" xml:space="preserve">
+    <value>Jasa Dan Biaya PO</value>
+  </data>
+  <data name="DestinationLocation" xml:space="preserve">
+    <value>Lokasi Tujuan</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detil</value>
+  </data>
+  <data name="InitialLocation" xml:space="preserve">
+    <value>Lokasi Asal</value>
+  </data>
+  <data name="MaklonDate" xml:space="preserve">
+    <value>Tanggal Maklon</value>
+  </data>
+  <data name="MaklonNumber" xml:space="preserve">
+    <value>Nomor Maklon</value>
+  </data>
+  <data name="MaklonOut" xml:space="preserve">
+    <value>Maklon Keluar</value>
+  </data>
+  <data name="SupplierCode" xml:space="preserve">
+    <value>Kode Supplier</value>
+  </data>
+  <data name="Warehouse" xml:space="preserve">
+    <value>Gudang</value>
+  </data>
+  <data name="warehouseDestination" xml:space="preserve">
+    <value>Gudang Tujuan</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Lokasi</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Laporan</value>
+  </data>
+  <data name="paramlblGUdang" xml:space="preserve">
+    <value>Gudang</value>
+  </data>
+  <data name="paramCreatedBy" xml:space="preserve">
+    <value>Pembuat</value>
+  </data>
+  <data name="paramlblSaldo" xml:space="preserve">
+    <value>Saldo</value>
+  </data>
+  <data name="MaklonIn" xml:space="preserve">
+    <value>Maklon Masuk</value>
+  </data>
+  <data name="MaklonInNumber" xml:space="preserve">
+    <value>No Maklon Masuk</value>
+  </data>
+  <data name="MaklonOutNumber" xml:space="preserve">
+    <value>No Maklon Keluar</value>
+  </data>
+  <data name="QtyMaklon" xml:space="preserve">
+    <value>Kuantitas Maklon</value>
+  </data>
+  <data name="QtyUsage" xml:space="preserve">
+    <value>Kuantitas Digunakan</value>
+  </data>
+  <data name="ServiceAccount" xml:space="preserve">
+    <value>Akun Service</value>
+  </data>
+  <data name="ServicePrice" xml:space="preserve">
+    <value>Harga Service</value>
+  </data>
+  <data name="Requestor" xml:space="preserve">
+    <value>Peminta</value>
+  </data>
+  <data name="Accounting" xml:space="preserve">
+    <value>Akuntan</value>
+  </data>
+  <data name="ReviewedBy" xml:space="preserve">
+    <value>Mengetahui</value>
+  </data>
+  <data name="DivisionCode" xml:space="preserve">
+    <value>Kode Divisi</value>
+  </data>
+  <data name="DivisionName" xml:space="preserve">
+    <value>Nama Divisi</value>
+  </data>
+  <data name="PurchaseReturn" xml:space="preserve">
+    <value>Pengembalian Barang</value>
+  </data>
+  <data name="PurchaseReturnDetail" xml:space="preserve">
+    <value>Detil Pengembalian Barang</value>
+  </data>
+  <data name="ReturnCode" xml:space="preserve">
+    <value>Kode Pengembalian</value>
+  </data>
+  <data name="ReturnDate" xml:space="preserve">
+    <value>Tanggal pengembalian</value>
+  </data>
+  <data name="LblCreatedBy" xml:space="preserve">
+    <value>Dibuat Oleh</value>
+  </data>
+  <data name="lblPrintedDate" xml:space="preserve">
+    <value>Tanggal Cetak</value>
+  </data>
+  <data name="lblUserPrint" xml:space="preserve">
+    <value>User Print</value>
+  </data>
+  <data name="InventoryInCorrection" xml:space="preserve">
+    <value>Koreksi Persediaan Masuk</value>
+  </data>
+  <data name="InventoryInCorrectionDetail" xml:space="preserve">
+    <value>Detil Koreksi Persediaan Masuk</value>
+  </data>
+  <data name="InventoryInCorrectionCode" xml:space="preserve">
+    <value>Kode Koreksi Persediaan Masuk</value>
+  </data>
+  <data name="InventoryInCorrectionDate" xml:space="preserve">
+    <value>Tanggal  Koreksi Persediaan Masuk</value>
+  </data>
+  <data name="ExpireDate" xml:space="preserve">
+    <value>Batas Tanggal Berlaku</value>
+  </data>
+  <data name="InventoryCode" xml:space="preserve">
+    <value>Kode Persediaan</value>
+  </data>
+  <data name="ApprovalType" xml:space="preserve">
+    <value>Tipe Persetujuan</value>
+  </data>
+  <data name="ReceiptBy" xml:space="preserve">
+    <value>Diterima Oleh</value>
+  </data>
+  <data name="InventoryOutCorrection" xml:space="preserve">
+    <value>Koreksi Persediaan Keluar</value>
+  </data>
+  <data name="InventoryOutCorrectionCode" xml:space="preserve">
+    <value>Kode Koreksi Persediaan Keluar</value>
+  </data>
+  <data name="InventoryOutCorrectionDate" xml:space="preserve">
+    <value>Tanggal Koreksi Persediaan Keluar</value>
+  </data>
+  <data name="InventoryOutCorrectionDetail" xml:space="preserve">
+    <value>Detil Koreksi Persediaan Keluar</value>
+  </data>
+  <data name="SalesReturn" xml:space="preserve">
+    <value>Retur Penjualan</value>
+  </data>
+  <data name="SalesReturnDetail" xml:space="preserve">
+    <value>Detil Retur Penjualan</value>
+  </data>
+  <data name="lblTDeliveryOrderDate" xml:space="preserve">
+    <value>Tanggal Surat pengantar</value>
+  </data>
+  <data name="lblTDeliveryOrderDriverName" xml:space="preserve">
+    <value>Nama Supir</value>
+  </data>
+  <data name="lblTDeliveryOrderInvoiceDate" xml:space="preserve">
+    <value>Tanggal Invoice</value>
+  </data>
+  <data name="lblTDeliveryOrderInvoiceNumber" xml:space="preserve">
+    <value>Nomor Invoice</value>
+  </data>
+  <data name="lblTDeliveryOrderLicencePlateNumber" xml:space="preserve">
+    <value>Nomor Plat Kendaraan</value>
+  </data>
+  <data name="lblTDeliveryOrderNo" xml:space="preserve">
+    <value>nomor Surat Pengantar</value>
+  </data>
+  <data name="lblTDeliveryOrderType" xml:space="preserve">
+    <value>Jenis Surat Jalan</value>
+  </data>
+  <data name="TDeliveryOrder" xml:space="preserve">
+    <value>Surat pengantar</value>
+  </data>
+  <data name="SalesOrder" xml:space="preserve">
+    <value>Pesanan Penjualan</value>
+  </data>
+  <data name="SalesOrderCost" xml:space="preserve">
+    <value>Biaya Pesanan Penjualan</value>
+  </data>
+  <data name="SalesOrderDate" xml:space="preserve">
+    <value>Tanggal Pesanan Penjualan</value>
+  </data>
+  <data name="SalesOrderDetail" xml:space="preserve">
+    <value>Detail Pesanan Penjualan</value>
+  </data>
+  <data name="SalesOrderNumber" xml:space="preserve">
+    <value>No Pesanan Penjualan</value>
+  </data>
+  <data name="SalesOrderService" xml:space="preserve">
+    <value>Service Pesanan Penjualan</value>
+  </data>
+  <data name="DocumentCode" xml:space="preserve">
+    <value>Kode Dokumen</value>
+  </data>
+  <data name="TransactionDate" xml:space="preserve">
+    <value>Tanggal Transaksi</value>
+  </data>
+  <data name="lbltitleSupplierlistreport" xml:space="preserve">
+    <value>Laporan Daftar Pemasok</value>
+  </data>
+  <data name="lblreportperiod" xml:space="preserve">
+    <value>Periode</value>
+  </data>
+  <data name="lblsalesreport" xml:space="preserve">
+    <value>Laporan Penjualan</value>
+  </data>
+  <data name="lblSalesreport1" xml:space="preserve">
+    <value>Penjualan</value>
+  </data>
+  <data name="PettyCash" xml:space="preserve">
+    <value>Kas Kecil</value>
+  </data>
+  <data name="PettyCashDetail" xml:space="preserve">
+    <value>Detil Kas Kecil</value>
+  </data>
+  <data name="PettyCashCode" xml:space="preserve">
+    <value>Kode Kas Kecil</value>
+  </data>
+  <data name="TotalAmountForeignCurrency" xml:space="preserve">
+    <value>Konfersi Mata Uang Asing</value>
+  </data>
+  <data name="D/K" xml:space="preserve">
+    <value>D/K</value>
+  </data>
+  <data name="Terbilang" xml:space="preserve">
+    <value>Terbilang</value>
+  </data>
+  <data name="lblTitleReportPurchasePeriodic" xml:space="preserve">
+    <value>Laporan Pembelian</value>
+  </data>
+  <data name="lblreportPOno" xml:space="preserve">
+    <value>Nomor PO</value>
+  </data>
+  <data name="ReportPurchasePeriod" xml:space="preserve">
+    <value>Laporan Periode Pembelian</value>
+  </data>
+  <data name="PettyCashDetailBalance" xml:space="preserve">
+    <value>Detil Saldo Kas Kecil</value>
+  </data>
+  <data name="ApprovedBy" xml:space="preserve">
+    <value>Di Setujui Oleh</value>
+  </data>
+  <data name="PreparedBy" xml:space="preserve">
+    <value>Di siapkan Oleh</value>
+  </data>
+  <data name="ReportPettyCashDetailBalance" xml:space="preserve">
+    <value>Laporan Detil Saldo Kas Kecil</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Sampai</value>
+  </data>
+  <data name="CustomerLabelCustomerCode" xml:space="preserve">
+    <value>Kode Pelanggan</value>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Nama Pelanggan</value>
+  </data>
+  <data name="TGoodsReceiptDetailLblPODate" xml:space="preserve">
+    <value>Tanggal PO</value>
+  </data>
+  <data name="TGoodsReceiptDetailLblPONo" xml:space="preserve">
+    <value>Nomor PO</value>
+  </data>
+  <data name="TGoodsReceiptDetailLblSequence" xml:space="preserve">
+    <value>Urutan</value>
+  </data>
+  <data name="TGoodsReceiptDetailLblTInventoryCode" xml:space="preserve">
+    <value>Kode Persediaan</value>
+  </data>
+  <data name="TDeliveryOrderDetail" xml:space="preserve">
+    <value>Detail Surat Jalan</value>
+  </data>
+  <data name="lbltitleWHMP" xml:space="preserve">
+    <value>Laporan Mutasi Antar Gudang</value>
+  </data>
+  <data name="lblWHMPDestination" xml:space="preserve">
+    <value>Gudang Tujuan</value>
+  </data>
+  <data name="lblWHMPInitial" xml:space="preserve">
+    <value>Gudang Awal</value>
+  </data>
+  <data name="lblreporticptitle" xml:space="preserve">
+    <value>Laporan Koreksi Persediaan</value>
+  </data>
+  <data name="lblreporticpno" xml:space="preserve">
+    <value>Nomor Koreksi Persediaan</value>
+  </data>
+  <data name="MaterialCode" xml:space="preserve">
+    <value>Kode Barang Mentah</value>
+  </data>
+  <data name="MaterialQty" xml:space="preserve">
+    <value>Kuantitas Barang Mentah</value>
+  </data>
+  <data name="InventoryStockCardReport" xml:space="preserve">
+    <value>Laporan Kartu Persediaan</value>
+  </data>
+  <data name="ReportInventoryStockCard" xml:space="preserve">
+    <value>Laporan Persediaan Barang</value>
+  </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Biaya</value>
+  </data>
+  <data name="ReportPurchaseReturnPeriod" xml:space="preserve">
+    <value>Laporan Pengembalian Pembelian Periodik</value>
+  </data>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Jumlah Total</value>
+  </data>
+  <data name="ReportSalesReturnPeriod" xml:space="preserve">
+    <value>Laporan Pengembalian Penjualan Periodik</value>
+  </data>
+  <data name="TAsset" xml:space="preserve">
+    <value>Aktiva</value>
+  </data>
+  <data name="TAssetDepreciationHistory" xml:space="preserve">
+    <value>History Penyusutan Asset</value>
+  </data>
+  <data name="lblAccountCost" xml:space="preserve">
+    <value>Akun Beban Aktiva</value>
+  </data>
+  <data name="lblAccumulatedDepreciation" xml:space="preserve">
+    <value>Akumulasi Penyusutan</value>
+  </data>
+  <data name="lblAssetAccount" xml:space="preserve">
+    <value>Akun Aktiva</value>
+  </data>
+  <data name="lblAssetCode" xml:space="preserve">
+    <value>Kode Aktiva</value>
+  </data>
+  <data name="lblAssetDepreciationMethod" xml:space="preserve">
+    <value>Metode Penyusutan</value>
+  </data>
+  <data name="lblAssetName" xml:space="preserve">
+    <value>Nama Aktiva</value>
+  </data>
+  <data name="lblDepreciationAccumulatedAccount" xml:space="preserve">
+    <value>Akun Akumulasi Penyusutan Aktiva</value>
+  </data>
+  <data name="lblProfitLostAccountAss" xml:space="preserve">
+    <value>Akun L/R Aktiva</value>
+  </data>
+  <data name="lblPurchaseDate" xml:space="preserve">
+    <value>Tanggal Perolehan</value>
+  </data>
+  <data name="lblResidueValue" xml:space="preserve">
+    <value>Nilai Sisa</value>
+  </data>
+  <data name="lblstartmonth" xml:space="preserve">
+    <value>Bulan Mulai Penyusutan</value>
+  </data>
+  <data name="lblstartyear" xml:space="preserve">
+    <value>Tahun Mulai Penyusutan</value>
+  </data>
+  <data name="lblUsefullLife" xml:space="preserve">
+    <value>Usia Aktiva</value>
+  </data>
+  <data name="lblvalueofPrice" xml:space="preserve">
+    <value>Nilai perolehan Beli</value>
+  </data>
+  <data name="lblDepreciationDate" xml:space="preserve">
+    <value>Tanggal Penyusutan Aktiva</value>
+  </data>
+  <data name="lblDepreciationHistoryCode" xml:space="preserve">
+    <value>Kode Riwayat Penyusutan Aktiva</value>
+  </data>
+  <data name="lblDepreciationValue" xml:space="preserve">
+    <value>Nilai Penyusutan Aktiva</value>
+  </data>
+  <data name="lblDocNoreportreceipttype1" xml:space="preserve">
+    <value>Nomor Bukti</value>
+  </data>
+  <data name="lblGTreportreceipttype1" xml:space="preserve">
+    <value>Jumlah</value>
+  </data>
+  <data name="lblRollreportreceipttype1" xml:space="preserve">
+    <value>Roll</value>
+  </data>
+  <data name="lbltitlereportreceipttype1" xml:space="preserve">
+    <value>Laporan Penerimaan Barang Per Periode(Rincian)</value>
+  </data>
+  <data name="lblTypeReportGoodsReceiptPeriodictype1" xml:space="preserve">
+    <value>Tipe Laporan</value>
+  </data>
+  <data name="lblreportGRt2" xml:space="preserve">
+    <value>Laporan Pembelian Per Periode(Rincian)</value>
+  </data>
+  <data name="lblreportGRt2qtystock" xml:space="preserve">
+    <value>Kuantitas Stock</value>
+  </data>
+  <data name="lblreportGRt2receiveable" xml:space="preserve">
+    <value>Kuantitas Utang</value>
+  </data>
+  <data name="lblPurchasingDetailType" xml:space="preserve">
+    <value>Laporan Pembelian Per Periode(Rincian)</value>
+  </data>
+  <data name="DK" xml:space="preserve">
+    <value>D/K</value>
+  </data>
+  <data name="ReportInventoryStockCardWithValue" xml:space="preserve">
+    <value>Laporan Kartu Persediaan Barang Dengan Nilai</value>
+  </data>
+  <data name="Transaction" xml:space="preserve">
+    <value>Transaksi</value>
+  </data>
+  <data name="UnitCost" xml:space="preserve">
+    <value>Harga Pokok</value>
+  </data>
+  <data name="InventoryDetailBalanceReport" xml:space="preserve">
+    <value>Laporan Detil Ringkasan Saldo Persediaan</value>
+  </data>
+  <data name="InventorySummaryOfSubsidiariesBalanceReport" xml:space="preserve">
+    <value>Laporan Saldo Persediaan Ringkasan</value>
+  </data>
+  <data name="BeginningBalance" xml:space="preserve">
+    <value>Saldo Awal</value>
+  </data>
+  <data name="SubtotalBy" xml:space="preserve">
+    <value>Jumlah Total Per</value>
+  </data>
+  <data name="ReportMaklonOut" xml:space="preserve">
+    <value>Report Maklon Keluar</value>
+  </data>
+  <data name="ReportHistoryMaklon" xml:space="preserve">
+    <value>Report History Maklon</value>
+  </data>
+  <data name="ReportSalesOrderPeriodicSummary" xml:space="preserve">
+    <value>Report Sales Order Periode Ringkasan</value>
+  </data>
+  <data name="QtyRoll" xml:space="preserve">
+    <value>Kuantitas (Roll)</value>
+  </data>
+  <data name="lblFCrptPurchasingbysup" xml:space="preserve">
+    <value>Valas</value>
+  </data>
+  <data name="lblReportPurchasingbySupplierDetail" xml:space="preserve">
+    <value>Laporan Pembelian Per Supplier(Rincian)</value>
+  </data>
+  <data name="lblRPTPurchasingBySupplierSum" xml:space="preserve">
+    <value>Laporan Penjualan Per Supplier(Ringkasan)</value>
+  </data>
+  <data name="lbltotalFC" xml:space="preserve">
+    <value>Total Valas</value>
+  </data>
+  <data name="titleRPTPurchasingBySupplier" xml:space="preserve">
+    <value>Laporan Pembelian Per Supplier</value>
+  </data>
+  <data name="lblreportType" xml:space="preserve">
+    <value>Tipe Laporan</value>
+  </data>
+  <data name="lblRPTByDate" xml:space="preserve">
+    <value>Laporan Pembelian Per Periode</value>
+  </data>
+  <data name="lblrptPurchaseByDate" xml:space="preserve">
+    <value>Laporan Pembelian Per Periode(Ringkasan)</value>
+  </data>
+  <data name="InventoryStockReport" xml:space="preserve">
+    <value>Laporan Persediaan Barang</value>
+  </data>
+  <data name="AvailableStock" xml:space="preserve">
+    <value>Stok Tersedia</value>
+  </data>
+  <data name="GrandTotal" xml:space="preserve">
+    <value>Grand Total</value>
+  </data>
+  <data name="ReportPurchasingByInventory" xml:space="preserve">
+    <value>Report Pembelian Inventory Ringkasan</value>
+  </data>
+  <data name="ReportPurchasingByInventoryDetail" xml:space="preserve">
+    <value>Report Pembelian Inventory Rincian</value>
+  </data>
+  <data name="SubTotal" xml:space="preserve">
+    <value>Sub Total</value>
+  </data>
+  <data name="InvoiceDate" xml:space="preserve">
+    <value>Tanggal Faktur</value>
+  </data>
+  <data name="LabelAccountNameBank" xml:space="preserve">
+    <value>A.N</value>
+  </data>
+  <data name="LabelAccountNumberBank" xml:space="preserve">
+    <value>No Rekenin</value>
+  </data>
+  <data name="LabelDueDate" xml:space="preserve">
+    <value>Jatuh Tempo</value>
+  </data>
+  <data name="LabelInvoiceNotes" xml:space="preserve">
+    <value>Faktur Notes</value>
+  </data>
+  <data name="Regrads" xml:space="preserve">
+    <value>Hormat Kami</value>
+  </data>
+  <data name="TInventoryEndingBallance" xml:space="preserve">
+    <value>Saldo Akhir Persediaan</value>
+  </data>
+  <data name="Marketing" xml:space="preserve">
+    <value>Marketing</value>
+  </data>
+  <data name="ReportSalesorderByCustomer" xml:space="preserve">
+    <value>Laporan Penjualan Per Pelanggan</value>
+  </data>
+  <data name="ReportSalesorderByCustomerDetail" xml:space="preserve">
+    <value>Laporan Penjualan Per Pelanggan Rincian</value>
+  </data>
+  <data name="ReportSalesBySalesman" xml:space="preserve">
+    <value>Report Penjualan Per Sales Ringkasan</value>
+  </data>
+  <data name="ReportSalesBySalesmanDetail" xml:space="preserve">
+    <value>Report Penjualan Per Sales Rincian</value>
+  </data>
+  <data name="PurchaseServiceSummaryReport" xml:space="preserve">
+    <value>Laporan  Ringkasan Pembelian  Per Jasa</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>Jasa</value>
+  </data>
+  <data name="ServiceCode" xml:space="preserve">
+    <value>Kode Jasa</value>
+  </data>
+  <data name="SalesServiceSummaryReport" xml:space="preserve">
+    <value>Laporan  Ringkasan Penjualan  Per Jasa</value>
+  </data>
+  <data name="SalesServiceDetailReport" xml:space="preserve">
+    <value>Laporan  Rincian Penjualan  Per Jasa</value>
+  </data>
+  <data name="DeliveryOrderNumber" xml:space="preserve">
+    <value>Nomor Pengiriman Pesanan</value>
+  </data>
+  <data name="lblOutstandingDoTitle" xml:space="preserve">
+    <value>Laporan Outstanding Surat Jalan</value>
+  </data>
+  <data name="SalesLocationDetailReport" xml:space="preserve">
+    <value>Laporan Rincian Penjualan Per Lokasi</value>
+  </data>
+  <data name="ForeignCurrency" xml:space="preserve">
+    <value>Mata Uang Asing</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Daerah</value>
+  </data>
+  <data name="AreaCode" xml:space="preserve">
+    <value>Kode Daerah</value>
+  </data>
+  <data name="SalesAreaSummaryReport" xml:space="preserve">
+    <value>Laporan Ringkasan Penjualan Per Wilayah</value>
+  </data>
+  <data name="SalesGroupSuppliesSummaryReport" xml:space="preserve">
+    <value>Laporan Ringkasan Penjualan Per Jenis Brang</value>
+  </data>
+  <data name="SalesGroupSuppliesDetailReport" xml:space="preserve">
+    <value>Laporan Rincian Penjualan Per  Jenis Barang</value>
+  </data>
+  <data name="CurrencyReport" xml:space="preserve">
+    <value>Laporan Mata Uang</value>
+  </data>
+  <data name="TaxInvoice" xml:space="preserve">
+    <value>Faktur Pajak</value>
+  </data>
+  <data name="TaxInvoiceDetail" xml:space="preserve">
+    <value>Detil Faktur Pajak</value>
+  </data>
+  <data name="TaxInvoiceCode" xml:space="preserve">
+    <value>Kode Faktur Pajak</value>
+  </data>
+  <data name="TaxInvoiceDate" xml:space="preserve">
+    <value>Tanggal Faktur Pajak</value>
+  </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>Faktur</value>
+  </data>
+  <data name="TaxInvoiceCostAndService" xml:space="preserve">
+    <value>Biaya dan Jasa Faktur Pajak</value>
+  </data>
+  <data name="TaxInvoiceNumber" xml:space="preserve">
+    <value>Nomor Bukti</value>
+  </data>
+  <data name="lblRptSalesbyvaluetitle" xml:space="preserve">
+    <value>Laporan Penjualan By Unit &amp; Value</value>
+  </data>
+  <data name="TCashBankIn" xml:space="preserve">
+    <value>Kas Bank Masuk</value>
+  </data>
+  <data name="lblTCashBankInNo" xml:space="preserve">
+    <value>Kode Penerimaan Bank</value>
+  </data>
+  <data name="lblChasingDate" xml:space="preserve">
+    <value>Tanggal Cair</value>
+  </data>
+  <data name="lblCheckNumber" xml:space="preserve">
+    <value>Nomor Cek</value>
+  </data>
+  <data name="lblReceiveableAccount" xml:space="preserve">
+    <value>Akun Piutang</value>
+  </data>
+  <data name="lblreceiveableammount" xml:space="preserve">
+    <value>Jumlah Piutang </value>
+  </data>
+  <data name="lblreceiveablefcammount" xml:space="preserve">
+    <value>Jumlah Piutang Mata Uang Asing</value>
+  </data>
+  <data name="lblRecieveablefpostbackammount" xml:space="preserve">
+    <value>Jumlah Piutang Mundur</value>
+  </data>
+  <data name="lblRecieveablefpostbackcammount" xml:space="preserve">
+    <value>Jumlah Piutang mata Uang Asing Mundur</value>
+  </data>
+  <data name="lblRecieveablePostdateCheckAccount" xml:space="preserve">
+    <value>Akun Piutang Cek Mundur</value>
+  </data>
+  <data name="ReceiveableDebitCredit" xml:space="preserve">
+    <value>D/K</value>
+  </data>
+  <data name="lblAPCorrectionTitle" xml:space="preserve">
+    <value>koreksi Hutang</value>
+  </data>
+  <data name="lblARCorrectiontitle" xml:space="preserve">
+    <value>Koreksi Piutang</value>
+  </data>
+  <data name="lblcorrectionType" xml:space="preserve">
+    <value>Tipe Koreksi</value>
+  </data>
+  <data name="lblPayableAccount" xml:space="preserve">
+    <value>Kode Akun Hutang</value>
+  </data>
+  <data name="lblTAccountPayableCorrectionCode" xml:space="preserve">
+    <value>Kode Koreksi hutang</value>
+  </data>
+  <data name="lblTAccountReceiveableCorrectionCode" xml:space="preserve">
+    <value>Kode Koreksi Piutang</value>
+  </data>
+  <data name="lblPayableammount" xml:space="preserve">
+    <value>Nominal Hutang</value>
+  </data>
+  <data name="lblPayablefcammount" xml:space="preserve">
+    <value>Nominal FC Hutang</value>
+  </data>
+  <data name="lblPayablefpostbackcammount" xml:space="preserve">
+    <value>Nominal FC Hutang Mundur</value>
+  </data>
+  <data name="lblPayablePostdateCheckAccount" xml:space="preserve">
+    <value>Kode Akun Hutang Cek Mundur</value>
+  </data>
+  <data name="lblTCashBankOutCode" xml:space="preserve">
+    <value>Kode Pengeluaran Bank</value>
+  </data>
+  <data name="TCashBankOutTitle" xml:space="preserve">
+    <value>Pengeluaran Bank</value>
+  </data>
+  <data name="HistoryInvoice" xml:space="preserve">
+    <value>Report History Invoice</value>
+  </data>
+  <data name="TaxBased" xml:space="preserve">
+    <value>Dasar Penghitung Pajak</value>
+  </data>
+  <data name="VAT" xml:space="preserve">
+    <value>PPN</value>
+  </data>
+  <data name="WagesRate" xml:space="preserve">
+    <value>Tarif upah</value>
+  </data>
+  <data name="WagesAmount" xml:space="preserve">
+    <value>Jumlah Tarif Upah</value>
+  </data>
+  <data name="WagesCode" xml:space="preserve">
+    <value>Kode Tarif Upah</value>
+  </data>
+  <data name="WagesGroup" xml:space="preserve">
+    <value>Kelompok Tarif Upah</value>
+  </data>
+  <data name="WagesGroupName" xml:space="preserve">
+    <value>Nama Kelompok Tarif Upah</value>
+  </data>
+  <data name="WagesType" xml:space="preserve">
+    <value>Jenis Tarif Upah</value>
+  </data>
+  <data name="WagesTypeName" xml:space="preserve">
+    <value>Nama Jenis Tarif Upah</value>
+  </data>
+  <data name="InvoiceTax" xml:space="preserve">
+    <value>Report Faktur Pajak</value>
+  </data>
+  <data name="lblinwords" xml:space="preserve">
+    <value>Terbilang</value>
+  </data>
+  <data name="lblpayfor" xml:space="preserve">
+    <value>Untuk Pembayaran</value>
+  </data>
+  <data name="lbltitleReportCashBankIn" xml:space="preserve">
+    <value>Bukti Penerimaan Kas</value>
+  </data>
+  <data name="lblCashBankOut" xml:space="preserve">
+    <value>Bukti Kas Keluar</value>
+  </data>
+  <data name="lblCash" xml:space="preserve">
+    <value>Tunai</value>
+  </data>
+  <data name="lbltitlerptcashbankinsum" xml:space="preserve">
+    <value>Laporan Transaksi Kas Bank Terima (Rincian)</value>
+  </data>
+  <data name="lbltour" xml:space="preserve">
+    <value>Giro/Cek</value>
+  </data>
+  <data name="lblpayment" xml:space="preserve">
+    <value>Pembayaran</value>
+  </data>
+  <data name="lblReportCashBankInDetail1" xml:space="preserve">
+    <value>Laporan Penerimaan Kas/Bank (Detail) Type 1</value>
+  </data>
+  <data name="lblReceiveableCheckBack" xml:space="preserve">
+    <value>Piutang Cek Mundur</value>
+  </data>
+  <data name="ProductionFormula" xml:space="preserve">
+    <value>Formula Produksi</value>
+  </data>
+  <data name="ProductionFormulaMaterial" xml:space="preserve">
+    <value>Formula Produksi Bahan Baku Material</value>
+  </data>
+  <data name="AccountPayableCorrectionPeriodicReport" xml:space="preserve">
+    <value>Laporan Periodik Koreksi Hutang </value>
+  </data>
+  <data name="AccountReceiveableCorrectionPeriodicReport" xml:space="preserve">
+    <value>Laporan Periodik Koreksi Piutang</value>
+  </data>
+  <data name="ProductionFormulaWagesRates" xml:space="preserve">
+    <value>Formula Produksi Tarif Upah</value>
+  </data>
+  <data name="Allocation" xml:space="preserve">
+    <value>Alokasi</value>
+  </data>
+  <data name="ProductionFormulaResult" xml:space="preserve">
+    <value>Formula Hasil Jadi</value>
+  </data>
+  <data name="AssetPurchase" xml:space="preserve">
+    <value>Pembelian Aset</value>
+  </data>
+  <data name="AssetPurchaseDetail" xml:space="preserve">
+    <value>Detil Pembelian Aset</value>
+  </data>
+  <data name="AssetPurchaseNumber" xml:space="preserve">
+    <value>Nomor Pembelian Aset</value>
+  </data>
+  <data name="DeliveryOrder" xml:space="preserve">
+    <value>Pengiriman Pesanan</value>
+  </data>
+  <data name="VATAccountCode" xml:space="preserve">
+    <value>Kode Akun Pajak</value>
+  </data>
+  <data name="lbldownpaymentammount" xml:space="preserve">
+    <value>Jumlah Pembayaran Uang Muka</value>
+  </data>
+  <data name="lblDownPaymentCode" xml:space="preserve">
+    <value>Kode uang Muka</value>
+  </data>
+  <data name="lblDownPaymentDate" xml:space="preserve">
+    <value>Tanggal Pembayaran Uang Muka</value>
+  </data>
+  <data name="lblDownpaymentFcAmmount" xml:space="preserve">
+    <value>Jumlah Pembayaran Dengan Valas</value>
+  </data>
+  <data name="lblDownPaymentType" xml:space="preserve">
+    <value>Jenis Uang Muka</value>
+  </data>
+  <data name="lblPaymentAmmount" xml:space="preserve">
+    <value>Jumlah Pembayaran</value>
+  </data>
+  <data name="lblpaymentcode" xml:space="preserve">
+    <value>Kode Pembayaran</value>
+  </data>
+  <data name="lblpaymentdate" xml:space="preserve">
+    <value>Tanggal Pembayaran</value>
+  </data>
+  <data name="lblpaymentfcamount" xml:space="preserve">
+    <value>jumlah pembayaran dengan valas</value>
+  </data>
+  <data name="lblremainfcamount" xml:space="preserve">
+    <value>Sisa Pembayaran Dengan Valas</value>
+  </data>
+  <data name="lblremainpaymentamount" xml:space="preserve">
+    <value>Sisa Pembayaran</value>
+  </data>
+  <data name="lblRepaymentamount" xml:space="preserve">
+    <value>Jumlah Pelunasan</value>
+  </data>
+  <data name="lblRepaymentCode" xml:space="preserve">
+    <value>Kode Pelunasan</value>
+  </data>
+  <data name="lblrepaymentdate" xml:space="preserve">
+    <value>Tanggal Pelunasan</value>
+  </data>
+  <data name="lblrepaymentfcammout" xml:space="preserve">
+    <value>Jumlah Pelunasan Dengan Valas</value>
+  </data>
+  <data name="TReceiveableDownPayment" xml:space="preserve">
+    <value>Uang Muka Piutang</value>
+  </data>
+  <data name="TPayableDownPayment" xml:space="preserve">
+    <value>Hutang Uang Muka </value>
+  </data>
+  <data name="PraProduction" xml:space="preserve">
+    <value>Pra Produksi</value>
+  </data>
+  <data name="PraProductionDetail" xml:space="preserve">
+    <value>Pra Produksi Detail</value>
+  </data>
+  <data name="QtyProduction" xml:space="preserve">
+    <value>Qty Produksi</value>
+  </data>
+  <data name="SONO" xml:space="preserve">
+    <value>No SO</value>
+  </data>
+  <data name="OrderQuantity" xml:space="preserve">
+    <value>Kuantitas Barang Dipesan</value>
+  </data>
+  <data name="ReceiptQuantity" xml:space="preserve">
+    <value>Kuantitas Barang Diterima</value>
+  </data>
+  <data name="ReceiveableQuantity" xml:space="preserve">
+    <value>Kuantitas yang Dapat Diterima</value>
+  </data>
+  <data name="RemainQuantity" xml:space="preserve">
+    <value>Kuantitas Yang Harus Diterima</value>
+  </data>
+  <data name="AssetRemoval" xml:space="preserve">
+    <value>Penghapusan Aset</value>
+  </data>
+  <data name="AssetRemovalDetail" xml:space="preserve">
+    <value>Detil Penghapusan Aset</value>
+  </data>
+  <data name="AssetRemovalCode" xml:space="preserve">
+    <value>Kode Penghapusan Aset</value>
+  </data>
+  <data name="RemovalDate" xml:space="preserve">
+    <value>Tanggal Penghapusan</value>
+  </data>
+  <data name="AssetDeliveryOrder" xml:space="preserve">
+    <value> Surat Jalan Aktifa</value>
+  </data>
+  <data name="AssetDeliveryOrderCostAndService" xml:space="preserve">
+    <value>Surat Jalan Aktifa  ( Biaya Dan Jasa )</value>
+  </data>
+  <data name="AssetDeliveryOrderDetail" xml:space="preserve">
+    <value>Detil Surat Jalan Aktifa</value>
+  </data>
+  <data name="DeliveryOrderDate" xml:space="preserve">
+    <value>Tanggal Surat Jalan</value>
+  </data>
+  <data name="ImportPurchaseOrder" xml:space="preserve">
+    <value>Import Pemesanan Pembelian Barang</value>
+  </data>
+  <data name="ImportPurchaseOrderDetail" xml:space="preserve">
+    <value>Import Detil Pemesanan Pembelian Barang</value>
+  </data>
+  <data name="ImportPurchaseOrderServiceAndCost" xml:space="preserve">
+    <value>Import Biaya dan Jasa Pemesanan Pembelian Barang</value>
+  </data>
+  <data name="ReportPurchaseOrderImport" xml:space="preserve">
+    <value>Report Pembelian Import</value>
+  </data>
+  <data name="ReportGoodReceiptImport" xml:space="preserve">
+    <value>Report Penerimaan Barang Import</value>
+  </data>
+  <data name="UseRawMaterial" xml:space="preserve">
+    <value>Pemakaian Bahan Baku</value>
+  </data>
+  <data name="UseRawMaterialCode" xml:space="preserve">
+    <value>Pemakaian Bahan Baku Code</value>
+  </data>
+  <data name="UseRawMaterialDate" xml:space="preserve">
+    <value>Tanggal Pemakaian Bahan Baku</value>
+  </data>
+  <data name="UseRawMaterialDetail" xml:space="preserve">
+    <value>Pemakaian Bahan Baku Detail</value>
+  </data>
+  <data name="ReportUseRawMaterialPeriodic" xml:space="preserve">
+    <value>Report Use Raw Material Periodic</value>
+  </data>
+  <data name="lbldebtaccountdate" xml:space="preserve">
+    <value>Tanggal Piutang</value>
+  </data>
+  <data name="lbldebtaccountduedate" xml:space="preserve">
+    <value>Tanggal Jatuh Tempo Piutang</value>
+  </data>
+  <data name="ReceiptProduction" xml:space="preserve">
+    <value>Penerimaan Hasil Produksi</value>
+  </data>
+  <data name="ReceiptProductionDetail" xml:space="preserve">
+    <value>Detail Penerimaan Hasil Produksi</value>
+  </data>
+  <data name="ReceiptProductionQty" xml:space="preserve">
+    <value>Qty Penerimaan Produksi</value>
+  </data>
+  <data name="ResultProductionQty" xml:space="preserve">
+    <value>Qty Hasil Produksi</value>
+  </data>
+  <data name="AssetDeliveryOrderReport" xml:space="preserve">
+    <value>Surat Jalan Aktiva</value>
+  </data>
+  <data name="ReportReceiptProductionPeriodic" xml:space="preserve">
+    <value>Report Penerimaan Produksi Periodic</value>
+  </data>
+  <data name="ReportListAccount" xml:space="preserve">
+    <value>Laporan Bagan Perkiraan</value>
+  </data>
+  <data name="ReportOutstandingWorkorder" xml:space="preserve">
+    <value>Report Outstanding Produksi</value>
+  </data>
+  <data name="AssetDeliveryOrderPeriodicReport" xml:space="preserve">
+    <value>Laporan Penjualan Aktiva Periodik</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Periode</value>
+  </data>
+  <data name="FixedAssetList" xml:space="preserve">
+    <value>Daftar Aktifa Tetap</value>
+  </data>
+  <data name="RecieptProductionWIPPeriodic" xml:space="preserve">
+    <value>Laporan Barang Dalam Prosses (WIP)</value>
+  </data>
+  <data name="RecieptQty" xml:space="preserve">
+    <value>Kuantitas Penerimaan</value>
+  </data>
+  <data name="SubtotalWIP" xml:space="preserve">
+    <value>Jumlah WIP</value>
+  </data>
+  <data name="WorkOrderDate" xml:space="preserve">
+    <value>Tanggal Produksi</value>
+  </data>
+  <data name="WorkOrderQty" xml:space="preserve">
+    <value>Kuantitas Produksi</value>
+  </data>
+  <data name="ReportAnalyzeDebtAge" xml:space="preserve">
+    <value>Laporan Analisa Umur Hutang</value>
+  </data>
+  <data name="ReportAnalyzeReceiveableAge" xml:space="preserve">
+    <value>Report Analisa Umur Piutang</value>
+  </data>
+  <data name="ReportDebtAccount" xml:space="preserve">
+    <value>Report Kartu Hutang</value>
+  </data>
+  <data name="ReceivablesReportMaturityDate" xml:space="preserve">
+    <value>Laporan Piutang Jatuh Tempo</value>
+  </data>
+  <data name="InvoiceAmount" xml:space="preserve">
+    <value>Jumlah tagihan</value>
+  </data>
+  <data name="InvoiceAmountFC" xml:space="preserve">
+    <value>Jumlah tagihan (FC)</value>
+  </data>
+  <data name="PaymentAmountFC" xml:space="preserve">
+    <value>Jumlah Pembayaran (FC)</value>
+  </data>
+  <data name="PaymentRemainAmount" xml:space="preserve">
+    <value>Jumlah Sisa Pembayaran</value>
+  </data>
+  <data name="PaymentRemainAmountFC" xml:space="preserve">
+    <value>Jumlah Sisa Pembayaran (FC)</value>
+  </data>
+  <data name="DebtAccountReportMaturityDate" xml:space="preserve">
+    <value>Laporan Jatuh Tempo Hutang Periodik</value>
+  </data>
+  <data name="AssetPurchasePeriodicReport" xml:space="preserve">
+    <value>Laporan Pembelian Aktiva Periodik</value>
+  </data>
+  <data name="DebtAccountPeriodicReport" xml:space="preserve">
+    <value>Laporan Kartu Hutang</value>
+  </data>
+  <data name="DebtorsAccountPeriodicReport" xml:space="preserve">
+    <value>Laporan Kartu Piutang</value>
+  </data>
+  <data name="PaymentCode" xml:space="preserve">
+    <value>Kode Pembayaran</value>
+  </data>
+  <data name="ListCekdanGiro" xml:space="preserve">
+    <value>Daftar Cek dan Giro</value>
+  </data>
+  <data name="ReceiveableCheckBackPeriodicReport" xml:space="preserve">
+    <value>Piutang Cek Mundur</value>
+  </data>
+  <data name="DependsOn" xml:space="preserve">
+    <value>Pemilihan Tanggal Bergantung Pada</value>
+  </data>
+  <data name="PayableCheckBackPeriodicReport" xml:space="preserve">
+    <value>Laporan Hutang Cek Mundur Periodik</value>
+  </data>
+  <data name="ListPayableCekdanGiro" xml:space="preserve">
+    <value>Daftar Cek dan giro</value>
+  </data>
+  <data name="RecieveableBalancePeriodicReport" xml:space="preserve">
+    <value>Laporan Saldo Piutang Periodic</value>
+  </data>
+  <data name="lblcheck" xml:space="preserve">
+    <value>Cek/Giro</value>
+  </data>
+  <data name="lblCashBankInDetailType2" xml:space="preserve">
+    <value>Laporan Kas/Bank/Giro</value>
+  </data>
+  <data name="lblkas" xml:space="preserve">
+    <value>Kas</value>
+  </data>
+  <data name="lblReportCashBankInPeriodic" xml:space="preserve">
+    <value>Laporan Periodik Kas Bank Terima</value>
+  </data>
+  <data name="lblcashbankcoutperiodic" xml:space="preserve">
+    <value>Laporan Kas/Bank Keluar </value>
+  </data>
+  <data name="titleCashBankBallanceDetail" xml:space="preserve">
+    <value>Laporan Saldo Kas/Bank </value>
+  </data>
+  <data name="ReportDebtAccountCard" xml:space="preserve">
+    <value>Kartu Hutang</value>
+  </data>
+  <data name="RecieveableDetailBalancePeriodicReport" xml:space="preserve">
+    <value>Laporan Saldo Piutang (Rincian)</value>
+  </data>
+  <data name="BalanceFC" xml:space="preserve">
+    <value>Saldo (FC)</value>
+  </data>
+  <data name="BeginningBalanceFC" xml:space="preserve">
+    <value>Saldo Awal (FC)</value>
+  </data>
+  <data name="CreditFC" xml:space="preserve">
+    <value>Kredit (FC)</value>
+  </data>
+  <data name="DebitFC" xml:space="preserve">
+    <value>Debit (FC)</value>
+  </data>
+  <data name="ReportPPNMasukan" xml:space="preserve">
+    <value>Report PPN Masukan</value>
+  </data>
+  <data name="ReportDebtorsMutationPeriodic" xml:space="preserve">
+    <value>Report Mutasi Hutang</value>
+  </data>
+  <data name="BeginningBalanceAmount" xml:space="preserve">
+    <value>Saldo Awal</value>
+  </data>
+  <data name="BeginningBalanceAmountFC" xml:space="preserve">
+    <value>Saldo Awal FC</value>
+  </data>
+  <data name="EndBalanceAmount" xml:space="preserve">
+    <value>Saldo Ahir</value>
+  </data>
+  <data name="EndBalanceAmountFC" xml:space="preserve">
+    <value>Saldo Ahir FC</value>
+  </data>
+  <data name="ReportDebtMutationPeriodic" xml:space="preserve">
+    <value>Laporan Mutasi Piutang Periodik</value>
+  </data>
+  <data name="ReportNeraca" xml:space="preserve">
+    <value>Report Neraca</value>
+  </data>
+  <data name="lblTitleLedgerCardDetail" xml:space="preserve">
+    <value>Kartu Buku Besar</value>
+  </data>
+  <data name="lblreportledgersummary" xml:space="preserve">
+    <value>Kartu Buku Besar Ringkasan</value>
+  </data>
+  <data name="ReportNeracaSaldo" xml:space="preserve">
+    <value>Laporan Neraca Saldo</value>
+  </data>
+  <data name="lblCreditMutation" xml:space="preserve">
+    <value>Mutasi Kredit(Rp)</value>
+  </data>
+  <data name="lbldebitfcmutation" xml:space="preserve">
+    <value>Mutasi Debit(FC)</value>
+  </data>
+  <data name="lbldebitmutation" xml:space="preserve">
+    <value>Mutasi Debit(Rp)</value>
+  </data>
+  <data name="lblKreditFCMutation" xml:space="preserve">
+    <value>Mutasi Kredit(FC)</value>
+  </data>
+  <data name="lblTitleJournalTransaction" xml:space="preserve">
+    <value>Daftar Jurnal Transaksi Per Tanggal Transaksi</value>
+  </data>
+  <data name="lblReportjournalSummary" xml:space="preserve">
+    <value>Daftar Transaksi harian (Ringkasan)</value>
+  </data>
+  <data name="lblReportLostProfitCurrMonth" xml:space="preserve">
+    <value>Laba Rugi Bulan Berjalan</value>
+  </data>
+  <data name="ReportLossProfitCumulative" xml:space="preserve">
+    <value>Laporan Laba Rugi Kumulatif</value>
+  </data>
+  <data name="CumulativeAmount" xml:space="preserve">
+    <value>Nilai Kumulatif</value>
+  </data>
+  <data name="CumulativePercentage" xml:space="preserve">
+    <value>Persentase Kumulatif</value>
+  </data>
+  <data name="gl_setup_lr_account_biayaoverheadpabrik" xml:space="preserve">
+    <value>Akun Biaya Over Head Pabrik</value>
+  </data>
+  <data name="gl_setup_lr_account_biayapembelianbarangjadi" xml:space="preserve">
+    <value>Akun Biaya Pembelian Barang Jadi</value>
+  </data>
+  <data name="gl_setup_lr_account_bulanberjalan" xml:space="preserve">
+    <value>Akun Laba Rugi Bulan Berjalan</value>
+  </data>
+  <data name="gl_setup_lr_account_hargapokokpenjualan" xml:space="preserve">
+    <value>Akun Harga Pokok Penjualan</value>
+  </data>
+  <data name="gl_setup_lr_account_labarugiselisihkurs" xml:space="preserve">
+    <value>Akun Laba Rugi Selisih Kurs</value>
+  </data>
+  <data name="gl_setup_lr_account_pembelianbahan" xml:space="preserve">
+    <value>Akun Pembelian Bahan</value>
+  </data>
+  <data name="gl_setup_lr_account_pembelianbarangjadi" xml:space="preserve">
+    <value>Akun Pembelian Barang Jadi</value>
+  </data>
+  <data name="gl_setup_lr_account_persediaanbahan" xml:space="preserve">
+    <value>Akun Persediaan Bahan</value>
+  </data>
+  <data name="gl_setup_lr_account_persediaanbarangdalamproses" xml:space="preserve">
+    <value>Akun Persediaan Barang Dalam Proses</value>
+  </data>
+  <data name="gl_setup_lr_account_persediaanbarangjadi" xml:space="preserve">
+    <value>Akun Persediaan Barang Jadi</value>
+  </data>
+  <data name="gl_setup_lr_account_potonganpembelianbahan" xml:space="preserve">
+    <value>Akun Potongan Pembelian Bahan</value>
+  </data>
+  <data name="gl_setup_lr_account_potonganpembelianbarangjadi" xml:space="preserve">
+    <value>Akun Potongan Pembelian Barang Jadi</value>
+  </data>
+  <data name="gl_setup_lr_account_returpembelianbahan" xml:space="preserve">
+    <value>Akun Pengembalian Pembelian Bahan</value>
+  </data>
+  <data name="gl_setup_lr_account_returpembelianbarangjadi" xml:space="preserve">
+    <value>Akun Pengembalian Pembelian Barang Jadi</value>
+  </data>
+  <data name="gl_setup_lr_account_sisatahunlalu" xml:space="preserve">
+    <value>Akun Laba Rugi Sisa Tahun Lalu</value>
+  </data>
+  <data name="gl_setup_lr_account_tahunberjalansdbulanlalu" xml:space="preserve">
+    <value>Akun Laba Rugi Tahun Berjalan s/d Bulan Lalu</value>
+  </data>
+  <data name="gl_setup_lr_account_upahlangsung" xml:space="preserve">
+    <value>Akun Upah Langsung</value>
+  </data>
+  <data name="QtyPrintedlbl" xml:space="preserve">
+    <value>Jumlah Cetak</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>Option</value>
+  </data>
+  <data name="OptionID" xml:space="preserve">
+    <value>ID Opsi</value>
+  </data>
+  <data name="OptionName" xml:space="preserve">
+    <value>Nama Opsi</value>
+  </data>
+  <data name="OptionValue" xml:space="preserve">
+    <value>Nilai Opsi</value>
+  </data>
+  <data name="NotificationID" xml:space="preserve">
+    <value>No Notifikasi</value>
+  </data>
+  <data name="NotificationName" xml:space="preserve">
+    <value>Nama Notifikasi</value>
+  </data>
+  <data name="PNotification" xml:space="preserve">
+    <value>Notifikasi</value>
+  </data>
+  <data name="UserNotification" xml:space="preserve">
+    <value>Notifikasi Pengguna</value>
+  </data>
+  <data name="UserNotificationID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="TGoodsReceiptDetailLblPUR_ISTK" xml:space="preserve">
+    <value>Stok Persediaan</value>
+  </data>
+  <data name="lblAvailableStock" xml:space="preserve">
+    <value>Stok Tersedia</value>
+  </data>
+  <data name="invoiceqty" xml:space="preserve">
+    <value>kuantitas Invoice</value>
+  </data>
+  <data name="ValueConvertion" xml:space="preserve">
+    <value>Konversi Nilai Satuan</value>
+  </data>
+  <data name="lbldeductionpayment" xml:space="preserve">
+    <value>Potongan Pembayaran</value>
+  </data>
+  <data name="lbldeductionpaymentreason" xml:space="preserve">
+    <value>Alasan Pemotongan Pembayaran</value>
+  </data>
+  <data name="DeliveryOrderGroupSupply" xml:space="preserve">
+    <value>Surat Jalan Kelompok Persediaan</value>
+  </data>
+  <data name="Deduction" xml:space="preserve">
+    <value>Pengurangan</value>
+  </data>
+  <data name="DeductionReason" xml:space="preserve">
+    <value>Alasan Pengurangan</value>
+  </data>
+  <data name="ReceiveableDownPaymentCashbank" xml:space="preserve">
+    <value>Pembayaran</value>
+  </data>
+  <data name="NotificationLabelNotification" xml:space="preserve">
+    <value>Jenis Penanganan</value>
+  </data>
+  <data name="NotificationLabelNotificationActionCode" xml:space="preserve">
+    <value>Kode Penanganan</value>
+  </data>
+  <data name="NotificationLabelNotificationActionDescription" xml:space="preserve">
+    <value>Deskripsi Penanganan</value>
+  </data>
+  <data name="NotificationLabelNotificationCode" xml:space="preserve">
+    <value>Kode Notifikasi</value>
+  </data>
+  <data name="NotificationLabelNotificationDeviceName" xml:space="preserve">
+    <value>Nama Mesin</value>
+  </data>
+  <data name="NotificationLabelNotificationMessages" xml:space="preserve">
+    <value>Pesan</value>
+  </data>
+  <data name="NotificationLabelNotificationSite" xml:space="preserve">
+    <value>Lokasi</value>
+  </data>
+  <data name="NotificationLabelNotificationStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="NotificationLabelNotificationTitle" xml:space="preserve">
+    <value>Judul</value>
+  </data>
+  <data name="TimeNotification" xml:space="preserve">
+    <value>Waktu Notifikasi</value>
+  </data>
+  <data name="NotificationLabelActionTakenBy" xml:space="preserve">
+    <value>Pengambil Aksi</value>
+  </data>
+  <data name="labelDevice" xml:space="preserve">
+    <value>Mesin</value>
+  </data>
+  <data name="labelDeviceCategory" xml:space="preserve">
+    <value>Kategori Mesin</value>
+  </data>
+  <data name="labelDeviceDescription" xml:space="preserve">
+    <value>Deskripsi Mesin</value>
+  </data>
+  <data name="labelDeviceName" xml:space="preserve">
+    <value>Nama Mesin</value>
+  </data>
+  <data name="labelDeviceSite" xml:space="preserve">
+    <value>Lokasi Mesin</value>
+  </data>
+  <data name="labelDeviceMac1" xml:space="preserve">
+    <value>Mac Adress 1</value>
+  </data>
+  <data name="labelDeviceMac2" xml:space="preserve">
+    <value>Mac Adress 2</value>
+  </data>
+  <data name="labelDeviceMac3" xml:space="preserve">
+    <value>Mac Adress 3</value>
+  </data>
+</root>

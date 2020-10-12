@@ -1,0 +1,342 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Main Dashboards</title>
+</head>
+<body>
+    <div class="sidebar-content">
+       
+
+
+        <div class="wrapper-md-expanded wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <div  id="content-chart">
+                              
+                               
+
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+      
+
+
+
+    </div>
+    
+    <script src="~/Scripts/c3.min.js"></script>
+    <script src="~/Scripts/d3-5.8.2.min.js"></script>  
+    <script src="~/Scripts/jquery.signalR-2.2.1.js" type="text/javascript"></script>
+    <script src="~/signalr/hubs"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            if ("@Session["IDUser"]" != null) {
+                $('.match-height').matchHeight();
+                $("#NotificationLoadMore").attr('data-offset', 5)
+
+                //GenerateChart();
+                GetAllChart();
+                //const interval = setInterval(function () {
+                //    GetAllChart();
+                //}, 1000);
+
+
+
+                window.paramdo.iddevicetodisplay = "";
+                window.paramdo.chartarray = new Array();
+            }
+            else {
+                document.location = "../Login/Logout/"
+            }
+           
+            
+
+        })
+
+        function GetDetailChart(id) {
+
+            console.log(id)
+            paramdo.iddevicetodisplay = id;
+            $("#close-home").click();
+            utility._loadMenuList("/ChartByDeviceID/Index", "Chart")
+        }
+
+        var count=0
+        function GetDataChart(dataarray) {
+           
+            $.ajax({
+                url: "../Dashboards/GetAllChart?DeviceID="+dataarray.Device_ID,//FEED_URL,
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                
+                    if (data.length > 0) {
+
+                       
+                        //for (var x = 0 ; x < data.length; x++) {
+                        var countNotif = parseInt(data[0].countnotif);
+                            var warning = countNotif == 0 ? "warning-chart-hidden" : "warning-chart-show";
+
+                            if (document.getElementById("chart" + dataarray.Device_ID) == null) {
+                                a = ' <div class="chart-container">'
+                                        + ' <h1 id="warning-chart' + dataarray.Device_ID + '" class="warning-blink ' + warning + ' ">Warning!!!</h1>'
+                                        + '<h1 class="title-chart">' + dataarray.Device_Name + '</h1> ' +
+                                        '<div id="chart' + dataarray.Device_ID + '" onClick=GetDetailChart("' + dataarray.Device_ID + '") > ' +
+
+                                        '</div>' +
+                                ' </div>';
+                                $("#content-chart").append(a);
+                                var datatochart = {};
+                                for (var da = 0; da < data.length; da++) {
+                                   
+                                    //datatochart.push({ id: data[da].value })
+                                    datatochart[data[da].SensorName.trim()] = data[da].value
+                                }
+                                //console.log(datatochart)
+                               
+                                GenerateChart(datatochart, dataarray.Device_ID)
+                            }
+
+                            else {
+                                
+                                var datatochart = {};
+                                for (var da = 0; da < data.length; da++) {
+
+                                    //datatochart.push({ id: data[da].value })
+                                    datatochart[data[da].SensorName.trim()] = data[da].value
+                                }
+                                ReloadChart(datatochart, dataarray.Device_ID)
+                            }
+                        //}
+                    }
+                    else {
+                       
+                        //$('.chart-container').remove();
+                        //paramdo.chartarray=[]
+                    }
+
+                  
+                }
+            })
+        }
+
+
+        function GetDevices() {
+            console.log('ss')
+            $.ajax({
+                url: "../Dashboards/GetDeviceBysite",//FEED_URL,
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                   
+                    if (data.length > 0) {
+
+                        for (var x = 0 ; x < data.length; x++) {
+
+                            GetDataChart(data[x])
+                        }
+
+                    }
+                   
+
+                  
+                }
+            })
+        }
+
+        function GetAllChart() {
+            var elementchart = "";
+
+
+            $.ajax({
+                url: "../Dashboards/GetDeviceBysite",//FEED_URL,
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                   
+                    if (data.length > 0) {
+
+                        for (var x = 0 ; x < data.length; x++) {
+
+                            GetDataChart(data[x])
+                        }
+                  
+                    }
+                   
+
+                  
+                },
+                complete: function (xhr, status) {
+                    $(function () {
+                        var i = 0;
+                        var getchart = $.connection.messagesHub;
+
+                        getchart.client.updateMessages = function () {
+                           
+                            console.log('wks')
+                            GetDevices()
+
+
+
+                        };
+                        $.connection.hub.start().done(function () {
+                            $.ajax({
+                                url: '/Dashboards/notifchart',
+                                contentType: 'application/html ; charset:utf-8',
+                                type: 'POST',
+                                dataType: 'html'
+                            }).success(function (result) {
+
+
+                                // Notification("", "")
+                            }).error(function () {
+
+                            });
+                        }).fail(function (e) {
+                            //console.log(e);
+                        });
+                    });
+                }
+            });
+        }
+        function ReloadChart(dataJson, deviceid) {
+
+            var chart = paramdo.chartarray
+            
+            for (var x = 0; x < chart.length; x++) {
+               
+                if (chart[x].id == deviceid) {
+                    var chartobj = chart[x].obj
+                    chartobj.load({
+                        
+                        columns: [
+                             ["Arus", dataJson.Arus == null ? 0 : dataJson.Arus],
+                       ["Arus 3 phase", dataJson.Arus3 == null ? 0 : dataJson.Arus3],
+                       ["Daya", dataJson.Daya == null ? 0 : dataJson.Daya],
+                        ["Daya 3 phase", dataJson.Daya3 == null ? 0 : dataJson.Daya3],
+                        ["Gas", dataJson.Gas == null ? 0 : dataJson.Gas],
+                       ["PowerUssage", dataJson.PowerUssage == null ? 0 : dataJson.PowerUssage],
+                       ["PowerUssage 3 phase", dataJson.PowerUssage3 == null ? 0 : dataJson.PowerUssage3],
+                        ["Tegangan", dataJson.Tegangan == null ? 0 : dataJson.Tegangan],
+                        ["Tegangan 3 phase", dataJson.Tegangan3 == null ? 0 : dataJson.Tegangan3],
+                        ["Distances", dataJson.Distances == null ? 0 : dataJson.Distances],
+                         ["Vibration", dataJson.Vibration == null ? 0 : dataJson.Vibration],
+                         ["Room Temprature", dataJson.RoomTemp == null ? 0 : dataJson.RoomTemp],
+                         ["Humidity", dataJson.Humidity == null ? 0 : dataJson.Humidity],
+                          ["Temprature", dataJson.Temprature == null ? 0 : dataJson.Temprature],
+                           ["Preasure", dataJson.Preasure == null ? 0 : dataJson.Preasure],
+                        ]
+                    });
+                }
+            }
+            //console.log(chart)
+            
+        }
+        function GenerateChart(dataJson,deviceid) {
+            
+            
+
+            var chart = c3.generate({
+                bindto: "#chart" + deviceid,
+                data: {
+                    columns: [
+                       ["Arus", dataJson.Arus == null ? 0 : dataJson.Arus],
+                       ["Arus 3 phase", dataJson.Arus3 == null ? 0 : dataJson.Arus3],
+                       ["Daya", dataJson.Daya == null ? 0 : dataJson.Daya],
+                        ["Daya 3 phase", dataJson.Daya3 == null ? 0 : dataJson.Daya3],
+                        ["Gas", dataJson.Gas == null ? 0 : dataJson.Gas],
+                       ["PowerUssage", dataJson.PowerUssage == null ? 0 : dataJson.PowerUssage],
+                       ["PowerUssage 3 phase", dataJson.PowerUssage3 == null ? 0 : dataJson.PowerUssage3],
+                        ["Tegangan", dataJson.Tegangan == null ? 0 : dataJson.Tegangan],
+                        ["Tegangan 3 phase", dataJson.Tegangan3 == null ? 0 : dataJson.Tegangan3],
+                        ["Distances", dataJson.Distances == null ? 0 : dataJson.Distances],
+                         ["Vibration", dataJson.Vibration == null ? 0 : dataJson.Vibration],
+                         ["Room Temprature", dataJson.RoomTemp == null ? 0 : dataJson.RoomTemp],
+                         ["Humidity", dataJson.Humidity == null ? 0 : dataJson.Humidity],
+                          ["Temprature", dataJson.Temprature == null ? 0 : dataJson.Temprature],
+                           ["Preasure", dataJson.Preasure == null ? 0 : dataJson.Preasure],
+
+
+                        
+                     
+                       
+                    ],
+                    type: 'bar'
+                },
+                bar: {
+                    width: {
+                        ratio: 0.5 // this makes bar width 50% of length between ticks
+                    },
+                    space: 0.5
+                    // or
+                    //width: 100 // this makes bar width 100px
+                },
+                color: {
+                    //pattern: ['#142459', '#142459', '#142459', '#176BA0', '#176BA0', '#176BA0', '#IDE4BD', '#IDE4BD', '#IDE4BD'],
+//                    #142459
+//#176BA0
+//#19AADE
+//#1AC9E6
+//#IDE4BD
+                },
+
+            });
+            //console.log(chart);
+            paramdo.chartarray.push({ id: deviceid, obj: chart });
+            
+        }
+
+        
+       
+    </script>
+    <style>
+        #content-chart{
+            flex-wrap: wrap;
+            display: flex;
+            flex-direction: row;
+        }
+        .chart-container{
+            width:30%;
+        }
+        .title-chart{
+            text-decoration:underline;
+            text-align:center;
+            padding:5px;
+        }
+
+        .warning-blink {
+          animation: blinker 1s linear infinite;
+          color:coral;
+          padding-left:10px
+        }
+
+        @@keyframes blinker {
+          50% {
+            opacity: 0;
+          }
+        }
+        .warning-chart-hidden{
+            display :none;
+        }
+    </style>
+</body>
+</html>
+
+

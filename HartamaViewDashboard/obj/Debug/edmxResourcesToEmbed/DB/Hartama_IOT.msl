@@ -835,5 +835,46 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCategoryDatatable" FunctionName="Hartama_IOTModel.Store.GetCategoryDatatable">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetCategoryDatatable_Result">
+          <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+          <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+          <ScalarProperty Name="Category_Description" ColumnName="Category_Description" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="dateentry" ColumnName="dateentry" />
+          <ScalarProperty Name="userlastmaintenance" ColumnName="userlastmaintenance" />
+          <ScalarProperty Name="datelastmaintenance" ColumnName="datelastmaintenance" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertCategory" FunctionName="Hartama_IOTModel.Store.InsertCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.InsertCategory_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DeleteCategory" FunctionName="Hartama_IOTModel.Store.DeleteCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.DeleteCategory_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GETSENSORDetail" FunctionName="Hartama_IOTModel.Store.GETSENSORDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GETSENSORDetail_Result">
+          <ScalarProperty Name="ID_Detail_Group_Sensor" ColumnName="ID_Detail_Group_Sensor" />
+          <ScalarProperty Name="Detail_SensorName" ColumnName="Detail_SensorName" />
+          <ScalarProperty Name="upperlimit" ColumnName="upperlimit" />
+          <ScalarProperty Name="lowerlimit" ColumnName="lowerlimit" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

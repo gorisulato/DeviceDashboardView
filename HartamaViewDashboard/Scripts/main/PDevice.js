@@ -163,7 +163,8 @@
 
             }
             else {
-                table.$('tr.row_selected').removeClass('row_selected');
+                $("#DEVICEDEVICE tr.row_selected").removeClass('row_selected');
+                //$(this).removeClass('row_selected');
                 $(this).addClass('row_selected');
 
             }

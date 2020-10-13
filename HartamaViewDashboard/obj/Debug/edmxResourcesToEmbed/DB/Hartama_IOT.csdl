@@ -446,6 +446,23 @@
     <FunctionImport Name="DeleteDevice" ReturnType="Collection(Hartama_IOTModel.DeleteDevice_Result)">
       <Parameter Name="IDDevice" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="GetCategoryDatatable" ReturnType="Collection(Hartama_IOTModel.GetCategoryDatatable_Result)">
+      <Parameter Name="limit" Mode="In" Type="Int32" />
+      <Parameter Name="offset" Mode="In" Type="Int32" />
+      <Parameter Name="keyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertCategory" ReturnType="Collection(Hartama_IOTModel.InsertCategory_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+      <Parameter Name="CategoryName" Mode="In" Type="String" />
+      <Parameter Name="CategoryDesc" Mode="In" Type="String" />
+      <Parameter Name="userID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteCategory" ReturnType="Collection(Hartama_IOTModel.DeleteCategory_Result)">
+      <Parameter Name="id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GETSENSORDetail" ReturnType="Collection(Hartama_IOTModel.GETSENSORDetail_Result)">
+      <Parameter Name="idmainparam" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="PTUserLogin_Result">
     <Property Type="String" Name="msg" Nullable="true" />
@@ -1015,5 +1032,30 @@
   <ComplexType Name="DeleteDevice_Result">
     <Property Type="String" Name="Pesan" Nullable="true" />
     <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetCategoryDatatable_Result">
+    <Property Type="String" Name="Category_ID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Category_Name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Category_Description" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="dateentry" Nullable="true" />
+    <Property Type="String" Name="userlastmaintenance" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="datelastmaintenance" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="InsertCategory_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DeleteCategory_Result">
+    <Property Type="String" Name="Pesan" Nullable="true" />
+    <Property Type="Int32" Name="Error" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GETSENSORDetail_Result">
+    <Property Type="String" Name="ID_Detail_Group_Sensor" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Detail_SensorName" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="upperlimit" Nullable="false" />
+    <Property Type="Int32" Name="lowerlimit" Nullable="false" />
+    <Property Type="Int32" Name="TotalRecords" Nullable="true" />
   </ComplexType>
 </Schema>

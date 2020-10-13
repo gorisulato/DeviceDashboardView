@@ -5979,4 +5979,22 @@
   <data name="labelDeviceMac3" xml:space="preserve">
     <value>Mac Adress 3</value>
   </data>
+  <data name="labelCategory" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="labelCategoryDesc" xml:space="preserve">
+    <value>Category Description</value>
+  </data>
+  <data name="labelCategoryName" xml:space="preserve">
+    <value>Category Name</value>
+  </data>
+  <data name="labelsensorparamCode" xml:space="preserve">
+    <value>Parameter Code</value>
+  </data>
+  <data name="labelsensorparamDesc" xml:space="preserve">
+    <value>Parameter Description</value>
+  </data>
+  <data name="labelsensorparamName" xml:space="preserve">
+    <value>Parameter Name</value>
+  </data>
 </root>

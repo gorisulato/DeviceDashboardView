@@ -6028,6 +6028,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        internal static string labelCategory {
+            get {
+                return ResourceManager.GetString("labelCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category Description.
+        /// </summary>
+        internal static string labelCategoryDesc {
+            get {
+                return ResourceManager.GetString("labelCategoryDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category Name.
+        /// </summary>
+        internal static string labelCategoryName {
+            get {
+                return ResourceManager.GetString("labelCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cause Code.
         /// </summary>
         internal static string LabelCauseCode {
@@ -8166,6 +8193,33 @@ namespace Resources {
         internal static string LabelSendEmail {
             get {
                 return ResourceManager.GetString("LabelSendEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter Code.
+        /// </summary>
+        internal static string labelsensorparamCode {
+            get {
+                return ResourceManager.GetString("labelsensorparamCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter Description.
+        /// </summary>
+        internal static string labelsensorparamDesc {
+            get {
+                return ResourceManager.GetString("labelsensorparamDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter Name.
+        /// </summary>
+        internal static string labelsensorparamName {
+            get {
+                return ResourceManager.GetString("labelsensorparamName", resourceCulture);
             }
         }
         

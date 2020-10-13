@@ -11,11 +11,19 @@
     <Property Name="UserEntry" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="DateEntry" Type="datetime" Nullable="false" />
   </EntityType>
+  <Function Name="DeleteCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="DeleteDevice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IDDevice" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="GetAllChart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DeviceID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetCategoryDatatable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="limit" Type="int" Mode="In" />
+    <Parameter Name="offset" Type="int" Mode="In" />
+    <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
   </Function>
   <Function Name="GetDataNotifications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="RoleID" Type="nvarchar" Mode="In" />
@@ -39,10 +47,19 @@
   <Function Name="GetDeviceChartByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DeviceID" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="GETSENSORDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idmainparam" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="GetSite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="offset" Type="int" Mode="In" />
     <Parameter Name="limit" Type="int" Mode="In" />
     <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="InsertCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="nvarchar" Mode="In" />
+    <Parameter Name="CategoryName" Type="nvarchar" Mode="In" />
+    <Parameter Name="CategoryDesc" Type="nvarchar" Mode="In" />
+    <Parameter Name="userID" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="InsertDevice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Device_Name" Type="nvarchar" Mode="In" />

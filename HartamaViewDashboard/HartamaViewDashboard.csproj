@@ -220,6 +220,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Class\CategoryClass.cs" />
     <Compile Include="Class\ChartByDeviceIDClass.cs" />
     <Compile Include="Class\ConvertClass.cs" />
     <Compile Include="Class\CW_UtilityClass.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="Class\LanguageClass.cs" />
     <Compile Include="Class\NavigationMenuClass.cs" />
     <Compile Include="Class\OptionClass.cs" />
+    <Compile Include="Class\PSensorParameterClass.cs" />
     <Compile Include="Class\RoleAccessClass.cs" />
     <Compile Include="Class\TFeatureClass.cs" />
     <Compile Include="Class\TIconClass.cs" />
@@ -238,6 +240,7 @@
     <Compile Include="Class\TUserClass.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActionController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ChartByDeviceIDController.cs" />
     <Compile Include="Controllers\DashboardsController.cs" />
     <Compile Include="Controllers\DeviceController.cs" />
@@ -247,14 +250,21 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
+    <Compile Include="Controllers\PSensorParameterController.cs" />
     <Compile Include="Controllers\RoleAccessController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\TsiteController.cs" />
     <Compile Include="Controllers\TUserController.cs" />
+    <Compile Include="DB\DeleteCategory_Result.cs">
+      <DependentUpon>Hartama_IOT.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\DeleteDevice_Result.cs">
       <DependentUpon>Hartama_IOT.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\GetAllChart_Result.cs">
+      <DependentUpon>Hartama_IOT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\GetCategoryDatatable_Result.cs">
       <DependentUpon>Hartama_IOT.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\GetDataNotifications_Result.cs">
@@ -270,6 +280,9 @@
       <DependentUpon>Hartama_IOT.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\GetDeviceChartByID_Result.cs">
+      <DependentUpon>Hartama_IOT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\GETSENSORDetail_Result.cs">
       <DependentUpon>Hartama_IOT.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\GetSite_Result.cs">
@@ -289,6 +302,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Hartama_IOT.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DB\InsertCategory_Result.cs">
+      <DependentUpon>Hartama_IOT.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\InsertDevice_Result.cs">
       <DependentUpon>Hartama_IOT.tt</DependentUpon>
@@ -472,12 +488,14 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActionModel.cs" />
     <Compile Include="Models\AuthModel.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CW_SiteModel.cs" />
     <Compile Include="Models\DeviceModel.cs" />
     <Compile Include="Models\GenerateMenuModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OptionModel.cs" />
+    <Compile Include="Models\PSensorParameterModel.cs" />
     <Compile Include="Models\TFeatureAccessModel.cs" />
     <Compile Include="Models\TFeatureModel.cs" />
     <Compile Include="Models\TIconModel.cs" />
@@ -739,11 +757,13 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main\Category.js" />
     <Content Include="Scripts\main\Feature.js" />
     <Content Include="Scripts\main\Icon.js" />
     <Content Include="Scripts\main\Login.js" />
     <Content Include="Scripts\main\Module.js" />
     <Content Include="Scripts\main\PDevice.js" />
+    <Content Include="Scripts\main\PSensorParameter.js" />
     <Content Include="Scripts\main\ReadAllNotification.js" />
     <Content Include="Scripts\main\Role.js" />
     <Content Include="Scripts\main\RoleAccess.js" />
@@ -1272,6 +1292,8 @@
     <Content Include="Views\Device\Index.cshtml" />
     <Content Include="Views\Device\SearchCategoryDevice.cshtml" />
     <Content Include="Views\Device\SearchSiteDevice.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\PSensorParameter\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

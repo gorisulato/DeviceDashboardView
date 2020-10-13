@@ -1605,5 +1605,61 @@ namespace HartamaViewDashboard.DB
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DeleteDevice_Result>("DeleteDevice", iDDeviceParameter);
         }
+    
+        public virtual ObjectResult<GetCategoryDatatable_Result> GetCategoryDatatable(Nullable<int> limit, Nullable<int> offset, string keyword)
+        {
+            var limitParameter = limit.HasValue ?
+                new ObjectParameter("limit", limit) :
+                new ObjectParameter("limit", typeof(int));
+    
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("offset", offset) :
+                new ObjectParameter("offset", typeof(int));
+    
+            var keywordParameter = keyword != null ?
+                new ObjectParameter("keyword", keyword) :
+                new ObjectParameter("keyword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCategoryDatatable_Result>("GetCategoryDatatable", limitParameter, offsetParameter, keywordParameter);
+        }
+    
+        public virtual ObjectResult<InsertCategory_Result> InsertCategory(string id, string categoryName, string categoryDesc, string userID)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            var categoryNameParameter = categoryName != null ?
+                new ObjectParameter("CategoryName", categoryName) :
+                new ObjectParameter("CategoryName", typeof(string));
+    
+            var categoryDescParameter = categoryDesc != null ?
+                new ObjectParameter("CategoryDesc", categoryDesc) :
+                new ObjectParameter("CategoryDesc", typeof(string));
+    
+            var userIDParameter = userID != null ?
+                new ObjectParameter("userID", userID) :
+                new ObjectParameter("userID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<InsertCategory_Result>("InsertCategory", idParameter, categoryNameParameter, categoryDescParameter, userIDParameter);
+        }
+    
+        public virtual ObjectResult<DeleteCategory_Result> DeleteCategory(string id)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DeleteCategory_Result>("DeleteCategory", idParameter);
+        }
+    
+        public virtual ObjectResult<GETSENSORDetail_Result> GETSENSORDetail(string idmainparam)
+        {
+            var idmainparamParameter = idmainparam != null ?
+                new ObjectParameter("idmainparam", idmainparam) :
+                new ObjectParameter("idmainparam", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GETSENSORDetail_Result>("GETSENSORDetail", idmainparamParameter);
+        }
     }
 }

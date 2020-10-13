@@ -30,7 +30,7 @@ namespace HartamaViewDashboard.Class
         public List<GetDeviceBySiteDatatable_Result> GetDevice(string user,string keyword, int limit, int offset)
         {
             db = new Hartama_IOTEntities();
-            var res = db.GetDeviceBySiteDatatable(user,offset, limit, keyword).ToList();
+            var res = db.GetDeviceBySiteDatatable(user, limit, offset, keyword).ToList();
             return res;
 
         }

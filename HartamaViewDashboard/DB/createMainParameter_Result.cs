@@ -11,12 +11,10 @@ namespace HartamaViewDashboard.DB
 {
     using System;
     
-    public partial class GETSENSORDetail_Result
+    public partial class createMainParameter_Result
     {
-        public string ID_Detail_Group_Sensor { get; set; }
-        public string Detail_SensorName { get; set; }
-        public decimal upperlimit { get; set; }
-        public decimal lowerlimit { get; set; }
-        public Nullable<int> TotalRecords { get; set; }
+        public string Pesan { get; set; }
+        public Nullable<int> Error { get; set; }
+        public string IDParam { get; set; }
     }
 }

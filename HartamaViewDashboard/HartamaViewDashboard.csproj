@@ -229,7 +229,6 @@
     <Compile Include="Class\LanguageClass.cs" />
     <Compile Include="Class\NavigationMenuClass.cs" />
     <Compile Include="Class\OptionClass.cs" />
-    <Compile Include="Class\PSensorParameterClass.cs" />
     <Compile Include="Class\RoleAccessClass.cs" />
     <Compile Include="Class\TFeatureClass.cs" />
     <Compile Include="Class\TIconClass.cs" />
@@ -250,11 +249,16 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
-    <Compile Include="Controllers\PSensorParameterController.cs" />
     <Compile Include="Controllers\RoleAccessController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\TsiteController.cs" />
     <Compile Include="Controllers\TUserController.cs" />
+    <Compile Include="DB\createMainParameter_Result.cs">
+      <DependentUpon>Hartama_IOT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\CreateorEditSensor_Result.cs">
+      <DependentUpon>Hartama_IOT.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\DeleteCategory_Result.cs">
       <DependentUpon>Hartama_IOT.tt</DependentUpon>
     </Compile>
@@ -280,6 +284,9 @@
       <DependentUpon>Hartama_IOT.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\GetDeviceChartByID_Result.cs">
+      <DependentUpon>Hartama_IOT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\GetMainParam_Result.cs">
       <DependentUpon>Hartama_IOT.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\GETSENSORDetail_Result.cs">
@@ -495,7 +502,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OptionModel.cs" />
-    <Compile Include="Models\PSensorParameterModel.cs" />
+    <Compile Include="Models\SensorDetailModel.cs" />
     <Compile Include="Models\TFeatureAccessModel.cs" />
     <Compile Include="Models\TFeatureModel.cs" />
     <Compile Include="Models\TIconModel.cs" />
@@ -1293,7 +1300,6 @@
     <Content Include="Views\Device\SearchCategoryDevice.cshtml" />
     <Content Include="Views\Device\SearchSiteDevice.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\PSensorParameter\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,6 +11,19 @@
     <Property Name="UserEntry" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="DateEntry" Type="datetime" Nullable="false" />
   </EntityType>
+  <Function Name="createMainParameter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="paramcode" Type="nvarchar" Mode="In" />
+    <Parameter Name="paramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="paamdesc" Type="nvarchar" Mode="In" />
+    <Parameter Name="category" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="CreateorEditSensor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idSensor" Type="nvarchar" Mode="In" />
+    <Parameter Name="idCategory" Type="nvarchar" Mode="In" />
+    <Parameter Name="lower" Type="decimal" Mode="In" />
+    <Parameter Name="upper" Type="decimal" Mode="In" />
+    <Parameter Name="user" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="DeleteCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="nvarchar" Mode="In" />
   </Function>
@@ -46,6 +59,11 @@
   </Function>
   <Function Name="GetDeviceChartByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DeviceID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetMainParam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="limit" Type="int" Mode="In" />
+    <Parameter Name="offset" Type="int" Mode="In" />
+    <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
   </Function>
   <Function Name="GETSENSORDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idmainparam" Type="nvarchar" Mode="In" />

@@ -1653,6 +1653,69 @@ namespace HartamaViewDashboard.DB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DeleteCategory_Result>("DeleteCategory", idParameter);
         }
     
+        public virtual ObjectResult<createMainParameter_Result> createMainParameter(string paramcode, string paramname, string paamdesc, string category)
+        {
+            var paramcodeParameter = paramcode != null ?
+                new ObjectParameter("paramcode", paramcode) :
+                new ObjectParameter("paramcode", typeof(string));
+    
+            var paramnameParameter = paramname != null ?
+                new ObjectParameter("paramname", paramname) :
+                new ObjectParameter("paramname", typeof(string));
+    
+            var paamdescParameter = paamdesc != null ?
+                new ObjectParameter("paamdesc", paamdesc) :
+                new ObjectParameter("paamdesc", typeof(string));
+    
+            var categoryParameter = category != null ?
+                new ObjectParameter("category", category) :
+                new ObjectParameter("category", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<createMainParameter_Result>("createMainParameter", paramcodeParameter, paramnameParameter, paamdescParameter, categoryParameter);
+        }
+    
+        public virtual ObjectResult<GetMainParam_Result> GetMainParam(Nullable<int> limit, Nullable<int> offset, string keyword)
+        {
+            var limitParameter = limit.HasValue ?
+                new ObjectParameter("limit", limit) :
+                new ObjectParameter("limit", typeof(int));
+    
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("offset", offset) :
+                new ObjectParameter("offset", typeof(int));
+    
+            var keywordParameter = keyword != null ?
+                new ObjectParameter("keyword", keyword) :
+                new ObjectParameter("keyword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMainParam_Result>("GetMainParam", limitParameter, offsetParameter, keywordParameter);
+        }
+    
+        public virtual ObjectResult<CreateorEditSensor_Result> CreateorEditSensor(string idSensor, string idCategory, Nullable<decimal> lower, Nullable<decimal> upper, string user)
+        {
+            var idSensorParameter = idSensor != null ?
+                new ObjectParameter("idSensor", idSensor) :
+                new ObjectParameter("idSensor", typeof(string));
+    
+            var idCategoryParameter = idCategory != null ?
+                new ObjectParameter("idCategory", idCategory) :
+                new ObjectParameter("idCategory", typeof(string));
+    
+            var lowerParameter = lower.HasValue ?
+                new ObjectParameter("lower", lower) :
+                new ObjectParameter("lower", typeof(decimal));
+    
+            var upperParameter = upper.HasValue ?
+                new ObjectParameter("upper", upper) :
+                new ObjectParameter("upper", typeof(decimal));
+    
+            var userParameter = user != null ?
+                new ObjectParameter("user", user) :
+                new ObjectParameter("user", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CreateorEditSensor_Result>("CreateorEditSensor", idSensorParameter, idCategoryParameter, lowerParameter, upperParameter, userParameter);
+        }
+    
         public virtual ObjectResult<GETSENSORDetail_Result> GETSENSORDetail(string idmainparam)
         {
             var idmainparamParameter = idmainparam != null ?

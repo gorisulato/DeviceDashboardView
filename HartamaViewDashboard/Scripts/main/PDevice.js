@@ -12,8 +12,8 @@
             $("#DeviceInformation").show()
             $("#userinfo").hide();
             $("#Form-Device #btnDeleteRowsite").hide()
-            $("#Form-Site").attr("action", "/Device/Create");
-            $("#Form-Site").attr("xxx", "Create");
+            $("#Form-Device").attr("action", "/Device/Create");
+            $("#Form-Device").attr("xxx", "Create");
             $("#btnAddDevice").hide()
         })
 

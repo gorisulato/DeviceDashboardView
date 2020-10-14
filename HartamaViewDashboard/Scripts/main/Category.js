@@ -1,9 +1,39 @@
 ﻿var PCategory = new function () {
-
+    var arraysend = []
     this.init = function () {
 
         PCategory.InitCategoryTable();
+        PCategory.initSensorTable("");
         $("#CategoryInformation").hide()
+
+        $("#tsensorlist").on('change', "input[type='text'] ", function (e) {
+            //console.log(this.id)
+            var splited = this.id.split('-');
+            var value=splited[0]=='txtlower'?'lowerlimit':'upperlimit'
+           
+           // arraysend[splited[1]]=[this.value]
+            
+            if (arraysend.length == 0) {
+
+                arraysend.push({ id: splited[1], valuelower: parseFloat($("#txtlower-" + splited[1]).val()), valueupper: parseFloat($("#txtupper-" + splited[1]).val()) })
+            }
+            else {
+
+                let obj = arraysend.find(x => x.id === splited[1]);
+                let index = arraysend.indexOf(obj);
+                if (index > -1) {
+                    
+                    arraysend[index] = { id: splited[1], valuelower: parseFloat($("#txtlower-" + splited[1]).val()), valueupper: parseFloat($("#txtupper-" + splited[1]).val()) }
+                }
+                else {
+                    arraysend.push({ id: splited[1], valuelower: parseFloat($("#txtlower-" + splited[1]).val()), valueupper: parseFloat($("#txtupper-" + splited[1]).val()) })
+                }
+                
+
+            }
+            console.log(arraysend)
+            
+        });
 
         $("#btnAddCategory").on('click', function () {
 
@@ -13,6 +43,10 @@
             $("#Form-Category").attr("action", "/Category/Create");
             $("#Form-Category").attr("xxx", "Create");
             $("#btnAddCategory").hide()
+            arraysend = []
+            $("#mdlListDetail").val('')
+            $('#tsensorlist').DataTable().destroy();
+            PCategory.initSensorTable('')
         })
 
         $("#Form-Category #btnCancelRowCategory").on('click', function () {
@@ -20,6 +54,9 @@
             $("#CategoryInformation").hide()
             $("#Form-Category #userinfo").hide()
             $("#btnAddCategory").show()
+            arraysend = []
+            $("#mdlListDetail").val('')
+
 
 
         })
@@ -27,8 +64,10 @@
         $("#Form-Category #btnSaveRowCategory").click(function () {
 
             if ($("#Form-Category").valid()) {
-
-                utility.CRUDCW("Form-Category", "CATEGORYCATEGORY", "CategoryMessage");
+                $("#mdlListDetail").val(JSON.stringify(arraysend))
+                utility.CRUDCW("Form-Category", "CATEGORYCATEGORY", "CategoryMessage", "mdlListDetail");
+                arraysend = []
+                $("#mdlListDetail").val('')
                 PCategory.clearTxt();
                 $("#CategoryInformation").hide()
                 $("#Form-Category #userinfo").hide();
@@ -44,6 +83,8 @@
             $("#Form-Category").attr("xxx", "Delete");
             utility.CRUDCW("Form-Category", "CATEGORYCATEGORY", "CategoryMessage");
             PCategory.clearTxt();
+            arraysend = []
+            $("#mdlListDetail").val('')
             $("#CategoryInformation").hide()
             $("#Form-Category #userinfo").hide();
             $("#btnAddCategory").show()
@@ -65,7 +106,8 @@
                 $("#Form-Category #DateEntry").val($(this).find('td:eq(3)').text());
                 $("#Form-Category #UserLastMaintenance").val($(this).find('td:eq(4)').text());
                 $("#Form-Category #DateLastMaintenance").val($(this).find('td:eq(5)').text());
-             
+                $('#tsensorlist').DataTable().destroy();
+                PCategory.initSensorTable($(this).attr("IDCategory"))
 
                 $("#CategoryInformation").show();
                 $("#Form-Category #userinfo").show();
@@ -87,8 +129,8 @@
                 $("#Form-Category #DateEntry").val($(this).find('td:eq(3)').text());
                 $("#Form-Category #UserLastMaintenance").val($(this).find('td:eq(4)').text());
                 $("#Form-Category #DateLastMaintenance").val($(this).find('td:eq(5)').text());
-
-
+                $('#tsensorlist').DataTable().destroy();
+                PCategory.initSensorTable($(this).attr("IDCategory"))
                 $("#CategoryInformation").show();
                 $("#Form-Category #userinfo").show();
                 // PBank.removehide();
@@ -169,6 +211,91 @@
         }
         else {
             $('#CATEGORYCATEGORY').DataTable().draw();
+        }
+    }
+
+    this.initSensorTable = function (id) {
+
+        if (!$.fn.DataTable.isDataTable('#tsensorlist')) {
+            var table = $('#tsensorlist').dataTable({
+                "dom": 'r<"table-responsive responsive"t><"bottom"<"col-sm-6"i><"col-sm-6"p>><"clear">',
+                "processing": false,
+
+                "serverSide": true,
+                "scrollCollapse": true,
+                "scrollX": false,
+                "autoWidth": false,
+                "ordering": false,
+                "pageLength": 20,
+                "ajax": {
+                    "type": "post",
+                    "url": "../Category/GetSensorDetail",
+                    "data": function (d) {
+                        d.id = id
+
+
+                    }
+                },
+                "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+
+                    return nRow;
+
+                },
+
+                "fnDrawCallback": function (oSettings, json) {
+                    //$('#tsensorlist tbody tr:eq(0)').click();
+                },
+
+                "fnInitComplete": function (oSettings, json) {
+                    // $('#tsensorlist tbody tr:eq(0)').click();
+                },
+
+                "columnDefs": [
+
+                                        {
+                                            targets: 2, // 3rd column
+                                            data: null,
+                                            render: function (data, type, row, meta) {
+
+                                                if (data[2] != "") {
+
+                                                    checked = '';
+
+                                                    //var button = '<input type = "text" class="form-control qty-print-barcode" name="' + aData[3] + '" id="' + aData[3] + '" />';
+                                                    return '<input type=\"text\" class=\"textbox-datatable\" id=\"txtlower\-' + data[0] + '" value="' + data[2] + '">';
+
+
+                                                }
+                                            }
+
+                                        },
+
+                                          {
+                                              targets: 3, // 3rd column
+                                              data: null,
+                                              render: function (data, type, row, meta) {
+
+                                                  if (data[3] != "") {
+
+                                                      checked = '';
+
+                                                      //var button = '<input type = "text" class="form-control qty-print-barcode" name="' + aData[3] + '" id="' + aData[3] + '" />';
+                                                      return '<input type=\"text\" class=\"textbox-datatable\" id=\"txtupper\-' + data[0] + '" value="' + data[3] + '">';
+
+
+                                                  }
+                                              }
+
+                                          },
+                ]
+
+
+
+
+            });
+        }
+        else {
+            $('#tsensorlist').DataTable().draw();
         }
     }
 }

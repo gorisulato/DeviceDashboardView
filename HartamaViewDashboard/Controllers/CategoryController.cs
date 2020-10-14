@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace HartamaViewDashboard.Controllers
 {
@@ -66,10 +67,62 @@ namespace HartamaViewDashboard.Controllers
             }
         }
 
+
         [HttpPost]
-        public ActionResult Create(CategoryModel ins)
+        public ActionResult GetSensorDetail(string id)
         {
+
+
+            try
+            {
+
+
+                var res = cc.GetSensorDetail(id);
+                int? TotalRecords;
+                if (res.Count() > 0)
+                {
+                    TotalRecords = res.FirstOrDefault().TotalRecords;
+                }
+                else
+                {
+                    TotalRecords = 0;
+                }
+                var resutltJson = from d in res
+                                  select new string[]
+                                 {
+                                           d.ID_Detail_Group_Sensor,
+                                           d.Detail_SensorName,
+                                           d.lowerlimit.ToString(),
+                                            d.upperlimit.ToString(),
+                                          
+
+                                 };
+                return Json(new
+                {
+
+                    iTotalRecords = TotalRecords,
+                    iTotalDisplayRecords = TotalRecords,
+                    aaData = resutltJson
+                }, JsonRequestBehavior.AllowGet);
+
+
+            }
+
+
+            catch (Exception err)
+            {
+                return Content(err.ToString());
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Create(CategoryModel ins, string mdlListDetail)
+        {
+            List<SensorDetailModel> ListDetailSensor;
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            ListDetailSensor = jss.Deserialize<List<SensorDetailModel>>(mdlListDetail);
             string ret = "";
+            string res = "";
             ins.UserEntry = Session["IDUser"].ToString();
 
             // ins.SiteCode = Session["IDSite"].ToString();
@@ -80,6 +133,27 @@ namespace HartamaViewDashboard.Controllers
                 {
                     // ret = EMC.EmployeeInsert(ins, IsActive);
                     ret = cc.CategoryInsertorupdate(ins);
+                    if (ret.Contains("ERR|"))
+                    {
+                        res = ret;
+                    }
+                    else
+                    {
+                        var hsl = "";
+                        foreach (var sensor in ListDetailSensor)
+                        {
+                            
+                            hsl = cc.createoreditsensorparamdetail(sensor.id,ret==null?ins.CategoryID:ret,sensor.valuelower,sensor.valueupper,Session["IDUser"].ToString());
+                            if (hsl.Contains("Err|"))
+                            {
+                                res = hsl;
+                            }
+                            else
+                            {
+                                res = "1";
+                            }
+                        }
+                    }
 
                 }
                 catch (Exception err)
@@ -88,7 +162,7 @@ namespace HartamaViewDashboard.Controllers
                     return Json(new { result = ret });
                 }
             }
-            return Json(new { result = ret });
+            return Json(new { result = res });
         }
 
         [HttpPost]

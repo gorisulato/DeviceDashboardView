@@ -865,6 +865,36 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="createMainParameter" FunctionName="Hartama_IOTModel.Store.createMainParameter">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.createMainParameter_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+          <ScalarProperty Name="IDParam" ColumnName="IDParam" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetMainParam" FunctionName="Hartama_IOTModel.Store.GetMainParam">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetMainParam_Result">
+          <ScalarProperty Name="ParamID" ColumnName="ParamID" />
+          <ScalarProperty Name="ParamCode" ColumnName="ParamCode" />
+          <ScalarProperty Name="ParamName" ColumnName="ParamName" />
+          <ScalarProperty Name="ParamDescription" ColumnName="ParamDescription" />
+          <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+          <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CreateorEditSensor" FunctionName="Hartama_IOTModel.Store.CreateorEditSensor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.CreateorEditSensor_Result">
+          <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="GETSENSORDetail" FunctionName="Hartama_IOTModel.Store.GETSENSORDetail">
       <ResultMapping>
         <ComplexTypeMapping TypeName="Hartama_IOTModel.GETSENSORDetail_Result">

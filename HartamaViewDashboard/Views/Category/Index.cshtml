@@ -111,6 +111,7 @@
 
                             @using (Html.BeginForm("Create", null, FormMethod.Post, new { name = "Form-Category", id = "Form-Category", @enctype = "multipart/form-data", @xxx = "Create" }))
                             {
+                                @Html.Hidden("mdlListDetail")
                                 <div class="form-horizontal">
                                     @Html.HiddenFor(model => Model.CategoryID)
 
@@ -158,6 +159,22 @@
                                         </div>
 
                                     </div>
+
+
+                                    <label>Category Sensor Detail Parameter</label>
+                                    <table id="tsensorlist" class="table table-striped table-bordered table-hover dataTables-example custom_table_scroll" tabindex="1">
+                                        <thead>
+                                            <tr>
+                                                <th>Sensor Code</th>
+                                                <th>Sensor Name</th>
+                                                <th>Sensor Lower Limit</th>
+                                                <th>Sensor Upper Limit</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
 
                                     <div class="form-group ">
                                         <label class="col-md-4 control-label"></label>

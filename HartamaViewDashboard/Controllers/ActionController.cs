@@ -97,7 +97,7 @@ namespace HartamaViewDashboard.Controllers
                 try
                 {
                     var ret = acs.GetActionByDevice(id);
-                    var resutltJson = from d in ret
+                    var resutltJson = from d in ret 
                                       select new string[]
                                  {
                                     d.Action_ID,

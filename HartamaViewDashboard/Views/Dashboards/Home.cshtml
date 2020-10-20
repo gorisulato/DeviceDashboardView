@@ -314,8 +314,8 @@
 
                         a = a + '<div class="feed-element-log"> '+
                                     '<div> '+
-                                        '<time class="timeago" datetime="' + xml[z][5] +'"></time> ' +
-                                        '<strong>'+xml[z][4]+'</strong> '+
+                                        '<strong>' + xml[z][4] + '</strong> ' +
+                                        '<time class="timeago" datetime="' + xml[z][5] + '"></time> ' +
                                         '<div>'+xml[z][1]+'</div> '+
                                         //'<small class="text-muted">Today 5:60 pm - 12.06.2014</small> '+
                                     '</div> '+
@@ -654,6 +654,7 @@
         .log-feed-activity{
             max-height:500px; 
             overflow:auto;
+
                 
         }
         #content-chart{
@@ -684,6 +685,31 @@
         .warning-chart-hidden{
             display :none;
         }
+
+        .feed-element-log {
+            color: inherit;
+            border-bottom: 1px solid #bbb;
+            margin-bottom: 5px;            
+
+        }
+
+        .feed-element-log time.timeago {
+            color: inherit;
+            font-family:inherit;
+            padding-left: 60%;
+            margin-bottom: 5px;
+
+        }
+
+         .feed-element-log strong {
+            color: inherit;
+            margin-bottom: 5px;
+
+        }
+
+
+
+
     </style>
 </body>
 </html>

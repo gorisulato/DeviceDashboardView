@@ -105,7 +105,7 @@ namespace HartamaViewDashboard.Controllers
                                     d.Device_Name,
                                     d.ActionType==2?"Action Taked":"Ignored",
                                     d.Fullname,
-                                    d.DateEntry.ToString()
+                                    d.DateEntry.ToString("yyyy-MM-dd")
 
 
                                     };

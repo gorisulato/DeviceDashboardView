@@ -360,7 +360,7 @@ namespace HartamaViewDashboard.Controllers
             foreach(var res in test)
             {
                 ChartModel mdl = new ChartModel();
-                mdl.Date = res.Date.Value.ToShortDateString();
+                mdl.Date = res.Date.Value.ToString("yyyy-MM-dd"); ;
                 mdl.Detail_SensorName = res.Detail_SensorName;
                 mdl.average_of_day = Convert.ToDecimal(res.average_of_day);
                 mdl.lower = Convert.ToDecimal(res.lower);

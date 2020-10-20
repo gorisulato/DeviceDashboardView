@@ -172,6 +172,13 @@ namespace HartamaViewDashboard.Class
             return res;
         }
 
+        public List<GETSiteByRole_Result> GetSiteByRole(string IDUser)
+        {
+
+            var res = db.GETSiteByRole(IDUser).ToList();
+            return res;
+        }
+
         /* add by Irham 20 Agustus 2015*/
         public List<PTSiteUserSelectByIDSite_Result> SiteUserSelectByIDSite(string IDSite)
         {

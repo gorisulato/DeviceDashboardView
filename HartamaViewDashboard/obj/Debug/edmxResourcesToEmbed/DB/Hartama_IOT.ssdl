@@ -30,6 +30,9 @@
   <Function Name="DeleteDevice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IDDevice" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="GetActionByDeviceID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DeviceID" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="GetAllChart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="DeviceID" Type="nvarchar" Mode="In" />
   </Function>
@@ -44,7 +47,10 @@
     <Parameter Name="limit" Type="int" Mode="In" />
   </Function>
   <Function Name="GetDeviceBySite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="Site" Type="nvarchar" Mode="In" />
+    <Parameter Name="limit" Type="int" Mode="In" />
+    <Parameter Name="offset" Type="int" Mode="In" />
+    <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
   </Function>
   <Function Name="GetDeviceBySiteDatatable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="UserID" Type="nvarchar" Mode="In" />
@@ -72,6 +78,9 @@
     <Parameter Name="offset" Type="int" Mode="In" />
     <Parameter Name="limit" Type="int" Mode="In" />
     <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="GETSiteByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="InsertCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="nvarchar" Mode="In" />

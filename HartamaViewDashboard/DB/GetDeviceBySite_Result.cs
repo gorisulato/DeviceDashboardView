@@ -15,5 +15,9 @@ namespace HartamaViewDashboard.DB
     {
         public string Device_ID { get; set; }
         public string Device_Name { get; set; }
+        public string SiteName { get; set; }
+        public string Category_Name { get; set; }
+        public string Device_category_ID { get; set; }
+        public Nullable<int> TotalRecords { get; set; }
     }
 }

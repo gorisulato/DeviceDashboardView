@@ -509,9 +509,9 @@ namespace HartamaViewDashboard.Class
             var res = db.GetDataNotifications(UserID, offset, limit).ToList();
             return res;
         }
-        public List<GetDeviceBySite_Result> GetDevicebySite(string User)
+        public List<GetDeviceBySite_Result> GetDevicebySite(string site,string keyword,int length,int start)
         {
-            var res = db.GetDeviceBySite(User).ToList();
+            var res = db.GetDeviceBySite(site,length,start,keyword).ToList();
             return res;
         }
         public List<GetAllChart_Result> GetChart(string DeviceID)

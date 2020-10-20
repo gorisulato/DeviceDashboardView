@@ -1421,24 +1421,6 @@ namespace HartamaViewDashboard.DB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TNotificationSelect_Result>("TNotificationSelect", roleParameter, offsetParameter, limitParameter);
         }
     
-        public virtual ObjectResult<GetAllChart_Result> GetAllChart(string deviceID)
-        {
-            var deviceIDParameter = deviceID != null ?
-                new ObjectParameter("DeviceID", deviceID) :
-                new ObjectParameter("DeviceID", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllChart_Result>("GetAllChart", deviceIDParameter);
-        }
-    
-        public virtual ObjectResult<GetDeviceBySite_Result> GetDeviceBySite(string userID)
-        {
-            var userIDParameter = userID != null ?
-                new ObjectParameter("UserID", userID) :
-                new ObjectParameter("UserID", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDeviceBySite_Result>("GetDeviceBySite", userIDParameter);
-        }
-    
         public virtual ObjectResult<GetDeviceChartByID_Result> GetDeviceChartByID(string deviceID)
         {
             var deviceIDParameter = deviceID != null ?
@@ -1723,6 +1705,54 @@ namespace HartamaViewDashboard.DB
                 new ObjectParameter("idmainparam", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GETSENSORDetail_Result>("GETSENSORDetail", idmainparamParameter);
+        }
+    
+        public virtual ObjectResult<GetActionByDeviceID_Result> GetActionByDeviceID(string deviceID)
+        {
+            var deviceIDParameter = deviceID != null ?
+                new ObjectParameter("DeviceID", deviceID) :
+                new ObjectParameter("DeviceID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetActionByDeviceID_Result>("GetActionByDeviceID", deviceIDParameter);
+        }
+    
+        public virtual ObjectResult<GETSiteByRole_Result> GETSiteByRole(string user)
+        {
+            var userParameter = user != null ?
+                new ObjectParameter("user", user) :
+                new ObjectParameter("user", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GETSiteByRole_Result>("GETSiteByRole", userParameter);
+        }
+    
+        public virtual ObjectResult<GetDeviceBySite_Result> GetDeviceBySite(string site, Nullable<int> limit, Nullable<int> offset, string keyword)
+        {
+            var siteParameter = site != null ?
+                new ObjectParameter("Site", site) :
+                new ObjectParameter("Site", typeof(string));
+    
+            var limitParameter = limit.HasValue ?
+                new ObjectParameter("limit", limit) :
+                new ObjectParameter("limit", typeof(int));
+    
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("offset", offset) :
+                new ObjectParameter("offset", typeof(int));
+    
+            var keywordParameter = keyword != null ?
+                new ObjectParameter("keyword", keyword) :
+                new ObjectParameter("keyword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDeviceBySite_Result>("GetDeviceBySite", siteParameter, limitParameter, offsetParameter, keywordParameter);
+        }
+    
+        public virtual ObjectResult<GetAllChart_Result> GetAllChart(string deviceID)
+        {
+            var deviceIDParameter = deviceID != null ?
+                new ObjectParameter("DeviceID", deviceID) :
+                new ObjectParameter("DeviceID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllChart_Result>("GetAllChart", deviceIDParameter);
         }
     }
 }

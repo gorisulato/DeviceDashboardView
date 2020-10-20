@@ -12,7 +12,7 @@
     <title>Main Dashboards</title>
 </head>
 <body>
-    <div class="sidebar-content">
+    <div>
        
 
 
@@ -30,15 +30,161 @@
                         </div>
                     </div>
                 </div>
+
+               
             </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="ibox-title">
+                        <h5>
+                            Action Taken Log
+                            <small>Based on selected device on device table</small>
+                        </h5>
+                    </div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content ibox-heading" >
+                            <h3><i class="fa fa-universal-access"></i> Recently Taken Action </h3>
+                            
+                        </div>
+                        <div class="ibox-content">
+                            <div class="feed-activity-list log-feed-activity" >
+
+                               
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="ibox-title">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h5>
+                                            Device List
+
+
+                                        </h5>
+                                    </div>
+                                    
+                                       
+                                  </div>
+                                
+
+                            </div>
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content ibox-heading">
+                                    <h3 class="site-title-dashboard">  </h3>
+                                   
+                                </div>
+                                <div class="ibox-content table-responsive">
+                                    <div class="col-sm-6">
+                                        <label for="Keyword" class="sr-only"> Keyword </label>
+                                        <input type="text" placeholder="Keyword" id="keywordDeviceListDashboard" class="form-control">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-white" id="btnSearchDeviceListDashboard">Search</button>
+                                    </div>
+                                    <div class="col-lg-4">
+
+                                        @Html.DropDownList("SiteDeviceFilter", new SelectList(""), "", new { @class = "form-control m-b ignore", @required = "" })
+
+                                    </div>
+                                    <div class="col-sm-12">
+
+                                        <table id="DeviceListDashboard" class="table table-striped table-bordered table-hover dataTables-example custom_table_scroll" tabindex="1">
+                                            <thead>
+                                                <tr>
+                                                    <th>@Resources.Resource.labelDeviceName</th>
+                                                    <th>@Resources.Resource.labelDeviceSite</th>
+                                                    <th>@Resources.Resource.labelDeviceCategory</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="ibox-title">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h5>
+                                            Sensor Parameter List
+
+
+                                        </h5>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content ibox-heading">
+                                    <h3 class="Device-title-dashboard">  </h3>
+
+                                </div>
+                                <div class="ibox-content table-responsive">
+                                    
+                                    <div class="col-sm-12">
+
+                                        <table id="DashboardSensorList" class="table table-striped table-bordered table-hover dataTables-example custom_table_scroll" tabindex="1">
+                                            <thead>
+                                                <tr>
+                                                    <th>@Resources.Resource.labelsensorparamCode</th>
+                                                    <th>@Resources.Resource.labelsensorparamName</th>
+                                                    <th>Lower Limit</th>
+                                                    <th>Upper Limit</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                   
+
+
+                </div>
+                
+
+               
+            </div>
+           
+
 
         </div>
+
+        
+        
 
       
 
 
 
     </div>
+    <script src="~/Scripts/plugins/jvectormap/jquery-jvectormap-2.0.5.min.js"></script>
+    <script src="~/Scripts/plugins/jvectormap/jquery-jvectormap-asia-mill.js"></script>
     
     <script src="~/Scripts/c3.min.js"></script>
     <script src="~/Scripts/d3-5.8.2.min.js"></script>  
@@ -50,17 +196,52 @@
             if ("@Session["IDUser"]" != null) {
                 $('.match-height').matchHeight();
                 $("#NotificationLoadMore").attr('data-offset', 5)
-
+               //GenerateMaps()
                 //GenerateChart();
-                GetAllChart();
-                //const interval = setInterval(function () {
-                //    GetAllChart();
-                //}, 1000);
+              // GetAllChart();
+               
+               PopulateSite();
+              
 
 
 
                 window.paramdo.iddevicetodisplay = "";
                 window.paramdo.chartarray = new Array();
+
+                $('#SiteDeviceFilter').on('change', function () {
+                   
+                    $('#DeviceListDashboard').DataTable().draw();
+                })
+                $("#btnSearchDeviceListDashboard").on('click', function () {
+                    $('#DeviceListDashboard').DataTable().draw();
+                })
+                $("#keywordDeviceListDashboard").on('keyup', function (e) {
+                    if (e.key === 'Enter' || e.keyCode === 13) {
+
+                        $('#DeviceListDashboard').DataTable().draw();
+                    }
+                })
+                $('#DeviceListDashboard').on('click', 'tbody tr', function () {
+                    if ($(this).hasClass('row_selected')) {
+
+                        GetAllChart($(this).attr("IDDevice"), $(this).find('td:eq(0)').text())
+                        GEtActionLog($(this).attr("IDDevice"))
+                        $('#DashboardSensorList').DataTable().destroy();
+                        GenerateParameterTable($(this).attr("IDCategory"))
+                        $(".Device-title-dashboard").html('<i class="fa fa-fire-extinguisher"></i> Parameter For Device: ' + $(this).find('td:eq(0)').text())
+                    }
+                    else {
+                        GetAllChart($(this).attr("IDDevice"), $(this).find('td:eq(0)').text())
+                        $("#DeviceListDashboard tr.row_selected").removeClass('row_selected');
+                        //$(this).removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                        GEtActionLog($(this).attr("IDDevice"))
+                        $('#DashboardSensorList').DataTable().destroy();
+                        GenerateParameterTable($(this).attr("IDCategory"))
+                        $(".Device-title-dashboard").html('<i class="fa fa-fire-extinguisher"></i> Parameter For Device: ' + $(this).find('td:eq(0)').text())
+
+                    }
+                });
             }
             else {
                 document.location = "../Login/Logout/"
@@ -69,150 +250,290 @@
             
 
         })
+          function PopulateSite() {
+            $.ajax({
+
+                url: "/Dashboards/GetSiteByRole",
+
+                type: "POST",
+                dataType: "html",
+                success: function (Data) {
+                    //console.log(ret)
+                    var ret = JSON.parse(Data);
+
+                    console.log(ret.Data.length)
+                    $('#SiteDeviceFilter').empty()
+
+                    for (var i = 0; i < ret.Data.length ; i++) {
+
+                        //var x = document.getElementById("AksesorisHadiah");
+                        //var option = document.createElement("option");
+                        //option.text = Data[0];
+
+
+                        $('#SiteDeviceFilter').append($('<option></option>').val(ret.Data[i][0]).html(ret.Data[i][1]))
+                    }
+                    if (ret.Data.length > 1) {
+                        $('#SiteDeviceFilter').prepend($('<option></option>').val("ALL").html("All SIte"))
+                        document.getElementById("SiteDeviceFilter").value = "ALL";
+                    } else {
+                        document.getElementById("SiteDeviceFilter").value = ret.Data[0][0];
+                    }
+
+
+                    GetDevices();
+
+                    $(".site-title-dashboard").html('<i class="fa fa-gears"></i> Device On Site: ' + $("#SiteDeviceFilter option:selected").text())
+
+
+                },
+                error: function (xhr, status) {
+                    //toastr.remove()
+
+                    //toastr.error("Transaction Has been Failed TO Post ");
+                },
+            })
+        }
+        function GEtActionLog(id) {
+            var a = "";
+
+
+            $.ajax({
+                url: "../Action/SelectActionByID?id=" + id ,//FEED_URL,
+                type: "GET",
+                dataType: "html",
+                success: function (data) {
+                    
+                    $(".feed-element-log").remove();
+                    var xml = $.parseJSON(data)
+                    console.log(xml)
+                    for (var z in xml) {
+
+                       
+
+
+                        a = a + '<div class="feed-element-log"> '+
+                                    '<div> '+
+                                        '<time class="timeago" datetime="' + xml[z][5] +'"></time> ' +
+                                        '<strong>'+xml[z][4]+'</strong> '+
+                                        '<div>'+xml[z][1]+'</div> '+
+                                        //'<small class="text-muted">Today 5:60 pm - 12.06.2014</small> '+
+                                    '</div> '+
+                                '</div>';
+                        
+                    }
+
+                    $(".feed-activity-list").append(a)
+                    $(".timeago").timeago()
+
+                   
+                    //
+
+                },
+                complete: function (xhr, status) {
+                    $(".timeago").timeago();
+                }
+            })
+        }
+        function GenerateMaps() {
+            ///$('#world-map').vectorMap({ map: 'asia_mill' });
+            $('#world-map').vectorMap({
+                map: 'asia_mill',
+                series: {
+                    regions: [{
+                       // values: gdpData,
+                        scale: ['#C8EEFF', '#0071A4'],
+                        normalizeFunction: 'polynomial'
+                    }]
+                },
+                onRegionTipShow: function (e, el, code) {
+                    console.log(el)
+                    el.html(el.html());
+                }
+            });
+        }
 
         function GetDetailChart(id) {
 
-            console.log(id)
-            paramdo.iddevicetodisplay = id;
-            $("#close-home").click();
-            utility._loadMenuList("/ChartByDeviceID/Index", "Chart")
+            //console.log(id)
+            //paramdo.iddevicetodisplay = id;
+            //$("#close-home").click();
+            //utility._loadMenuList("/ChartByDeviceID/Index", "Chart")
         }
 
-        var count=0
-        function GetDataChart(dataarray) {
-           
-            $.ajax({
-                url: "../Dashboards/GetAllChart?DeviceID="+dataarray.Device_ID,//FEED_URL,
-                type: "POST",
-                dataType: "json",
-                success: function (data) {
-                
-                    if (data.length > 0) {
+       
 
-                       
-                        //for (var x = 0 ; x < data.length; x++) {
-                        var countNotif = parseInt(data[0].countnotif);
-                            var warning = countNotif == 0 ? "warning-chart-hidden" : "warning-chart-show";
+        function GenerateParameterTable(idcategory) {
+            if (!$.fn.DataTable.isDataTable('#DashboardSensorList')) {
+                var table = $('#DashboardSensorList').dataTable({
+                    "dom": 'r<"table-responsive responsive"t><"bottom"<"col-sm-6"i><"col-sm-6"p>><"clear">',
+                    "processing": false,
+                    "shorting":false,
+                    "serverSide": true,
+                    "scrollCollapse": true,
+                    "scrollX": false,
+                    "autoWidth": false,
+                    "ordering": false,
+                    "pageLength": 20,
+                    "ajax": {
+                        "type": "post",
+                        "url": "../Category/GetSensorDetail",
+                        "data": function (d) {
+                            d.id = idcategory
 
-                            if (document.getElementById("chart" + dataarray.Device_ID) == null) {
-                                a = ' <div class="chart-container">'
-                                        + ' <h1 id="warning-chart' + dataarray.Device_ID + '" class="warning-blink ' + warning + ' ">Warning!!!</h1>'
-                                        + '<h1 class="title-chart">' + dataarray.Device_Name + '</h1> ' +
-                                        '<div id="chart' + dataarray.Device_ID + '" onClick=GetDetailChart("' + dataarray.Device_ID + '") > ' +
 
-                                        '</div>' +
-                                ' </div>';
-                                $("#content-chart").append(a);
-                                var datatochart = {};
-                                for (var da = 0; da < data.length; da++) {
-                                   
-                                    //datatochart.push({ id: data[da].value })
-                                    datatochart[data[da].SensorName.trim()] = data[da].value
-                                }
-                                //console.log(datatochart)
-                               
-                                GenerateChart(datatochart, dataarray.Device_ID)
-                            }
+                        }
+                    },
+                    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
 
-                            else {
-                                
-                                var datatochart = {};
-                                for (var da = 0; da < data.length; da++) {
+                        return nRow;
 
-                                    //datatochart.push({ id: data[da].value })
-                                    datatochart[data[da].SensorName.trim()] = data[da].value
-                                }
-                                ReloadChart(datatochart, dataarray.Device_ID)
-                            }
-                        //}
-                    }
-                    else {
-                       
-                        //$('.chart-container').remove();
-                        //paramdo.chartarray=[]
+                    },
+
+                    "fnDrawCallback": function (oSettings, json) {
+                        //$('#tsensorlist tbody tr:eq(0)').click();
+                    },
+
+                    "fnInitComplete": function (oSettings, json) {
+                        // $('#tsensorlist tbody tr:eq(0)').click();
                     }
 
-                  
-                }
-            })
+
+
+
+                });
+            }
+            else {
+                $('#DashboardSensorList').DataTable().draw();
+            }
         }
-
 
         function GetDevices() {
-            console.log('ss')
-            $.ajax({
-                url: "../Dashboards/GetDeviceBysite",//FEED_URL,
-                type: "POST",
-                dataType: "json",
-                success: function (data) {
-                   
-                    if (data.length > 0) {
+                if (!$.fn.DataTable.isDataTable('#DeviceListDashboard')) {
+                    var table = $('#DeviceListDashboard').dataTable({
+                        "dom": 'r<"table-responsive responsive"t><"bottom"<"col-sm-6"i><"col-sm-6"p>><"clear">',
+                        "processing": false,
+                        "ordering": false,
+                        "serverSide": true,
+                        "scrollCollapse": true,
+                        "scrollX": false,
+                        "autoWidth": false,
+                        "ordering": false,
+                        "pageLength": 5,
+                        "ajax": {
+                            "type": "post",
+                            "url": "../Dashboards/GetDeviceBysite",
+                            "data": function (d) {
+                                d.keywords = $("#keywordDeviceListDashboard").val(),
+                                d.site = $('#SiteDeviceFilter').val()
 
-                        for (var x = 0 ; x < data.length; x++) {
 
-                            GetDataChart(data[x])
-                        }
+                            },
+                            "error": function (e) {
+                                console.log(e)
+                            }
+                        },
+                        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                            $(nRow).attr("IDDevice", aData[3]);
+                            $(nRow).attr("IDCategory", aData[4]);
+                            return nRow;
 
-                    }
-                   
+                        },
 
-                  
+                        "fnDrawCallback": function (oSettings, json) {
+                            $('#DeviceListDashboard tbody tr:eq(0)').click();
+                        },
+
+                        "fnInitComplete": function (oSettings, json) {
+                            // $('#DeviceListDashboard tbody tr:eq(0)').click();
+                        },
+                       
+
+
+
+                    });
                 }
-            })
-        }
+                else {
+                    $('#DeviceListDashboard').DataTable().draw();
+                }
+            }
+        
 
-        function GetAllChart() {
+        function GetAllChart(id,name) {
             var elementchart = "";
 
 
             $.ajax({
-                url: "../Dashboards/GetDeviceBysite",//FEED_URL,
+                url: "../Dashboards/GetAllChart?DeviceID=" + id,//FEED_URL,
                 type: "POST",
-                dataType: "json",
+                dataType: "html",
                 success: function (data) {
-                   
-                    if (data.length > 0) {
+                    var xml = $.parseJSON(data)
+                    var valuedata = new Array;
+                    var iddata = []
+                    if (xml.Data.length > 0) {
+                       
+                        const unique = [...new Set(xml.Data.map(item => item.Date))];
+                        const unique1 = [...new Set(xml.Data.map(item => item.Detail_SensorName))];
+                        //console.log(unique1)
 
-                        for (var x = 0 ; x < data.length; x++) {
+                        for (var xx = 0; xx < unique1.length; xx++) {
+                            var value = xml.Data.filter(obj=>obj.Detail_SensorName === unique1[xx]);
+                            
+                            for (var z = 0; z < value.length; z++) {
+                               
 
-                            GetDataChart(data[x])
+                                valuedata.push(value[z].average_of_day);
+                                if (iddata.length == 0) {
+                                    iddata.push({ id: value[z].Detail_SensorName, value: valuedata, lower: value[z].lower, upper: value[z].upper })
+                                }
+                                else {
+                                    let obj = iddata.find(x => x.id === value[z].Detail_SensorName);
+                                    let index = iddata.indexOf(obj);
+                                    if (index > -1) {
+
+                                        iddata[index] = { id: value[z].Detail_SensorName, value: valuedata, lower: value[z].lower, upper: value[z].upper }
+                                    }
+                                    else {
+                                        iddata.push({ id: value[z].Detail_SensorName, value: valuedata, lower: value[z].lower, upper: value[z].upper })
+                                    }
+                                }
+                               
+
+                                if (document.getElementById("chart"+ value[z].Detail_SensorName) == null) {
+                                    a = ' <div class="chart-container" id=' + value[z].Detail_SensorName + '>'
+                                            //+ ' <h1 id="warning-chart" class="warning-blink  ">warning!!!</h1>'
+                                            + '<h1 class="title-chart">' + value[z].Detail_SensorName + '</h1> ' +
+                                            '<div id="chart'+ value[z].Detail_SensorName.trim() +'" > ' +
+
+                                            '</div>' +
+                                    ' </div>';
+                                    $("#content-chart").append(a);
+
+                                   
+                                    
+                                }
+
+
+
+                             
+                                
+                            }
+                            GenerateChart(iddata, unique)
+                           
+                            iddata=[]
+                            valuedata=[]
+                          
                         }
-                  
+                        
+                      
+                    }
+                    else {
+                        $('.chart-container').remove();
                     }
                    
 
                   
-                },
-                complete: function (xhr, status) {
-                    $(function () {
-                        var i = 0;
-                        var getchart = $.connection.messagesHub;
-
-                        getchart.client.updateMessages = function () {
-                           
-                            console.log('wks')
-                            GetDevices()
-
-
-
-                        };
-                        $.connection.hub.start().done(function () {
-                            $.ajax({
-                                url: '/Dashboards/notifchart',
-                                contentType: 'application/html ; charset:utf-8',
-                                type: 'POST',
-                                dataType: 'html'
-                            }).success(function (result) {
-
-
-                                // Notification("", "")
-                            }).error(function () {
-
-                            });
-                        }).fail(function (e) {
-                            //console.log(e);
-                        });
-                    });
                 }
             });
         }
@@ -249,57 +570,80 @@
             //console.log(chart)
             
         }
-        function GenerateChart(dataJson,deviceid) {
+        function GenerateChart(dataJson, datadate) {
             
-            
+            var x = []
+            x[0] = "#EA7369";
+            x[1] = "#AF4BCE"
+            x[2] = "#7D3AC1"
+            var value = []
+            var lower = []
+            var upper = []
+            var date=[]
+            //console.log(dataJson[1])
+            //for (var z = 0; z < dataJson[0].length; z++) {
+                for (var zz = 0; zz < dataJson[0].value.length; zz++) {
+                    if (zz == 0) {
+                        date.push('x');
+                        date.push(datadate[zz])
+                        value.push(dataJson[0].id)
+                        lower.push("Lower Limit")
+                        value.push(dataJson[0].value[zz])
+                        lower.push(dataJson[0].lower)
+                        upper.push("Upper Limit")
+                        upper.push(dataJson[0].upper)
+                    } else {
+                        value.push(dataJson[0].value[zz])
+                        upper.push(dataJson[0].upper)
+                        lower.push(dataJson[0].lower)
+                        date.push(datadate[zz])
+                    }
+                }
+               
+            //}
+          
+            //console.log(value)
 
             var chart = c3.generate({
-                bindto: "#chart" + deviceid,
+                bindto: "#chart" + dataJson[0].id,
+              
                 data: {
+                    x: 'x',
                     columns: [
-                       ["Arus", dataJson.Arus == null ? 0 : dataJson.Arus],
-                       ["Arus 3 phase", dataJson.Arus3 == null ? 0 : dataJson.Arus3],
-                       ["Daya", dataJson.Daya == null ? 0 : dataJson.Daya],
-                        ["Daya 3 phase", dataJson.Daya3 == null ? 0 : dataJson.Daya3],
-                        ["Gas", dataJson.Gas == null ? 0 : dataJson.Gas],
-                       ["PowerUssage", dataJson.PowerUssage == null ? 0 : dataJson.PowerUssage],
-                       ["PowerUssage 3 phase", dataJson.PowerUssage3 == null ? 0 : dataJson.PowerUssage3],
-                        ["Tegangan", dataJson.Tegangan == null ? 0 : dataJson.Tegangan],
-                        ["Tegangan 3 phase", dataJson.Tegangan3 == null ? 0 : dataJson.Tegangan3],
-                        ["Distances", dataJson.Distances == null ? 0 : dataJson.Distances],
-                         ["Vibration", dataJson.Vibration == null ? 0 : dataJson.Vibration],
-                         ["Room Temprature", dataJson.RoomTemp == null ? 0 : dataJson.RoomTemp],
-                         ["Humidity", dataJson.Humidity == null ? 0 : dataJson.Humidity],
-                          ["Temprature", dataJson.Temprature == null ? 0 : dataJson.Temprature],
-                           ["Preasure", dataJson.Preasure == null ? 0 : dataJson.Preasure],
-
-
+                        date,
+                        lower,
+                        value,
+                        upper
                         
-                     
-                       
+                        
                     ],
-                    type: 'bar'
+                    type: 'area-spline'
+                       
+                    
                 },
-                bar: {
-                    width: {
-                        ratio: 0.5 // this makes bar width 50% of length between ticks
-                    },
-                    space: 0.5
-                    // or
-                    //width: 100 // this makes bar width 100px
+                axis : {
+                    x : {
+                        type : 'timeseries',
+                        tick: {
+                            format: '%Y-%m-%d',
+                            rotate: -30,
+                            multiline: false
+                           
+                        }
+                    }
                 },
+              
                 color: {
-                    //pattern: ['#142459', '#142459', '#142459', '#176BA0', '#176BA0', '#176BA0', '#IDE4BD', '#IDE4BD', '#IDE4BD'],
-//                    #142459
-//#176BA0
-//#19AADE
-//#1AC9E6
-//#IDE4BD
+                    pattern: x,
+//                    
                 },
+                padding: {
+                    bottom: 20 //adjust chart padding bottom
+                }
 
             });
             //console.log(chart);
-            paramdo.chartarray.push({ id: deviceid, obj: chart });
+           // paramdo.chartarray.push({ id: deviceid, obj: chart });
             
         }
 
@@ -307,13 +651,18 @@
        
     </script>
     <style>
+        .log-feed-activity{
+            max-height:500px; 
+            overflow:auto;
+                
+        }
         #content-chart{
             flex-wrap: wrap;
             display: flex;
             flex-direction: row;
         }
         .chart-container{
-            width:30%;
+            width:20%;
         }
         .title-chart{
             text-decoration:underline;

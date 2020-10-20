@@ -35,6 +35,9 @@
         <Function Name="DeleteDevice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDDevice" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="GetActionByDeviceID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DeviceID" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetAllChart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DeviceID" Type="nvarchar" Mode="In" />
         </Function>
@@ -49,7 +52,10 @@
           <Parameter Name="limit" Type="int" Mode="In" />
         </Function>
         <Function Name="GetDeviceBySite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+          <Parameter Name="Site" Type="nvarchar" Mode="In" />
+          <Parameter Name="limit" Type="int" Mode="In" />
+          <Parameter Name="offset" Type="int" Mode="In" />
+          <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="GetDeviceBySiteDatatable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserID" Type="nvarchar" Mode="In" />
@@ -77,6 +83,9 @@
           <Parameter Name="offset" Type="int" Mode="In" />
           <Parameter Name="limit" Type="int" Mode="In" />
           <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GETSiteByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="InsertCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="nvarchar" Mode="In" />
@@ -895,12 +904,6 @@
             <Parameter Name="offset" Mode="In" Type="Int32" />
             <Parameter Name="limit" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetAllChart" ReturnType="Collection(Hartama_IOTModel.GetAllChart_Result)">
-          <Parameter Name="DeviceID" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="GetDeviceBySite" ReturnType="Collection(Hartama_IOTModel.GetDeviceBySite_Result)">
-          <Parameter Name="UserID" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="GetDeviceChartByID" ReturnType="Collection(Hartama_IOTModel.GetDeviceChartByID_Result)">
           <Parameter Name="DeviceID" Mode="In" Type="String" />
           </FunctionImport>
@@ -981,7 +984,22 @@
             <Parameter Name="user" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GETSENSORDetail" ReturnType="Collection(Hartama_IOTModel.GETSENSORDetail_Result)">
-            <Parameter Name="idmainparam" Mode="In" Type="String" />
+          <Parameter Name="idmainparam" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetActionByDeviceID" ReturnType="Collection(Hartama_IOTModel.GetActionByDeviceID_Result)">
+          <Parameter Name="DeviceID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GETSiteByRole" ReturnType="Collection(Hartama_IOTModel.GETSiteByRole_Result)">
+          <Parameter Name="user" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetDeviceBySite" ReturnType="Collection(Hartama_IOTModel.GetDeviceBySite_Result)">
+            <Parameter Name="Site" Mode="In" Type="String" />
+            <Parameter Name="limit" Mode="In" Type="Int32" />
+            <Parameter Name="offset" Mode="In" Type="Int32" />
+            <Parameter Name="keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllChart" ReturnType="Collection(Hartama_IOTModel.GetAllChart_Result)">
+            <Parameter Name="DeviceID" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="PTUserLogin_Result">
@@ -1495,16 +1513,6 @@
           <Property Type="Int32" Name="unreadmessages" Nullable="true" />
           <Property Type="String" Name="Device_ID" Nullable="true" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="GetAllChart_Result">
-          <Property Type="String" Name="SensorName" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="value" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="DateTime" Name="dateCreated" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="countnotif" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetDeviceBySite_Result">
-          <Property Type="String" Name="Device_ID" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Device_Name" Nullable="false" MaxLength="200" />
-        </ComplexType>
         <ComplexType Name="GetDeviceChartByID_Result">
           <Property Type="String" Name="ID_DataLog" Nullable="true" MaxLength="300" />
           <Property Type="String" Name="device_id" Nullable="true" MaxLength="50" />
@@ -1595,6 +1603,34 @@
           <Property Type="Decimal" Name="upperlimit" Nullable="false" Precision="2" Scale="2" />
           <Property Type="Decimal" Name="lowerlimit" Nullable="false" Precision="2" Scale="2" />
           <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetActionByDeviceID_Result">
+          <Property Type="String" Name="Action_ID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ActionDescription" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="ActionType" Nullable="false" />
+          <Property Type="DateTime" Name="DateEntry" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Fullname" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Device_Name" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="GETSiteByRole_Result">
+          <Property Type="String" Name="IDSite" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="SiteName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetDeviceBySite_Result">
+          <Property Type="String" Name="Device_ID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Device_Name" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="SiteName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Device_category_ID" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetAllChart_Result">
+          <Property Type="DateTime" Name="Date" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="average_of_day" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="String" Name="Detail_SensorName" Nullable="true" MaxLength="51" />
+          <Property Type="String" Name="ID_Device" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="lower" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="upper" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2342,24 +2378,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetAllChart" FunctionName="Hartama_IOTModel.Store.GetAllChart">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Hartama_IOTModel.GetAllChart_Result">
-                <ScalarProperty Name="SensorName" ColumnName="SensorName" />
-                <ScalarProperty Name="value" ColumnName="value" />
-                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
-                <ScalarProperty Name="countnotif" ColumnName="countnotif" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetDeviceBySite" FunctionName="Hartama_IOTModel.Store.GetDeviceBySite">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceBySite_Result">
-                <ScalarProperty Name="Device_ID" ColumnName="Device_ID" />
-                <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetDeviceChartByID" FunctionName="Hartama_IOTModel.Store.GetDeviceChartByID">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceChartByID_Result">
@@ -2504,6 +2522,50 @@
                 <ScalarProperty Name="upperlimit" ColumnName="upperlimit" />
                 <ScalarProperty Name="lowerlimit" ColumnName="lowerlimit" />
                 <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetActionByDeviceID" FunctionName="Hartama_IOTModel.Store.GetActionByDeviceID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Hartama_IOTModel.GetActionByDeviceID_Result">
+                <ScalarProperty Name="Action_ID" ColumnName="Action_ID" />
+                <ScalarProperty Name="ActionDescription" ColumnName="ActionDescription" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GETSiteByRole" FunctionName="Hartama_IOTModel.Store.GETSiteByRole">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Hartama_IOTModel.GETSiteByRole_Result">
+                <ScalarProperty Name="IDSite" ColumnName="IDSite" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDeviceBySite" FunctionName="Hartama_IOTModel.Store.GetDeviceBySite">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceBySite_Result">
+                <ScalarProperty Name="Device_ID" ColumnName="Device_ID" />
+                <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Device_category_ID" ColumnName="Device_category_ID" />
+                <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllChart" FunctionName="Hartama_IOTModel.Store.GetAllChart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Hartama_IOTModel.GetAllChart_Result">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="average_of_day" ColumnName="average of day" />
+                <ScalarProperty Name="Detail_SensorName" ColumnName="Detail_SensorName" />
+                <ScalarProperty Name="ID_Device" ColumnName="ID_Device" />
+                <ScalarProperty Name="lower" ColumnName="lower" />
+                <ScalarProperty Name="upper" ColumnName="upper" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -13,6 +13,7 @@ namespace HartamaViewDashboard.Controllers
     {
         FeatureeRoleClass FR = new FeatureeRoleClass();
         ActionModel act = new ActionModel();
+        ActionClass acs = new ActionClass();
         // GET: Action
         public ActionResult Index()
         {
@@ -79,6 +80,45 @@ namespace HartamaViewDashboard.Controllers
             }
 
             return Json(new { result = ret });
+
+        }
+
+        public ActionResult SelectActionByID(string id)
+        {
+            if (Session["IDRole"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                
+                //List<TNotificationModel> ret = new List<TNotificationModel>();
+
+                try
+                {
+                    var ret = acs.GetActionByDevice(id);
+                    var resutltJson = from d in ret
+                                      select new string[]
+                                 {
+                                    d.Action_ID,
+                                    d.ActionDescription,
+                                    d.Device_Name,
+                                    d.ActionType==2?"Action Taked":"Ignored",
+                                    d.Fullname,
+                                    d.DateEntry.ToString()
+
+
+                                    };
+                    return Json(resutltJson, JsonRequestBehavior.AllowGet);
+
+                }
+                catch (Exception err)
+                {
+                    var ret = "Err|" + err.Message;
+                    return Json(ret, JsonRequestBehavior.AllowGet);
+                }
+
+            }
 
         }
     }

@@ -11,13 +11,13 @@ namespace HartamaViewDashboard.DB
 {
     using System;
     
-    public partial class GetAllChart_Result
+    public partial class GetActionByDeviceID_Result
     {
-        public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<decimal> average_of_day { get; set; }
-        public string Detail_SensorName { get; set; }
-        public string ID_Device { get; set; }
-        public Nullable<decimal> lower { get; set; }
-        public Nullable<decimal> upper { get; set; }
+        public string Action_ID { get; set; }
+        public string ActionDescription { get; set; }
+        public int ActionType { get; set; }
+        public System.DateTime DateEntry { get; set; }
+        public string Fullname { get; set; }
+        public string Device_Name { get; set; }
     }
 }

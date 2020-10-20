@@ -741,24 +741,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetAllChart" FunctionName="Hartama_IOTModel.Store.GetAllChart">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetAllChart_Result">
-          <ScalarProperty Name="SensorName" ColumnName="SensorName" />
-          <ScalarProperty Name="value" ColumnName="value" />
-          <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
-          <ScalarProperty Name="countnotif" ColumnName="countnotif" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetDeviceBySite" FunctionName="Hartama_IOTModel.Store.GetDeviceBySite">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceBySite_Result">
-          <ScalarProperty Name="Device_ID" ColumnName="Device_ID" />
-          <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="GetDeviceChartByID" FunctionName="Hartama_IOTModel.Store.GetDeviceChartByID">
       <ResultMapping>
         <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceChartByID_Result">
@@ -903,6 +885,50 @@
           <ScalarProperty Name="upperlimit" ColumnName="upperlimit" />
           <ScalarProperty Name="lowerlimit" ColumnName="lowerlimit" />
           <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetActionByDeviceID" FunctionName="Hartama_IOTModel.Store.GetActionByDeviceID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetActionByDeviceID_Result">
+          <ScalarProperty Name="Action_ID" ColumnName="Action_ID" />
+          <ScalarProperty Name="ActionDescription" ColumnName="ActionDescription" />
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="DateEntry" ColumnName="DateEntry" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GETSiteByRole" FunctionName="Hartama_IOTModel.Store.GETSiteByRole">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GETSiteByRole_Result">
+          <ScalarProperty Name="IDSite" ColumnName="IDSite" />
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDeviceBySite" FunctionName="Hartama_IOTModel.Store.GetDeviceBySite">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceBySite_Result">
+          <ScalarProperty Name="Device_ID" ColumnName="Device_ID" />
+          <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
+          <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+          <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+          <ScalarProperty Name="Device_category_ID" ColumnName="Device_category_ID" />
+          <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAllChart" FunctionName="Hartama_IOTModel.Store.GetAllChart">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Hartama_IOTModel.GetAllChart_Result">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="average_of_day" ColumnName="average of day" />
+          <ScalarProperty Name="Detail_SensorName" ColumnName="Detail_SensorName" />
+          <ScalarProperty Name="ID_Device" ColumnName="ID_Device" />
+          <ScalarProperty Name="lower" ColumnName="lower" />
+          <ScalarProperty Name="upper" ColumnName="upper" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

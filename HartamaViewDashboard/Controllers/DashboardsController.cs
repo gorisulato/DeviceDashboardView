@@ -22,7 +22,7 @@ namespace HartamaViewDashboard.Controllers
        // MiscClass MISC = new MiscClass();
         //DashboardClass Dashboard = new DashboardClass();
         NavigationMenuClass Navigation = new NavigationMenuClass();
-
+        TSiteClass TS = new TSiteClass();
         public string Name
         {
             get { return _name; }
@@ -228,6 +228,43 @@ namespace HartamaViewDashboard.Controllers
             return View();
         }
 
+        public ActionResult Dashboard_2()
+        {
+            //if ((Session["UserName"] == null) || (Session["IDSite"] == null)) { return RedirectToAction("Index", "Login"); }
+            //ViewBag.Dashboard = "";
+            //GetSiteList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GetSiteByRole ()
+        {
+            var IDUser = Session["IDUser"].ToString();
+           
+            var res = TS.GetSiteByRole(IDUser);
+            var resutltJson = from d in res
+                              select new string[]
+                             {
+                                    d.IDSite,
+
+                                    d.SiteName,
+
+
+                             };
+            return Json(new
+            {
+
+                Data = resutltJson
+            }, JsonRequestBehavior.AllowGet);
+            //kab = new MasterKabupaten();
+            //var res = kab.SearchKabupatenByKeyword(keyword);
+
+            //return new JsonResult
+            //{
+            //    Data = new SelectList(res, "IDKabupaten", "NamaKabupaten")
+            //};
+        }
+
         [HttpPost]
         public ActionResult GetDataNotificationLog(int Start, int Length)
         {
@@ -276,25 +313,80 @@ namespace HartamaViewDashboard.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetDeviceBysite()
+        public ActionResult GetDeviceBysite(string keywords,string site,int Start, int Length)
         {
-            if (Session["IDUser"] == null)
+            var id = Session["IDRole"].ToString();
+            if (Session["UserName"] == null) { return RedirectToAction("Index", "Login"); }
+            var res = user.GetDevicebySite(site,keywords,Length, Start);
+            Int32? TotalRecords;
+            if (res.Count() > 0)
             {
-                return RedirectToAction("Index", "Login");
+                TotalRecords = res.FirstOrDefault().TotalRecords;
             }
             else
             {
-                var userid = Session["IDUser"].ToString();
-                var dev = user.GetDevicebySite(userid);
-                return Json(dev, JsonRequestBehavior.AllowGet);
+                TotalRecords = 0;
             }
-           
+            var resutltJson = from d in res
+                              select new string[]
+                             {
+
+
+                                    d.Device_Name,
+                                    d.SiteName,
+                                    d.Category_Name,
+                                    d.Device_ID,
+                                    d.Device_category_ID
+                                    
+
+
+
+
+                             };
+            return Json(new
+            {
+
+                iTotalRecords = TotalRecords,
+                iTotalDisplayRecords = TotalRecords,
+                aaData = resutltJson
+            }, JsonRequestBehavior.AllowGet);
+
         }
         [HttpPost]
         public ActionResult GetAllChart(string DeviceID)
         {
             var test = user.GetChart(DeviceID);
-            return Json(test, JsonRequestBehavior.AllowGet);
+            List<ChartModel> lm = new List<ChartModel>();
+            foreach(var res in test)
+            {
+                ChartModel mdl = new ChartModel();
+                mdl.Date = res.Date.Value.ToShortDateString();
+                mdl.Detail_SensorName = res.Detail_SensorName;
+                mdl.average_of_day = Convert.ToDecimal(res.average_of_day);
+                mdl.lower = Convert.ToDecimal(res.lower);
+                mdl.upper = Convert.ToDecimal(res.upper);
+                lm.Add(mdl);
+            }
+           
+
+          
+            //var resutltJson = from d in test
+            //                  select new string[]
+            //                 {
+            //                        d.Date.Value.ToShortDateString(),
+            //                        d.Detail_SensorName,
+            //                        d.average_of_day.ToString(),
+            //                        d.lower.ToString(),
+            //                        d.upper.ToString()
+
+
+            //                 };
+            return Json(new
+            {
+
+                Data = lm
+            }, JsonRequestBehavior.AllowGet);
+           // return Json(test, JsonRequestBehavior.AllowGet);
         }
 
 

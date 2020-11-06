@@ -1,0 +1,272 @@
+﻿@model HartamaViewDashboard.Models.TRoleModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Resources.Resource.LabelRole</title>
+</head>
+<body>
+    <div id="body">
+        <input id="IDRole" type="text" value="@(ViewBag.Role.IDRole)" hidden />
+
+        <input id="PathApp" type="text" value="@(ViewBag.Role.PathApp)" hidden />
+
+        <input id="View" type="text" value="@(ViewBag.Role.BindView)" hidden />
+
+        <input id="New" type="text" value="@(ViewBag.Role.BindNew)" hidden />
+
+        <input id="Edit" type="text" value="@(ViewBag.Role.BindEdit)" hidden />
+
+        <input id="Delete" type="text" value="@(ViewBag.Role.BindDelete)" hidden />
+
+        <input id="Print" type="text" value="@(ViewBag.Role.BindPrintable)" hidden />
+
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-8">
+                <h2>@Resources.Resource.LabelRole</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#" onclick="utility._loadMenu('../Dashboards/Home')">@Resources.Resource.LabelHome</a>
+                    </li>
+                    <li class="active" id="ftr-name">
+                    </li>
+                </ol>
+            </div>
+            <div class="ibox-tools">
+                <a><i class="fa fa-question"></i></a>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeIn">
+            <div class="row" id="render-body">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <button class="btn btn-primary" type="button" id="btnAddRoleRow"><i class="fa fa-plus"></i> @Resources.Resource.ButtonAdd</button>
+                        </div>
+                    </div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Search</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link" data-toggle="collapse" data-target="#searchRole"><i class="fa fa-chevron-down"></i></a>
+                                @*<button class="btn btn-outline btn-default dropdown-toggle" data-toggle="dropdown">@Resources.Resource.ButtonSearch <span class="caret"></span></button>*@
+                            </div>
+                        </div>
+                        <div id="searchRole" class="ibox-content collapse">
+                            <div id="searchZ-box" class="left-element">
+                                <form class="form">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.RoleLabelRoleName</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                <input name="RoleNameSearch" id="RoleNameSearch" placeholder="@Resources.Resource.RoleLabelRoleName" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelDiscontinue</label>
+                                            <div class="col-sm-9 col-lg-8 checkbox">
+                                                <input type="checkbox" value="false" id="Discontinue-src" class="checkbox-model">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12 button-custom-style">
+                                                <button type="button" id="btn-role-Search" class="btn btn-primary">@Resources.Resource.ButtonRetrieve</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>@Resources.Resource.LabelRole</h5>
+                            <div class="ibox-tools">
+                                <i class="fa fa-question"></i>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <label class="col-sm-3 col-lg-4 control-label"><span class="pull-left">Show</span></label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                <div class="input-group">
+                                                    <select class="form-control left-element" name="page_length" id="page-length">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                    </select>
+                                                    <span class="input-group-addon">Entries</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="MesssageRole">
+
+                            </div>
+                            <table id="ROLETROLE" class="table table-striped table-bordered table-hover dataTables-example custom_table_scroll">
+                                <thead>
+                                    <tr>
+                                        <th>@Resources.Resource.RoleLabelRoleName</th>
+                                        <th>@Resources.Resource.RoleLabelRoleDescription</th>
+                                        <th class="sm-width">@Resources.Resource.LabelDiscontinue</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="ibox float-e-margins" id="roleinformation">
+                        <div class="ibox-title">
+                            @Resources.Resource.Information
+                        </div>
+                        <div class="ibox-content">
+                            @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "Form-Role", id = "Form-Role", @tabindex = "0", @enctype = "multipart/form-data", @xxx = "Create" }))
+                            {
+                                <div class="form-horizontal">
+                                    @Html.HiddenFor(model => Model.IDRole)
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.RoleLabelRoleName</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.Rolename, new { @class = "form-control", @MaxLength = "200", @required = "required" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.RoleLabelRoleDescription</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextAreaFor(model => Model.RoleDesc, new { @class = "form-control ignore", @MaxLength = "500" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelDiscontinue</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            <input type="checkbox" value="false" id="Discontinue" name="Discontinue" class="checkbox-model ignore">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="lbluserentry">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelUserEntry</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.UserEntry, new { @class = "form-control", @readonly = "readonly ignore" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="lbldateentry">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelDateEntry</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.DateEntry, new { @class = "form-control", @readonly = "readonly ignore" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="lbluserlastmaintenance">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelUserLastMaintenance</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.UserLastMaintenance, new { @class = "form-control", @readonly = "readonly ignore" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="lbldatelastmaintenance">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelDateLastMaintenance</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.DateLastMaintenance, new { @class = "form-control", @readonly = "readonly ignore" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="button-custom-style col-sm-12">
+                                            <input value="@Resources.Resource.ButtonSave" type="button" class="btn btn-primary" id="frm-submitRole-btn" />
+                                            <input value="@Resources.Resource.ButtonDelete" type="button" class="btn btn-primary" id="frm-DeleteRole-btn" />
+                                            <input value="@Resources.Resource.ButtonCancel" type="button" class="btn btn-outline btn-default" id="frm-cancelRole-btn" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="DeleteModal" class="modal inmodal" aria-hidden="true" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content animated fadeIn ">
+                    <div class="modal-header">
+                        <h3 class="modal-title">@Resources.Resource.LabelRole - @Resources.Resource.ButtonDelete</h3>
+                        <div class="ibox-tools">
+                            <a class="active-tooltips">
+                                <span class="tooltipster-icon">
+                                    <i class="fa fa-question "></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="modal-body" id="modal-Render">
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-xs-12 col-sm-9 col-md-10 delete-caption">
+                            @Resources.Resource.LabelDelete
+                        </div>
+                        <div class=" col-xs-12 col-sm-3 col-md-2 pull-right">
+                            <input value="@Resources.Resource.ButtonNo" type="button" class="btn btn-outline btn-default" id="frm-cancel-btn" />
+                            <input value="@Resources.Resource.ButtonYes" type="button" class="btn btn-primary" id="frm-submit-btn" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //function OnloadFunction() { }
+        $(document).ready(function () {
+            $.getScript("../Scripts/main/Role.js", {
+                cache: true
+            }).done(
+                function () {
+
+                    var param = {};
+                    param.attribute = {
+
+                        "Info": "@Resources.Resource.LabelShowing",
+                        "Page": "@Resources.Resource.LabelPage",
+                        "Of": "@Resources.Resource.LabelOf",
+                        "ZeroResult": "@Resources.Resource.LabelZeroResult",
+                        "InfoEmpty": "@Resources.Resource.LabelInfoEmpty",
+                        "Previous": "@Resources.Resource.LabelPrev",
+                        "Next": "@Resources.Resource.LabelNext",
+                        "Last": "@Resources.Resource.LabelLastPage",
+                        "First": "@Resources.Resource.LabelFirstPage",
+                        "To": "@Resources.Resource.LabelTo",
+                        "Entries": "@Resources.Resource.LabelEntries",
+                        "Warning": "@Resources.Resource.LabelWarning",
+                        "PickOneData": "@Resources.Resource.AlertPickOneData",
+
+                        "CanDelete": "@ViewBag.Role.BindDelete.ToString()",
+                        "CanSave": "@ViewBag.Role.BindNew.ToString()",
+                        "CanEdit": "@ViewBag.Role.BindEdit.ToString()",
+                        "CanView": "@ViewBag.Role.BindView.ToString()",
+                        "CanPrint": "@ViewBag.Role.BindPrintable.ToString()"
+                    };
+                    param.history = {
+                        "Keyword": "@ViewBag.historyKeyword",
+                        "Discontinue": "@ViewBag.historyDiscontinue",
+                    };
+                    Role.init(param);
+
+                }
+            )
+
+        });
+    </script>
+</body>
+
+</html>

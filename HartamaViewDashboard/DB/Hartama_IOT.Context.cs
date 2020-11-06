@@ -28,6 +28,7 @@ namespace HartamaViewDashboard.DB
         }
     
         public virtual DbSet<TAction> TActions { get; set; }
+        public virtual DbSet<Options> Options { get; set; }
     
         public virtual int PInsertLog(string action, string tableLog, string iDTransaction, Nullable<System.DateTime> dateTransaction, string userTransaction, string oldValue, string newValue)
         {
@@ -62,7 +63,7 @@ namespace HartamaViewDashboard.DB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PInsertLog", actionParameter, tableLogParameter, iDTransactionParameter, dateTransactionParameter, userTransactionParameter, oldValueParameter, newValueParameter);
         }
     
-        public virtual int PTUserInsert(string userCode, string username, string password, string fullname, string email, Nullable<System.DateTime> expiredDate, Nullable<bool> locked, string iDRole, string iDWorkHour, string userEntry, Nullable<System.DateTime> dateEntry)
+        public virtual int PTUserInsert(string userCode, string username, string password, string fullname, string email, Nullable<bool> locked, string iDRole, string userEntry, Nullable<System.DateTime> dateEntry, string site, byte[] userPicture, string employeeNo)
         {
             var userCodeParameter = userCode != null ?
                 new ObjectParameter("UserCode", userCode) :
@@ -84,10 +85,6 @@ namespace HartamaViewDashboard.DB
                 new ObjectParameter("Email", email) :
                 new ObjectParameter("Email", typeof(string));
     
-            var expiredDateParameter = expiredDate.HasValue ?
-                new ObjectParameter("ExpiredDate", expiredDate) :
-                new ObjectParameter("ExpiredDate", typeof(System.DateTime));
-    
             var lockedParameter = locked.HasValue ?
                 new ObjectParameter("Locked", locked) :
                 new ObjectParameter("Locked", typeof(bool));
@@ -95,10 +92,6 @@ namespace HartamaViewDashboard.DB
             var iDRoleParameter = iDRole != null ?
                 new ObjectParameter("IDRole", iDRole) :
                 new ObjectParameter("IDRole", typeof(string));
-    
-            var iDWorkHourParameter = iDWorkHour != null ?
-                new ObjectParameter("IDWorkHour", iDWorkHour) :
-                new ObjectParameter("IDWorkHour", typeof(string));
     
             var userEntryParameter = userEntry != null ?
                 new ObjectParameter("UserEntry", userEntry) :
@@ -108,7 +101,19 @@ namespace HartamaViewDashboard.DB
                 new ObjectParameter("DateEntry", dateEntry) :
                 new ObjectParameter("DateEntry", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PTUserInsert", userCodeParameter, usernameParameter, passwordParameter, fullnameParameter, emailParameter, expiredDateParameter, lockedParameter, iDRoleParameter, iDWorkHourParameter, userEntryParameter, dateEntryParameter);
+            var siteParameter = site != null ?
+                new ObjectParameter("site", site) :
+                new ObjectParameter("site", typeof(string));
+    
+            var userPictureParameter = userPicture != null ?
+                new ObjectParameter("userPicture", userPicture) :
+                new ObjectParameter("userPicture", typeof(byte[]));
+    
+            var employeeNoParameter = employeeNo != null ?
+                new ObjectParameter("employeeNo", employeeNo) :
+                new ObjectParameter("employeeNo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PTUserInsert", userCodeParameter, usernameParameter, passwordParameter, fullnameParameter, emailParameter, lockedParameter, iDRoleParameter, userEntryParameter, dateEntryParameter, siteParameter, userPictureParameter, employeeNoParameter);
         }
     
         public virtual ObjectResult<PTUserLogin_Result> PTUserLogin(string username, string password)
@@ -133,7 +138,7 @@ namespace HartamaViewDashboard.DB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PTUserSelectByID_Result>("PTUserSelectByID", idUserParameter);
         }
     
-        public virtual ObjectResult<PTUserUpdate_Result> PTUserUpdate(string iDUser, string userCode, string username, string password, string fullname, string email, Nullable<System.DateTime> expiredDate, string iDRole, string iDWorkHour, Nullable<System.DateTime> lastLogin, Nullable<System.DateTime> lastPasswordChange, string userLastMaintanance, Nullable<System.DateTime> dateLastMaintanance)
+        public virtual ObjectResult<PTUserUpdate_Result> PTUserUpdate(string iDUser, string userCode, string username, string fullname, string email, byte[] userpicture, string iDRole, string employeeno, string userLastMaintanance)
         {
             var iDUserParameter = iDUser != null ?
                 new ObjectParameter("IDUser", iDUser) :
@@ -147,10 +152,6 @@ namespace HartamaViewDashboard.DB
                 new ObjectParameter("Username", username) :
                 new ObjectParameter("Username", typeof(string));
     
-            var passwordParameter = password != null ?
-                new ObjectParameter("Password", password) :
-                new ObjectParameter("Password", typeof(string));
-    
             var fullnameParameter = fullname != null ?
                 new ObjectParameter("Fullname", fullname) :
                 new ObjectParameter("Fullname", typeof(string));
@@ -159,35 +160,23 @@ namespace HartamaViewDashboard.DB
                 new ObjectParameter("Email", email) :
                 new ObjectParameter("Email", typeof(string));
     
-            var expiredDateParameter = expiredDate.HasValue ?
-                new ObjectParameter("ExpiredDate", expiredDate) :
-                new ObjectParameter("ExpiredDate", typeof(System.DateTime));
+            var userpictureParameter = userpicture != null ?
+                new ObjectParameter("userpicture", userpicture) :
+                new ObjectParameter("userpicture", typeof(byte[]));
     
             var iDRoleParameter = iDRole != null ?
                 new ObjectParameter("IDRole", iDRole) :
                 new ObjectParameter("IDRole", typeof(string));
     
-            var iDWorkHourParameter = iDWorkHour != null ?
-                new ObjectParameter("IDWorkHour", iDWorkHour) :
-                new ObjectParameter("IDWorkHour", typeof(string));
-    
-            var lastLoginParameter = lastLogin.HasValue ?
-                new ObjectParameter("LastLogin", lastLogin) :
-                new ObjectParameter("LastLogin", typeof(System.DateTime));
-    
-            var lastPasswordChangeParameter = lastPasswordChange.HasValue ?
-                new ObjectParameter("LastPasswordChange", lastPasswordChange) :
-                new ObjectParameter("LastPasswordChange", typeof(System.DateTime));
+            var employeenoParameter = employeeno != null ?
+                new ObjectParameter("employeeno", employeeno) :
+                new ObjectParameter("employeeno", typeof(string));
     
             var userLastMaintananceParameter = userLastMaintanance != null ?
                 new ObjectParameter("UserLastMaintanance", userLastMaintanance) :
                 new ObjectParameter("UserLastMaintanance", typeof(string));
     
-            var dateLastMaintananceParameter = dateLastMaintanance.HasValue ?
-                new ObjectParameter("DateLastMaintanance", dateLastMaintanance) :
-                new ObjectParameter("DateLastMaintanance", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PTUserUpdate_Result>("PTUserUpdate", iDUserParameter, userCodeParameter, usernameParameter, passwordParameter, fullnameParameter, emailParameter, expiredDateParameter, iDRoleParameter, iDWorkHourParameter, lastLoginParameter, lastPasswordChangeParameter, userLastMaintananceParameter, dateLastMaintananceParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PTUserUpdate_Result>("PTUserUpdate", iDUserParameter, userCodeParameter, usernameParameter, fullnameParameter, emailParameter, userpictureParameter, iDRoleParameter, employeenoParameter, userLastMaintananceParameter);
         }
     
         public virtual ObjectResult<PTUserSelectByKeyword_Result> PTUserSelectByKeyword(string orderBy, string direction, string keyword)
@@ -1421,15 +1410,6 @@ namespace HartamaViewDashboard.DB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TNotificationSelect_Result>("TNotificationSelect", roleParameter, offsetParameter, limitParameter);
         }
     
-        public virtual ObjectResult<GetDeviceChartByID_Result> GetDeviceChartByID(string deviceID)
-        {
-            var deviceIDParameter = deviceID != null ?
-                new ObjectParameter("DeviceID", deviceID) :
-                new ObjectParameter("DeviceID", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDeviceChartByID_Result>("GetDeviceChartByID", deviceIDParameter);
-        }
-    
         public virtual ObjectResult<GetDeviceCategory_Result> GetDeviceCategory(Nullable<int> offset, Nullable<int> limit, string keyword)
         {
             var offsetParameter = offset.HasValue ?
@@ -1753,6 +1733,83 @@ namespace HartamaViewDashboard.DB
                 new ObjectParameter("DeviceID", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllChart_Result>("GetAllChart", deviceIDParameter);
+        }
+    
+        public virtual ObjectResult<GetDeviceChartByID_Result> GetDeviceChartByID(string deviceID)
+        {
+            var deviceIDParameter = deviceID != null ?
+                new ObjectParameter("DeviceID", deviceID) :
+                new ObjectParameter("DeviceID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDeviceChartByID_Result>("GetDeviceChartByID", deviceIDParameter);
+        }
+    
+        public virtual ObjectResult<GetRoleDatatable_Result> GetRoleDatatable(Nullable<int> offset, Nullable<int> limit, string keyword)
+        {
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("offset", offset) :
+                new ObjectParameter("offset", typeof(int));
+    
+            var limitParameter = limit.HasValue ?
+                new ObjectParameter("limit", limit) :
+                new ObjectParameter("limit", typeof(int));
+    
+            var keywordParameter = keyword != null ?
+                new ObjectParameter("keyword", keyword) :
+                new ObjectParameter("keyword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRoleDatatable_Result>("GetRoleDatatable", offsetParameter, limitParameter, keywordParameter);
+        }
+    
+        public virtual ObjectResult<GetuserNew_Result> GetuserNew(Nullable<int> offset, Nullable<int> limit, string keyword)
+        {
+            var offsetParameter = offset.HasValue ?
+                new ObjectParameter("offset", offset) :
+                new ObjectParameter("offset", typeof(int));
+    
+            var limitParameter = limit.HasValue ?
+                new ObjectParameter("limit", limit) :
+                new ObjectParameter("limit", typeof(int));
+    
+            var keywordParameter = keyword != null ?
+                new ObjectParameter("keyword", keyword) :
+                new ObjectParameter("keyword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetuserNew_Result>("GetuserNew", offsetParameter, limitParameter, keywordParameter);
+        }
+    
+        public virtual ObjectResult<UpdateStatusLocked_Result> UpdateStatusLocked(string iduser, Nullable<int> type, string userupdateby)
+        {
+            var iduserParameter = iduser != null ?
+                new ObjectParameter("iduser", iduser) :
+                new ObjectParameter("iduser", typeof(string));
+    
+            var typeParameter = type.HasValue ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(int));
+    
+            var userupdatebyParameter = userupdateby != null ?
+                new ObjectParameter("userupdateby", userupdateby) :
+                new ObjectParameter("userupdateby", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UpdateStatusLocked_Result>("UpdateStatusLocked", iduserParameter, typeParameter, userupdatebyParameter);
+        }
+    
+        public virtual int InsertToLogTemp(Nullable<System.DateTime> startdate, Nullable<System.DateTime> enddate, string pathServer)
+        {
+            var startdateParameter = startdate.HasValue ?
+                new ObjectParameter("startdate", startdate) :
+                new ObjectParameter("startdate", typeof(System.DateTime));
+    
+            var enddateParameter = enddate.HasValue ?
+                new ObjectParameter("enddate", enddate) :
+                new ObjectParameter("enddate", typeof(System.DateTime));
+    
+            var pathServerParameter = pathServer != null ?
+                new ObjectParameter("pathServer", pathServer) :
+                new ObjectParameter("pathServer", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertToLogTemp", startdateParameter, enddateParameter, pathServerParameter);
         }
     }
 }

@@ -1,0 +1,98 @@
+﻿@model HartamaViewDashboard.Models.TIconModel
+@{
+    Layout = null;
+}
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "Form-Icon", id = "Form-Icon", @tabindex = "0", @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.ValidationMessageFor(model => Model.IconName)
+        <div class="alert alert-danger alert-dismissable " aria-hidden="true" style="display :none;" id="errorDiv">
+            <button class="close" type="button" data-ng-hide="alert" aria-hidden="true">×</button>
+            <div id="errorMsgDiv"></div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.IconLabelIconName</label>
+            <div class="col-sm-9 col-lg-8">
+                @Html.TextBoxFor(model => Model.IconName, new { @class = "form-control", @required = "required", @MaxLength = "100" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.IconLabelIconType</label>
+            <div class="col-sm-9 col-lg-8">
+                @Html.DropDownList("IconType", ViewData["Icon Type"] as SelectList, new { @class = "form-control m-b" })
+            </div>
+        </div>
+        <div id="Unicode-Icon">
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.IconLabelIconClass</label>
+                <div class="col-sm-9 col-lg-8">
+                    <div class="input-group">
+                        <input data-placement="bottomRight" class="form-control icp icp-auto" value="" type="text" id="IconClass" name="IconClass" readonly />
+                        <span class="btn btn-primary input-group-addon"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Image-Icon">
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.IconLabelIconCategory</label>
+                <div class="col-sm-9 col-lg-8">
+                    @Html.DropDownList("IconCategory", ViewData["Icon Category"] as SelectList, new { @class = "form-control m-b" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelFile</label>
+                <div class="col-sm-9 col-lg-8">
+                    <div class="dropzone dz-clickable" id="IconPath"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.IconLabelIconDescription</label>
+            <div class="col-sm-9 col-lg-8">
+                @Html.TextAreaFor(model => Model.IconDesc, new { @class = "form-control", @MaxLength = "200" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="button-custom-style col-sm-12">
+                <input value="@Resources.Resource.ButtonCancel" type="button" class="btn btn-outline btn-default" id="frm-cancel-btn" />
+                <input value="@Resources.Resource.ButtonSave" type="button" class="btn btn-primary" id="frm-submit-btn" />
+            </div>
+        </div>
+    </div>
+}
+<script>
+           $(document).ready(function () {
+
+            $.getScript("../Scripts/main/Icon.js", {
+                cache: true
+            }).done(
+                function () {
+                    var param = {};
+                    param.attribute = {
+                        "IconName": "@Resources.Resource.IconLabelIconName",
+                        "IconClass": "@Resources.Resource.IconLabelIconClass",
+                        "IconDesc": "@Resources.Resource.IconLabelIconDescription",
+
+                    };
+                    param.validation = {
+                        "required": "@Resources.Resource.ValidateRequired",
+                        "minLength": "@Resources.Resource.ValidateMinLength",
+                        "maxLength": "@Resources.Resource.ValidateMaxLength"
+                    };
+                    param.history = {
+                        "Keyword": "@ViewBag.historyKeyword",
+                        "isDefault": "@ViewBag.historyisDefault",
+                    };
+                    IconCreate.init(param);
+                }
+            )
+  });
+</script>
+
+</body>
+</html>

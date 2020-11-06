@@ -13,6 +13,8 @@ namespace HartamaViewDashboard.Models
         public string Password { get; set; }
         public string Fullname { get; set; }
         public string ExpiredDate { get; set; }
+        public string userPictFile { get; set; }
+        public string OldPassword { get; set; }
 
 
         public bool Locked { get; set; }

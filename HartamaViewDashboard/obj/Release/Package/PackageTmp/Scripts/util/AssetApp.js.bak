@@ -1,0 +1,1158 @@
+﻿
+/*!
+ * util.js
+ * 2015 author Irham Pratama
+ */
+jQuery.ajaxq = function (queue, options) {
+    // Initialize storage for request queues if it's not initialized yet
+    if (typeof document.ajaxq == "undefined") document.ajaxq = { q: {}, r: null };
+
+    // Initialize current queue if it's not initialized yet
+    if (typeof document.ajaxq.q[queue] == "undefined") document.ajaxq.q[queue] = [];
+
+    if (typeof options != "undefined") // Request settings are given, enqueue the new request
+    {
+        // Copy the original options, because options.complete is going to be overridden
+
+        var optionsCopy = {};
+        for (var o in options) optionsCopy[o] = options[o];
+        options = optionsCopy;
+
+        // Override the original callback
+
+        var originalCompleteCallback = options.complete;
+
+        options.complete = function (request, status) {
+            // Dequeue the current request
+            document.ajaxq.q[queue].shift();
+            document.ajaxq.r = null;
+
+            // Run the original callback
+            if (originalCompleteCallback) originalCompleteCallback(request, status);
+
+            // Run the next request from the queue
+            if (document.ajaxq.q[queue].length > 0) document.ajaxq.r = jQuery.ajax(document.ajaxq.q[queue][0]);
+        };
+
+        // Enqueue the request
+        document.ajaxq.q[queue].push(options);
+
+        // Also, if no request is currently running, start it
+        if (document.ajaxq.q[queue].length == 1) document.ajaxq.r = jQuery.ajax(options);
+    }
+    else // No request settings are given, stop current request and clear the queue
+    {
+        if (document.ajaxq.r) {
+            document.ajaxq.r.abort();
+            document.ajaxq.r = null;
+        }
+
+        document.ajaxq.q[queue] = [];
+    }
+}
+
+var utility = new function () {
+    
+    this.session = false;
+
+    this.formatDate = "";
+
+    this.pickOneData = "";
+
+    this.warning = "";
+
+    this.decimalSeparator = "";
+
+    this.thousandSeparator = "";
+
+    this.Info = "";
+
+    this.Page = "";
+
+    this.Of = "";
+
+    this.ZeroResult = "";
+
+    this.InfoEmpty = "";
+
+    this.Previous = "";
+
+    this.Next = "";
+
+    this.Last = "";
+
+    this.First = "";
+
+    this.To = "";
+
+    this.Entries = "";
+
+    this.init = function (param) {
+        utility.pickOneData = param.attribute.AlertPickOneData;
+        utility.warning = param.attribute.LabelWarning;
+        utility.decimalSeparator = param.attribute.Decimal;
+        utility.thousandSeparator = param.attribute.Thousand;
+        utility.Info = param.attribute.Info;
+        utility.Page = param.attribute.Page;
+        utility.Of = param.attribute.Of;
+        utility.ZeroResult = param.attribute.ZeroResult;
+        utility.InfoEmpty = param.attribute.InfoEmpty;
+        utility.Previous = param.attribute.Previous;
+        utility.Next = param.attribute.Next;
+        utility.Last = param.attribute.Last;
+        utility.First = param.attribute.First;
+        utility.To = param.attribute.To;
+        utility.Entries = param.attribute.Entries;
+        utility.formatDate = utility.getFormatDate(param.attribute.DateSeparator, param.attribute.FormatDate);
+    }
+    this.initCheckbox = function () {
+        $('.checkbox-model').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+        $('.checkbox-model').on('ifChanged', function (event) {
+            var val = this.checked;
+            $(this).val(val);
+        });
+        $(".checkbox-model").each(function () {
+            if (this.value == "true") {
+                $(this).iCheck("check");
+            } else {
+                this.value = false;
+            }
+        });
+    }
+    this.initRadio = function () {
+        $('.radio-model').iCheck({
+            radioClass: 'iradio_square-green',
+            handle:'radio'
+        });
+        ////$(".radio-model").each(function () {
+        //    if (this.value == "true") {
+        //        $(this).iCheck("check");
+        //    } else {
+        //        this.value = false;
+        //    }
+        //});
+    }
+    this.initNumeric = function () {
+        $('.numeric-model').autoNumeric('init', { aSep: utility.thousandSeparator, aDec: utility.decimalSeparator, mDec: '18', vMax: '9999999999999999999', aPad: false });
+    }
+    this.initInteger = function () {
+        $('.integer-model').autoNumeric('init', { aSep: "", aDec: utility.decimalSeparator, mDec: '0', vMax: '999999999999999999'});
+    }
+    this.initDate = function () {
+
+        $('.date-model').each(function () {
+            var _this = this;
+            $(_this).wrap("<div class='date-format'></div>");
+            $(_this).parent('div').append('<span class="hidden js-format"></span>');
+            $(_this).parent('div').find('.js-format').html($(_this).val());
+            if ($(_this).val() !== "" && typeof $(_this).val() !== 'undefined') {
+                date = new Date($(_this).val());
+                $(_this).val(date.format(utility.formatDate));
+            }
+            if (!$(_this).hasClass('calendar-disable')) {
+                $(_this).datepicker({
+                    todayBtn: "linked",
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    calendarWeeks: true,
+                    autoclose: true,
+                    format: utility.formatDate,
+                });
+                $(_this).inputmask(utility.formatDate);
+                $(_this).datepicker().on("changeDate", function (e) {
+                    var _this = this;
+                    if (!$.isEmptyObject(e.dates)) {
+                        $(_this).parent('div').find('.js-format').html(e.date.format("yyyy-mm-dd"));
+                    } else {
+                        $(_this).parent('div').find('.js-format').html('');
+                    }
+
+
+                });
+            }
+            
+        })
+        var form = $('.date-model').closest('form');
+        form.append("<input type='hidden' id='dateFormat' name='dateFormat' value='" + utility.formatDate.replace(/\m/g, 'M') + "'/>");
+        
+    }
+    this.getFormatDate = function (separator, FormatDate) {
+        var x = FormatDate.split(separator);
+        var formatDate = "";
+        for (i = 0; i < 3; i++) {
+            if (x[i].length !== 2 && x[i][0] !== 'y') {
+                formatDate += x[i][0] + x[i][0] + separator;
+            } else if (x[i][0] == 'y' && x[i].length !== 4) {
+                formatDate += x[i][0] + x[i][0] + x[i][0] + x[i][0] + separator;
+            } else {
+                formatDate += x[i] + separator;
+            }
+
+        }
+        formatDate = formatDate.slice(separator, -1);
+        return formatDate;
+    }
+
+    this.loadXMLDoc =  function (destination) {
+        //alert(destination);
+        var xmlhttp;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("render-body").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET", destination, true);
+        xmlhttp.send();
+    }
+
+    this.loadDetail =  function (destination) {
+        //alert(destination);
+        var xmlhttp;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("render-body").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET", destination, true);
+        xmlhttp.send();
+    }
+    this._loadTabManufacture = function (destination, id_tab) {
+        $.ajax({
+            url: destination,
+            type: "GET",
+            dataType: "html",
+            success: function (data) {
+                $(document).ready(function () {
+                    $('#' + id_tab).html(data);
+                });
+            },
+            error: function (xhr, status) {
+                alert("Sorry, there was a problem!");
+            },
+            complete: function (xhr, status) {
+                $('#' + id_tab).slideDown('slow')
+            }
+        });
+    }
+    this.LoadLOV = function (destination, idLov, parameter) {
+        $.ajaxq('LOV', {
+            url: destination,
+            type: "GET",
+            dataType: "html",
+            success: function (data) {
+                $(document).ready(function () {
+                    $('#' + idLov).html(data);
+                   
+                    //console.log(idLov);
+                    var parameterForReturn = '<input id="' + parameter + '" type="hidden" class="parameterForReturn" value="' + parameter + '" name="' + parameter + '">';
+                    $('#' + idLov).append(parameterForReturn);
+                });
+            },
+            error: function (xhr, status) {
+                alert("Sorry, there was a problem!");
+            }
+        });
+    }
+
+    this._loadModal = function (destination, idModal) {
+        //console.log(document.activeElement);
+        $.ajax( {
+            url: destination,
+            type: "GET",
+            dataType: "html",
+            cache: false,
+            processData: false,
+            success: function (data) {
+                $(document).ready(function () {
+                    $('#' + idModal).html(data);
+                    $('.modal').on('hidden.bs.modal', function () {
+                        $("table:eq(0)").focus();
+                        //alert("asdas");
+
+                    });
+                    
+
+                });
+            },
+            error: function (xhr, status) {
+                alert("Sorry, there was a problem!");
+            }
+        });
+    }
+
+    this._returnLOV = function (parameter, ret) {
+        //alert(parameter);
+        //$('#' + parameter.split('#')[1]).val(ret.split('#')[0]);
+        //$('#' + parameter.split('#')[2]).val(ret.split('#')[1]);
+        var a = ret.split("#"), i;
+
+        for (i = 0; i < a.length; i++) {
+            $('#' + parameter.split('#')[i + 1]).val(ret.split('#')[i]);
+            console.log(parameter.split('#')[i + 1] + " = " + ret.split('#')[i])
+        }
+        
+    }
+    this._CRUD = function CRUD_(nameform, act, history) {
+
+        
+        var url = $('#' + nameform).attr('action');
+        var data = $('#' + nameform).serialize();
+        $.ajaxq('CRUD' ,{
+            type: "POST",
+            url: url + "?_=" + Math.random() * Math.random(),
+            cache: false,
+            processData: false,
+            data: data,
+            history : history,
+            success: function (data) {
+
+                url = url.split('/')[1];
+                url = url + '/index?' + history
+                var msg = JSON.stringify(data.result);
+                //alert(msg.split('|')[0]);
+                if (msg.split('|')[0].substring(1) == 'Err') {
+                    $("#errorMsgDiv").html(msg.split('|')[1]);
+                    $("#errorDiv").show();
+                    $("#errorDivManufacturer").show();
+
+
+                } else {
+                    //if (act == 'DELETE') {
+                    //    $('#DeleteModal').modal('hide');
+                    //    // $('#EditModal').modal('hide');
+                    //} else if (act == 'LOCKED') {
+                    //    $('#LockedModal').modal('hide');
+                    //} else if (act == 'UNLOCKED') {
+                    //    $('#UnlockedModal').modal('hide');
+                    //} else if (act == 'RESET') {
+                    //    $('#ResetPasswordModal').modal('hide');
+                    //}
+                    $(".modal").modal('hide');
+                    utility._loadMenu(url, data.result);
+                    
+                    setTimeout(function () {
+                        //console.log(msg)
+                        $("#successDiv").html(msg);
+                        $("#successDiv").show();
+                    }, 500);
+                    setTimeout(function () {
+                        $("#successDiv").hide("slow");
+                    }, 4000);
+                }
+                //alert(JSON.stringify(data.result));
+                //utility._loadMenu(url);
+            },
+
+            dataType: 'json'
+        });
+        return false;
+    }
+   
+    //digunanakan untuk merubah isi dalam tab panel
+    this._loadTab =   function (destination, id_tab) {
+        $.ajax({
+            url: destination,
+            type: "GET",
+            dataType: "html",
+            success: function (data) {
+                $(document).ready(function () {
+                    $('#' + id_tab).html(data);
+                });
+            },
+            error: function (xhr, status) {
+                alert("Sorry, there was a problem!");
+            },
+            complete: function (xhr, status) {
+                $('#' + id_tab).slideDown('slow')
+            }
+        });
+    }
+
+    //digunakan untuk load menu saat klik sidebar menu
+    this._loadMenu = function (destination) {
+        //alert(destination);
+        //add by irham 2015-09-29 for cek session
+        
+        utility.cekSession();
+        var r = $.Deferred();
+        //add by irham 2015-09-29 to set feature name base on database
+        var featurename = $("ol li#ftr-name").text();
+        //alert(featurename);
+        setTimeout(function () {
+            //$(".btn").unbind();
+            if (utility.session === true) {
+                $.ajax({
+                    url: destination,
+                    type: "GET",
+                    dataType: "html",
+                    featurename : featurename,
+                    success: function (data) {
+                        $(document).ready(function () {
+                            $('#render-body').html(data);
+                            utility.initAjax();
+                        });
+                    },
+                    error: function (xhr, status) {
+                        alert("Sorry, there was a problem!");
+                    },
+                    complete: function (xhr, status) {
+                        $('#render-body').slideDown('slow');
+
+
+                    }
+                }).done(function () {
+                    //$(".btn").bind();
+                    //OnloadFunction();
+                    r.resolve();
+                    if ($("ol li#ftr-name a").length) {
+                        $('ol li#ftr-name a').html(featurename);
+                        $('ol li#ftr-name a').removeAttr("onclick").removeAttr('href');
+                    }
+                    else {
+                        $('ol li#ftr-name').html("<strong>" + featurename + "</strong>");
+                    }
+                    $('.page-heading h2').html( featurename );
+                    Dropzone.autoDiscover = false;
+                    $('body').tooltip({
+                        selector: "[data-toggle=tooltip]",
+                        container: "body"
+                    });
+                    $('.tooltip').remove();
+                });
+            }
+        }, 200);
+        return r;
+    }
+
+    this._loadMenuList = function (destination,featurename) {
+        utility.cekSession();
+        //alert(utility.session);
+
+        setTimeout(function () {
+            //$(".btn").unbind();
+            if (utility.session === true) {
+                //alert(utility.session);
+
+                $.ajax({
+                    url: destination,
+                    type: "GET",
+                    dataType: "html",
+                    featurename: featurename,
+                    chace :"false",
+                    success: function (data) {
+                        $(document).ready(function () {
+                            $('#render-body').html(data);
+                            utility.initAjax();
+                            document.title = "M A T A | " + featurename;
+                        });
+                    },
+                    error: function (xhr, status) {
+                        alert("Sorry, there was a problem!");
+                    },
+                    complete: function (xhr, status) {
+                        $('#render-body').slideDown('slow');
+                        window_width = $(window).width();
+                        if (window_width < 801) {
+
+                            $('.mobile-menu-clicked').removeClass('fadeIn').addClass('fadeOut');
+                            setTimeout(function () {
+                                $('.mobile-menu-clicked').addClass('hide');
+                            }, 400);
+                            //
+                            if (!$('.mobile-menu-clicked').hasClass('hide')) {
+                                $("body").toggleClass("mini-navbar");
+                                SmoothlyMenu();
+                            }
+                            
+                        }
+
+                    }
+                }).done(function () {
+                   // $(".btn").bind();
+                    //OnloadFunction();
+                    //add by irham 2015-09-29 to set feature name base on database
+                    $('ol li#ftr-name').html("<strong>" + featurename + "</strong>");
+                    $('.page-heading h2').html(featurename);
+                    Dropzone.autoDiscover = false;
+                    $('body').tooltip({
+                        selector: "[data-toggle=tooltip]",
+                        container: "body"
+                    });
+                    $('.tooltip').remove();
+                });
+                
+                
+            }
+        }, 200);
+      
+    }
+
+    //generate menu from json
+
+    this.GenerateNavigationMenu =  function (param) {
+        //alert(destination);
+        utility.session = true;
+        $.ajax({
+            url: "/Dashboards/GenerateModule",
+            type: "GET",
+            dataType: "html",
+            success: function (data) {
+                $(document).ready(function () {
+                    var menu = $('#side-menu');
+                    // $('#menuElement').html(data);
+                    result = jQuery.parseJSON(data);
+                    //for (var k in result) {
+                    //    //console.log(k, result[k]);
+                    //    var menuList = '<li id="NavMenu-' + result[k].IDModule + '" class=""><a href="#"><i class="fa fa-diamond"></i><span class="nav-label">' + result[k].ModuleName + '</span><span class="fa arrow"></span></a></li>';
+                    //    getMenuItem(result[k].IDModule);
+                    //    menu.append(menuList);
+                    //}
+                    var menuList = '';
+                    var lastModule = '';
+                    var lastTypeFeatures = '';
+                    var tutupUlTipeApp = false;
+                    var level2sudahdibuka = false;
+
+                    for (var k in result) {
+                        
+                        if (tutupUlTipeApp == true && level2sudahdibuka == true && result[k].ParentID != lastModule && result[k].FeaturesType != lastTypeFeatures) {
+                            menuList = menuList + '</ul>';
+                            //alert(menuList);
+                            level2sudahdibuka = false;
+                            
+                        }
+                       
+                        if (tutupUlTipeApp == true && lastTypeFeatures == 'RPT' && result[k].FeaturesType != lastTypeFeatures) { menuList = menuList + '</ul>' }
+
+                        //tutup tipe app atau report
+                        if (result[k].FeaturesType != lastTypeFeatures && lastTypeFeatures != '') { menuList = menuList + '</ul>' }
+                        //
+
+                        if (result[k].ParentID !== null) {
+                            if (result[k].FeaturesType != lastTypeFeatures) {
+                                //if (lastTypeFeatures != '') { menuList = menuList + '</li></ul>'; }
+
+                                if (result[k].FeaturesType == 'APP') {
+                                    //console.log(result[k].FeaturesType + "-" + result[k].FeaturesName);
+                                    menuList = menuList + '<ul class="nav nav-second-level "><li><a href="#"><i class="fa fa-desktop"></i> ' + param.attribute.App + '<span class="fa arrow"></span></a>';
+                                    level2sudahdibuka = true;
+                                    lastTypeFeatures = result[k].FeaturesType;
+                                    //buka ul untuk tipe aplikasi
+                                    menuList = menuList + '<ul class="nav nav-third-level">'
+                                    tutupUlTipeApp = true;
+                                }
+
+                                if (result[k].FeaturesType == 'RPT') {
+                                    //if (tutupUlTipeApp == true) { menuList = menuList + '</ul>' }
+                                    if (level2sudahdibuka != true) {
+                                        menuList = menuList + '<ul class="nav nav-second-level"><li><a href="#"><i class="fa fa-file-archive-o"></i> ' + param.attribute.Rpt + '<span class="fa arrow"></span></a>';
+                                        level2sudahdibuka = true;
+                                    }
+                                    else {
+
+                                        menuList = menuList + '<li><a href="#"><i class="fa fa-file-archive-o"></i>' + param.attribute.Rpt + '<span class="fa arrow"></span></a>';
+                                    }
+                                    lastTypeFeatures = result[k].FeaturesType;
+                                    menuList = menuList + '<ul class="nav nav-third-level">'
+                                    tutupUlTipeApp = true;
+                                }
+
+
+                            }
+                            var urlny = '"' + result[k].PathApp + '"';
+                            var icon = result[k].icon;
+                            var iconType = result[k].IconType;
+                            if (iconType == 'Unicode') {
+                                if (icon == null || icon == "") {
+                                    icon = '<i class="fa fa-bars"></i>' ;
+                                }
+                                else
+                                {
+                                    icon = '<i class="fa ' + icon + '"></i>';
+                                }
+                            }
+                            else
+                            {
+                                icon = '<span class="image-menu"><img src="' + icon + '"  height="14" width="14"></span>&nbsp;&nbsp;';
+                            }
+                            //icon = "";
+                            var featurename = '"' + result[k].FeaturesName + '"';
+                            if (result[k].PathApp != '#') {
+
+                                if ( result[k].IsExternal) {
+                                    urlny = urlny.replace(/\\/g, '\\\\')
+                                    if (result[k].FeaturesAction == 'URL') {
+                                        menuList = menuList + "<li><a href='#' onclick='window.open(" + urlny + ")'>" + icon + " " + result[k].FeaturesName + "</a></li>";
+                                    }
+                                    else
+                                    {
+                                        menuList = menuList + "<li><a href='#' onclick='utility.runapp(" + urlny + ")'>" + icon + " " + result[k].FeaturesName + "</a></li>";
+                                    }
+                                    
+                                }
+                                else {
+                                    //console.log(result[k].IsExternal);
+                                    //menuList = menuList + "<li><a href='#' onclick='utility._loadMenuList(" + urlny + "," + featurename + ")'>" + icon + " " + result[k].FeaturesName + "</a></li>";
+                                    menuList = menuList + "<li><a href='#" + result[k].PathApp + "#" + result[k].FeaturesName + "' onclick='utility._loadMenuList(" + urlny + "," + featurename + ")'>" + icon + " " + result[k].FeaturesName + "</a></li>";
+                                }
+                                
+
+                            }
+                            else {
+                                //if (result[k].FeaturesName !==''){
+                                menuList = menuList + "<li><a href='#'>" + icon + " " + result[k].FeaturesName + "</a></li>";
+                                //}
+                            }
+                        }
+
+                        if (result[k].ParentID == null && result[k].IDFeatures != lastModule) {
+                            lastTypeFeatures = "";
+                            if (lastModule != '' && result[k].ParentID == null) { menuList = menuList + '</li>'; }
+                            //if (lastTypeFeatures != '') { menuList = menuList + '</ul>'; }
+                            //menuList = menuList + '<li id="NavMenu-' + result[k].IDFeatures + '" class=""><a href="#"><i class="fa fa-diamond"></i><span class="nav-label">' + result[k].FeaturesName + '</span><span class="fa arrow"></span></a>';
+                            var icon = result[k].icon;
+                            var iconType = result[k].IconType;
+                            //console.log(icon);
+                          
+                            if (iconType == 'Unicode') {
+                                if (icon == null || icon == "") {
+                                    icon = "fa-bars";
+                                }
+                                menuList = menuList + '<li class=""><a href="#"><i class="fa ' + icon + '"></i><span class="nav-label">' + result[k].FeaturesName + '</span><span class="fa arrow"></span></a>';
+                            }
+                            else {
+                                menuList = menuList + '<li class=""><a href="#"><span class="image-menu"><img src="' + icon + '"></span><span class="nav-label">&nbsp;&nbsp;' + result[k].FeaturesName + '</span><span class="fa arrow"></span></a>';
+                            }
+                            lastModule = result[k].IDFeatures;
+                            
+                        }
+
+                        //start level 2
+
+
+                        //menuList = '<li id="NavMenu-' + result[k].IDModule + '" class=""><a href="#"><i class="fa fa-diamond"></i><span class="nav-label">' + result[k].ModuleName + '</span><span class="fa arrow"></span></a></li>';
+                        //getMenuItem(result[k].IDModule);
+                        //console.log(menuList);
+                    }
+                    menu.append(menuList);
+                    //alert(menuList);
+                });
+            },
+            error: function (xhr, status) {
+                alert("Sorry, there was a problem!");
+            },
+            complete: function (xhr, status) {
+                $('#side-menu').metisMenu();
+               
+            }
+        }).done(function () {
+            //$('#side-menu').metisMenu();
+        });
+    }
+
+    this.getMenuItem =  function (itemData) {
+        $.ajax({
+            url: "/Dashboards/GetFeatureMenu/" + itemData,
+
+            type: "GET",
+            dataType: "html",
+            success: function (data) {
+                $(document).ready(function () {
+                    var menu = $('#NavMenu-' + itemData);
+
+                    // $('#menuElement').html(data);
+                    result = jQuery.parseJSON(data);
+                    // alert(result);
+                    if (result != '') {
+                        var menulist = '<ul class="nav nav-second-level">';
+                        for (var k in result) {
+                            //console.log(menu);
+                            //console.log(k, result[k]);
+                            //var menuList = '<li id="NavMenu-' + result[k].IDModule + '"><a href="#"><i class="fa fa-th-large"></i><span class="nav-label">' + result[k].ModuleName + '</span><span class="fa arrow"></span></a></li>';
+                            menulist = menulist + '<li>';
+                            menulist = menulist + '<a href="#">Dashboard v.1</a>';
+                            menulist = menulist + '</li>';
+                            console.log(menulist);
+
+                        }
+                        menulist = menulist + '</ul>';
+                        menu.append(menulist);
+                    }
+                });
+            },
+            error: function (xhr, status) {
+                alert("Sorry, there was a problem!");
+            },
+            complete: function (xhr, status) {
+                $('#side-menu').metisMenu();
+            }
+        }).done(function () {
+            $("#menu").metisMenu();
+            
+        });
+    };
+
+    this.ListOfSite = function (currentSite) {
+        $.ajax({
+            url: "/Dashboards/GetDataSite",
+            type: "GET",
+            dataType: "html",
+            success: function (data) {
+                $(document).ready(function () {
+                    result = jQuery.parseJSON(data);
+                    var dom = $("#tab-1");
+                    var list = "";
+                    for (var k in result) {
+                        if (currentSite == result[k].IDSite) {
+                            //list = list + "<div class='wizard-login-site' id='" + result[k].IDSite + "'><img src='/Images/AssetImage/" + result[k].SiteLogo + "' class='img-circle' alt='image'> <h3>" + result[k].SiteName + "</h3> </div>"
+                        }
+                        else {
+                            list = list + "<div class='wizard-login-site' id='" + result[k].IDSite + "'><img src='/Images/AssetImage/" + result[k].SiteLogo + "' class='img-circle' alt='image'> <h3>" + result[k].SiteName + "</h3> </div>"
+                        }
+
+                    }
+                    dom.append(list);
+                });
+            },
+            error: function (xhr, status) {
+                alert("Sorry, there was a problem!");
+            },
+            complete: function (xhr, status) {
+
+                $('.wizard-login-site').click(function () {
+
+                    var id = this.id;
+                    $('#PickSiteModal').modal('show');
+                    //
+
+                    $("#frm-changesite-btn").click(function () {
+
+                        document.location = "../Login/PickSite/" + id
+                    });
+
+
+                    $("#frm-cancel-btn").click(function () {
+                        $('#PickSiteModal').modal('hide');
+                    });
+
+                })
+
+            }
+        })
+    }
+
+    this.ListOfLanguage = function (currentLanguage) {
+        $.ajax({
+            url: "/Dashboards/ListOfLanguage",
+            type: "GET",
+            dataType: "html",
+            success: function (data) {
+                $(document).ready(function () {
+                    result = jQuery.parseJSON(data);
+                    var dom = $("#ListOfLanguage");
+                    var language = "";
+                    for (var i in result) {
+                        if (currentLanguage == result[i].IDLanguage) {
+                            language += "<li class='active'><a href='#'>" + result[i].LanguageName + "</a></li>";
+                        }
+                        else {
+                            var IDLanguage = result[i].IDLanguage;
+                            language += "<li ><a href='#' onclick=utility.ChangeLanguage('" + IDLanguage + "')>" + result[i].LanguageName + "</a></li>";
+                        }
+
+                    }
+                    dom.html(language);
+                });
+            },
+            error: function (xhr, status) {
+                alert("Sorry, there was a problem!");
+            },
+            complete: function (xhr, status) {
+                //$('#side-menu').metisMenu();
+            }
+        })
+    }
+    this.ChangeLanguage = function (IDLanguage) {
+        utility._loadModal("/Language/ConfirmationChangeLanguage?IDLanguage=" + IDLanguage, "modal-Render-lang");
+        $("#ChangeLanguageModal").modal("show");
+    }
+    //disable F5
+
+    this.UserLogout = function () {
+      
+        $("#user-logout").on("click", function () {
+            $('#LogoutModal').modal('show');
+            $("#frm-submit-btn-logout").click(function () {
+                document.location = "../Login/Logout/"
+            });
+            $("#frm-cancel-btn-logout").click(function () {
+                $('#LogoutModal').modal('hide');
+            });
+           
+        });
+
+    }
+    this.cekSession = function () {
+        //var x = "";
+        $.ajax({
+            url: "../Login/CekSession/",
+            type: "GET",
+            dataType: "html",
+            success: function (data) {
+                res = jQuery.parseJSON(data);
+                //console.log(res.result);
+                 x = res.result;
+                 if (res.result !== "OK") {
+                     //
+                     //return false;
+                     utility.session = false;
+                     //sleep(200);
+                     document.location = "../Login/Logout/"
+                 }
+                 else {
+                     //return true;
+                     utility.session = true;
+                 }
+             
+                
+            },
+            error: function (xhr, status) {
+                alert("Sorry, there was a problem!");
+            }
+            
+        });
+        return utility.session;
+        //
+    }
+    function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
+    
+    this.runapp = function runcmd(path) {
+        //alert(path);
+        //var res = path.replace("" , "\\");
+        $.ajax({
+            url: "../Dashboards/RunApp?path=" + path,
+            type: "GET",
+            dataType: "html",
+            error: function (xhr, status) {
+                alert("Sorry, there was a problem!");
+            }
+        });
+    }
+
+    this.ArrowMoveInit = function (idtable, index) {
+        $(idtable).attr('tabindex', index);
+        $(idtable).focusout(function () {
+            //console.log(idtable + " lost");
+        })
+
+        $(idtable).keyup(function (e) {
+            //console.log(index);
+            e.preventDefault();
+            var SlctRow = $(idtable + " tbody tr.row_selected");
+            var NextPage = $(idtable + "_next");
+            var PrevPage = $(idtable + "_previous");
+            //
+
+                
+            if (e.which == 38) {
+                //Up Button
+              
+                if (!SlctRow.prev().hasClass("group") && !SlctRow.prev().hasClass("dataTables_empty")) {
+                    if (SlctRow.prev().length) {
+                        //console.log(SlctRow.prev().index());
+                        SlctRow.prev().click();
+
+                    }
+                    else {
+                        if (NextPage.length) {
+                            PrevPage.click();
+                            $(idtable + ' tbody tr').last().click();
+                            $(idtable).on('xhr.dt', function () {
+                             
+                                setTimeout(function () {
+                                    //console.log(idtable + "draw Prev");
+                                    $(idtable + ' tbody tr').last().click();
+                                },200)
+                                
+                            });
+                            
+                        }
+                        
+                    }
+                }
+
+                if (SlctRow.prev().hasClass("group")) {
+                    if (SlctRow.prev().hasClass("parent")) {
+                        SlctRow.prev().click();
+                        SlctRow.prev().prev().prev().click();
+                    }
+                    else {
+                        SlctRow.prev().prev().click();
+                        SlctRow.prev().prev().prev().click();
+                    }
+                    
+                }
+
+                return false;
+            }
+            if (e.which == 40) {
+                //down Button
+                if (!SlctRow.next().hasClass("group") && !SlctRow.prev().hasClass("dataTables_empty")) {
+                    if (SlctRow.next().length) {
+                        SlctRow.next().click();
+                        //console.log(SlctRow.next().index());
+                    }
+                    else {
+                        if (NextPage.length) {
+                            NextPage.click();
+                            //SlctRow.next().click();
+                            $(idtable + ' tbody tr').first().click();
+                            $(idtable).on('xhr.dt', function () {
+                                setTimeout(function () {
+                                    console.log(idtable + "draw Next");
+                                    $(idtable + ' tbody tr').first().click();
+                                },200)
+                            });
+                        }
+                        
+                    }
+                }
+
+                if (SlctRow.next().hasClass("group")) {
+                    if (SlctRow.next().hasClass("parent")) {
+                        SlctRow.next().click();
+                        SlctRow.next().next().next().click();
+                    }
+                    else {
+                        SlctRow.next().next().click();
+                    }
+                    
+                }
+                return false;
+            }
+            if (e.which == 39) {
+                //Right Arrow
+
+                NextTableFocus = index + 1;
+                //console.log("TF = " + index);
+                //console.log("NTF = " + NextTableFocus);
+                //console.log(
+                //       $('table[tabindex=' + NextTableFocus + ']').prop('id')
+                //                            );
+                if ($('table[tabindex=' + NextTableFocus + ']').length) {
+                    $('table[tabindex=' + index + ']').blur();
+                    $('table[tabindex=' + NextTableFocus + ']').focus();
+                    var NextTableID = $('table[tabindex=' + NextTableFocus + ']').prop('id');
+                    //console.log('ada row selected = ' + $('#' + NextTableID + ' tbody tr.row_selected').length);
+                    if (!$('#' + NextTableID + ' tbody tr.row_selected').length) {
+                        //console.log($('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0) td').hasClass("dataTables_empty"));
+                        if (!$('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0) td').hasClass("dataTables_empty")) {
+                            if ($('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0)').hasClass('group')) {
+                                if ($('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0)').hasClass("parent")) {
+                                    $('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0)').click();
+                                    $('table[tabindex=' + NextTableFocus + '] tbody tr:eq(2)').click();
+                                }
+                                else {
+                                    $('table[tabindex=' + NextTableFocus + '] tbody tr:eq(1)').click();
+                                }
+                               
+                            }
+                            else {
+                                if  ($('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0)').hasClass("parent")) {
+                                    $('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0)').click();
+                                    $('table[tabindex=' + NextTableFocus + '] tbody tr:eq(2)').click();
+                                }
+                                else {
+                                    $('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0)').click();
+                                }
+
+                               
+                            }
+                        }
+                        
+
+                    }
+                    
+
+                }
+
+
+                //$('#Feature tbody tr:eq(0)').click();
+
+                return false;
+            }
+            if (e.which == 37) {
+                //Left Arrow
+
+                NextTableFocus = index - 1;
+                //console.log("TF = " + index);
+                //console.log("NTF = " + NextTableFocus);
+
+                //console.log(
+                //       $('table[tabindex=' + NextTableFocus + ']').prop('id') 
+                //                            );
+
+                if ($('table[tabindex=' + NextTableFocus + ']').length) {
+                    $('table[tabindex=' + index + ']').blur();
+                    $('table[tabindex=' + NextTableFocus + ']').focus();
+                    if ($('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0)').hasClass('group')) {
+                        $('table[tabindex=' + NextTableFocus + '] tbody tr:eq(1)').click();
+                    }
+                    else {
+                        // alert($('table[tabindex=' + NextTableFocus + '] tbody tr.selected_row').length);
+                        if (!$('table[tabindex=' + NextTableFocus + '] tbody tr.row_selected').length) {
+                            if (!$('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0) td').hasClass("dataTables_empty")) {
+                                if ($('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0)').hasClass('group')) {
+                                    $('table[tabindex=' + NextTableFocus + '] tbody tr:eq(1)').click();
+                                }
+                                else {
+                                    if (SlctRow.next().hasClass("parent")) {
+                                        $('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0)').click();
+                                        $('table[tabindex=' + NextTableFocus + '] tbody tr:eq(2)').click();
+                                    }
+                                    else {
+                                        $('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0)').click();
+                                    }
+
+
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+                //$('table[tabindex=' + NextTableFocus + '] tbody tr:eq(0)').click();
+                //$('#Feature tbody tr:eq(0)').click();
+
+                return false;
+            }
+        });
+
+    
+        $(idtable).focus(function () {
+            //console.log(idtable + " Focus");
+            //if (!$(idtable + ' tbody tr:eq(0) td').hasClass("dataTables_empty")) {
+            //    if ($(idtable + ' tbody tr:eq(0)').hasClass('group')) {
+            //        $(idtable + ' tbody tr:eq(1)').click();
+            //    }
+            //    else {
+            //        $(idtable  + ' tbody tr:eq(0)').click();
+            //    }
+            //}
+
+        })
+        
+       
+
+    }
+    this.initAjax = function () {
+
+        $('.modal').on('hide.bs.modal', function (e) {
+            //alert(utility.xhrPool.length);
+            //$.ajaxq("loadModal");
+            $.ajaxq("CRUD");
+            
+        })
+        
+    }
+
+    // adit 23-10-2015 function for mobile data pagination
+    this.mobile_data_table_paginate = function (e) {
+        window_width = $(window).width();
+        if (window_width < 480 && window_width > 320) {
+            $('.dataTables_paginate').each(function () {
+                var data_table_prev = $(this).find('.next').prev('.active'),
+                    data_table_prev_prev = $(this).find('.next').prev().prev('.active');
+                $(this).find('.active').prev().addClass('prev_selected');
+                $(this).find('li').removeClass('disabled');
+                if (data_table_prev_prev.length) {
+                    $(this).find('.active').prev().prev().addClass('prev_selected');
+                }
+                if (data_table_prev.length) {
+                    $(this).find('.active').prev().prev().addClass('prev_selected');
+                    $(this).find('.active').prev().prev().prev().addClass('prev_selected');
+                }
+            });
+        }
+
+    }/* end mobile_data_table_paginate*/
+
+    // adit 4-12-2015 function for mobile drop down
+    this.mobile_search_dropdown = function (e) {
+        if ($('#page-wrapper').height() < 880) {
+            $('#page-wrapper').css("min-height", 880 + "px");
+        } else {
+            $('#page-wrapper').css("min-height", $(window).height() + "px");
+
+        }
+    }/* end mobile_search_dropdown*/
+    /*Add By Irham 30-10-2015 */
+    /* Google Map API */
+    var map;
+    var Position;
+    this.setCurrentPosition = function (position) {
+        utility.Position = { lat: position.coords.latitude, lng: position.coords.longitude }
+    }
+
+  
+    
+    //if (google.loader.ClientLocation) {
+    //    utility.Position = { lat: google.loader.ClientLocation.latitude, lng: google.loader.ClientLocation.longitude };
+    //}
+    this.initMap = function (pos) {
+        //alert(pos);
+        utility.map = new google.maps.Map(document.getElementById('googleMap'), {
+            center: pos,
+            zoom: 16,
+            cache: false
+        });
+
+    }
+    var marker;
+    var markers = [];
+    this.addMarker = function (config) {
+        //console.log(config);
+        utility.marker = new google.maps.Marker(config);
+        //utility.markers.push(utility.marker);
+    }
+    this.deleteMarkers = function () {
+        utility.markers[0].setMap(null);
+        //utility.marker.setMap(null);
+    }
+
+  
+     
+    
+    /* end Google Map API*/
+}
+
+
+
+
+
+if ((document.baseURI.match(/#/g) || []).length) {
+    var url = document.baseURI;
+    url = url.split("#");
+    //alert((document.baseURI.match(/#/g) || []).length);
+    if (url[1].length) {
+        utility._loadMenuList(url[1], url[2].replace(/%20/g, " "));
+    }
+    
+
+}

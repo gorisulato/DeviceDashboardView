@@ -1,0 +1,217 @@
+﻿@model HartamaViewDashboard.Models.TFeatureModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Resources.Resource.ButtonEdit</title>
+</head>
+<body>
+    @*<div class="row wrapper border-bottom white-bg page-heading">
+
+            <div class="col-lg-8">
+                <h2>@Resources.Resource.FeatureLabelFeature</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#" onclick="utility._loadMenu('../Dashboards/Home')">@Resources.Resource.LabelHome</a>
+                    </li>
+                    <li id="ftr-name">
+                        <a href="#" onclick="utility._loadMenu('../Feature/Index')">@Resources.Resource.FeatureLabelFeature</a>
+                    </li>
+                    <li class="active">
+                        <strong>@Resources.Resource.ButtonEdit</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="ibox-tools">
+                <a><i class="fa fa-question"></i></a>
+            </div>
+
+        </div>*@
+    <div class="wrapper wrapper-content animated fadeIn">
+        <div class="row" id="render-body">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    @*<ol class="breadcrumb">
+                            <li>
+                                <a href="#" onclick="utility._loadMenu('../Feature/Index')">@Resources.Resource.FeatureLabelFeature</a>
+                            </li>
+                            <li class="active">
+                                <strong>@Resources.Resource.ButtonEdit</strong>
+                            </li>
+                        </ol>*@
+                    <div class="ibox-content">
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "Form-Feature", id = "Form-Feature", @tabindex = "0", @enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true)
+                                @Html.HiddenFor(model => Model.IDModule)
+                                @Html.HiddenFor(model => Model.IDFeatures)
+                                <div class="alert alert-danger alert-dismissable" aria-hidden="true" style="display :none;" id="errorDiv">
+                                    <button class="close" type="button" data-ng-hide="alert" aria-hidden="true">×</button>
+                                    <div id="errorMsgDiv"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelFeatureCode</label>
+                                    <div class="col-sm-9 col-lg-8">
+                                        @Html.TextBoxFor(model => Model.FeaturesCode, new { @class = "form-control", @required = "required", @MaxLength = "20" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelFeatureName</label>
+                                    <div class="col-sm-9 col-lg-8">
+                                        @Html.TextBoxFor(model => Model.FeaturesName, new { @class = "form-control", @required = "required", @MaxLength = "100" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelFeatureDescription</label>
+                                    <div class="col-sm-9 col-lg-8">
+                                        @Html.TextAreaFor(model => Model.FeaturesDesc, new { @class = "form-control", @MaxLength = "500" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelFeatureType</label>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                        <select class="form-control" name="FeaturesType" id="FeaturesType">
+                                            <option value="APP">Application</option>
+                                            <option value="RPT">Report</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelFeatureAction</label>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                        <select class="form-control" name="FeaturesAction" id="FeaturesAction">
+                                            <option value="URL">URL</option>
+                                            <option value="exe">EXE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                @*<div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelExternalFeature</label>
+                                        <div class="col-sm-9 col-lg-8">
+
+                                            <input class="i-checks" type="checkbox" name="checkIsExternal" id="checkIsExternal">
+                                            <input type="hidden" id="IsExternal" name="IsExternal" />
+
+                                        </div>
+                                    </div>*@
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.FeatureLabelPathURL</label>
+                                    <div class="col-sm-9 col-lg-8">
+                                        @Html.TextBoxFor(model => Model.PathApp, new { @class = "form-control" }) @*Add By Robby For Field Path App*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-lg-4 control-label ">@Resources.Resource.LabelIcon</label>
+                                    <div class="col-sm-9 col-lg-8">
+                                        <div class="input-group m-b">
+                                            @Html.HiddenFor(model => Model.IDIcon)
+                                            @Html.TextBoxFor(model => Model.IconClass, new { @class = "form-control", @required = "required", @readonly = "readonly" })
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-outline btn-default" href="#LOV-Icon" data-toggle="modal" type="button" id="frm-lov-btn"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelUserEntry</label>
+                                    <div class="col-sm-9 col-lg-8">
+                                        @Html.TextBoxFor(model => Model.UserEntry, new { @class = "form-control", @readonly = "readonly" })
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelDateEntry</label>
+                                    <div class="col-sm-9 col-lg-8">
+                                        @Html.TextBoxFor(model => Model.DateEntry, new { @class = "form-control", @readonly = "readonly" })
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelUserLastMaintenance</label>
+                                    <div class="col-sm-9 col-lg-8">
+                                        @Html.TextBoxFor(model => Model.UserLastMaintenance, new { @class = "form-control", @readonly = "readonly" })
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelDateLastMaintenance</label>
+                                    <div class="col-sm-9 col-lg-8">
+                                        @Html.TextBoxFor(model => Model.DateLastMaintenance, new { @class = "form-control", @readonly = "readonly" })
+
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="col-md-4 control-label"></label>
+                                    <div class="button-custom-style pull-right col-md-8">
+                                        <input value="@Resources.Resource.ButtonCancel" type="button" class="btn btn-outline btn-default" id="frm-cancel-btn" />
+                                        <input value="@Resources.Resource.ButtonSave" type="button" class="btn btn-primary" id="frm-submit-btn" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="LOV-Icon" class="modal inmodal" aria-hidden="true" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content animated fadeIn ">
+                <div class="modal-header">
+                    <h3 class="modal-title">>@Resources.Resource.LabelLOVIcon</h3>
+
+                </div>
+                <div class="modal-body" id="modal-Render">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline btn-default" data-dismiss="modal" id="closeModal">@Resources.Resource.ButtonClose</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function () {
+        $.getScript("../Scripts/main/Feature.js", {
+            cache: true
+        }).done(
+            function () {
+                var param = {};
+                param.attribute = {
+                    "FeaturesCode": "@Resources.Resource.FeatureLabelFeatureCode",
+                    "FeaturesName": "@Resources.Resource.FeatureLabelFeatureName",
+                    "FeaturesDesc": "@Resources.Resource.FeatureLabelFeatureDescription",
+                    "IconClass": "@Resources.Resource.LabelIcon",
+                    "PathApp": "@Resources.Resource.IconLabelIconDescription",
+                };
+                param.validation = {
+                    "required": "@Resources.Resource.ValidateRequired",
+                    "minLength": "@Resources.Resource.ValidateMinLength",
+                    "maxLength": "@Resources.Resource.ValidateMaxLength"
+                };
+                FeatureEdit.init(param);
+                var selected = "@Model.FeaturesType";
+                    $("#FeaturesType").val(selected);
+                selected = "@Model.FeaturesAction";
+                    $("#FeaturesAction").val(selected);
+                    selected = "@Model.IsExternal";
+
+                FeatureEdit.initIsExternal(selected);
+                }
+            )
+  });
+    </script>
+</body>
+</html>

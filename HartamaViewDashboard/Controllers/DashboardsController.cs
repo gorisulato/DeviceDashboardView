@@ -1,4 +1,5 @@
 ﻿using HartamaViewDashboard.Class;
+using HartamaViewDashboard.DB;
 using HartamaViewDashboard.Models;
 using System;
 using System.Collections.Generic;
@@ -230,8 +231,10 @@ namespace HartamaViewDashboard.Controllers
 
         public ActionResult Dashboard_2()
         {
-            //if ((Session["UserName"] == null) || (Session["IDSite"] == null)) { return RedirectToAction("Index", "Login"); }
-            //ViewBag.Dashboard = "";
+            if ((Session["UserName"] == null) || (Session["IDSite"] == null)) { return RedirectToAction("Index", "Login"); }
+            Hartama_IOTEntities db = new Hartama_IOTEntities();
+            var res = db.Options.Where(x => x.OptionsName == "GapRefreshChart").FirstOrDefault();
+            ViewBag.Gap = res.OptionsValue;
             //GetSiteList();
             return View();
         }
@@ -360,7 +363,7 @@ namespace HartamaViewDashboard.Controllers
             foreach(var res in test)
             {
                 ChartModel mdl = new ChartModel();
-                mdl.Date = res.Date.Value.ToString("yyyy-MM-dd"); ;
+                mdl.Date = res.Date.Value.ToString("yyyy-MM-dd"); 
                 mdl.Detail_SensorName = res.Detail_SensorName;
                 mdl.average_of_day = Convert.ToDecimal(res.average_of_day);
                 mdl.lower = Convert.ToDecimal(res.lower);

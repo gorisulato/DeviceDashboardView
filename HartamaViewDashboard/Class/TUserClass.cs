@@ -43,6 +43,20 @@ namespace HartamaViewDashboard.Class
 
         }
 
+        public List<GetRoleDatatable_Result> GetRole(int Limit,int Offset,string keyword)
+        {
+            var res = db.GetRoleDatatable(Offset, Limit,keyword).ToList();
+            return res;
+
+        }
+
+        public List<GetuserNew_Result> GetUser(int Limit, int Offset, string keyword)
+        {
+            var res = db.GetuserNew(Offset, Limit, keyword).ToList();
+            return res;
+
+        }
+
         //public List<PTUserSelectBySiteRoleKeyword_Result> UserSelectSearch(string orderby, string dir, string keyword, string IDRole, string IDSite, int limit, int offset, bool discontinue)
         //{
         //    var res = db.PTUserSelectBySiteRoleKeyword(orderby, dir, keyword, IDRole, IDSite, limit, offset, discontinue).ToList();
@@ -193,12 +207,70 @@ namespace HartamaViewDashboard.Class
                 CWU.command.Parameters.AddWithValue("@Password", mdl.Password);
                 CWU.command.Parameters.AddWithValue("@Fullname", mdl.Fullname);
                 CWU.command.Parameters.AddWithValue("@Email", mdl.Email);
-                CWU.command.Parameters.Add("@ExpiredDate", sqldatetime).Value = DateTime.ParseExact(mdl.ExpiredDate, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                 CWU.command.Parameters.AddWithValue("@IDRole", mdl.IDRole);
-                CWU.command.Parameters.AddWithValue("@IDWorkHour", mdl.IDWorkHour);
-                CWU.command.Parameters.AddWithValue("@UserEntry", mdl.UserEntry);
-                CWU.command.Parameters.AddWithValue("@DateEntry", DBNull.Value);
-                CWU.command.Parameters.AddWithValue("@Locked", mdl.Locked);
+                 CWU.command.Parameters.AddWithValue("@UserEntry", mdl.UserEntry);
+                CWU.command.Parameters.AddWithValue("@DateEntry", DateTime.Now);
+                CWU.command.Parameters.AddWithValue("@Locked", false);
+                CWU.command.Parameters.AddWithValue("@site", mdl.IDSite); 
+                CWU.command.Parameters.AddWithValue("@userPicture", mdl.UserPicturebyte);
+                CWU.command.Parameters.AddWithValue("@employeeNo", mdl.EmployeeNO);
+                try
+                {
+                    int ret = CWU.command.ExecuteNonQuery();
+                    res = "1";
+                }
+                catch (SqlException e)
+                {
+                    res = e.Message.ToString();
+                }
+                finally
+                {
+                    CWU.command.Connection.Close();
+                }
+
+            }
+
+            return res;
+        }
+        public string UserUpdatePassword(TUserModel mdl)
+        {
+            var ret = "";
+            if (CWU.OpenConnection())
+            {
+                CWU.command.Connection = CWU.connection;
+                CWU.command.CommandType = System.Data.CommandType.StoredProcedure;
+                CWU.command.CommandText = "PTUserUpdatePassword";
+                CWU.command.Parameters.AddWithValue("@IDUser", mdl.IDUser);
+                CWU.command.Parameters.AddWithValue("@Password", mdl.Password);
+                CWU.command.Parameters.AddWithValue("@UserLastMaintanance", mdl.IDUser);
+                //CWU.command.Parameters.AddWithValue("@oldPassword", mdl.OldPassword);
+                CWU.dtreader = CWU.command.ExecuteReader();
+                while (CWU.dtreader.Read())
+                {
+                    ret = CWU.dtreader[0].ToString();
+                }
+                //CWU.command.CommandText = "INSERT INTO PMMeterReading ( PMMeterID , CurrentReading , ReadingDate , IsActive , UserEntry , DateEntry , GenerateStatus) Values ( '"+mdl.PMMeterID+"' , '"+mdl.CurrentReading+"' , '"+mdl.ReadingDate+"' , 1 , '"+mdl.UserEntry+"' , '"+mdl.DateEntry+"' , 0)";
+
+            }
+            CWU.dtreader.Close();
+            CWU.command.Connection.Close();
+            return ret.ToString();
+        }
+        public string UpdateLockedUser(TUserModel mdl)
+        {
+
+            SqlDateTime sqldatetime = new SqlDateTime();
+            var res = "";
+            if (CWU.OpenConnection())
+            {
+                sql = "[UpdateStatusLocked]";
+                CWU.command.CommandText = sql;
+                CWU.command.Connection = CWU.connection;
+                CWU.command.CommandType = System.Data.CommandType.StoredProcedure;
+                CWU.command.Parameters.AddWithValue("@iduser", mdl.UserID);
+                CWU.command.Parameters.AddWithValue("@type", mdl.Locked); 
+                CWU.command.Parameters.AddWithValue("@userupdateby", mdl.UserLastMaintenance);
+
                 try
                 {
                     int ret = CWU.command.ExecuteNonQuery();
@@ -322,20 +394,16 @@ namespace HartamaViewDashboard.Class
                 CWU.command.CommandText = sql;
                 CWU.command.Connection = CWU.connection;
                 CWU.command.CommandType = System.Data.CommandType.StoredProcedure;
-                CWU.command.Parameters.AddWithValue("@IDUser", mdl.IDUser);
+                CWU.command.Parameters.AddWithValue("@IDUser", mdl.UserID);
 
                 CWU.command.Parameters.AddWithValue("@UserCode", mdl.UserCode);
                 CWU.command.Parameters.AddWithValue("@UserName", mdl.Username);
-                CWU.command.Parameters.AddWithValue("@Password", mdl.Password);
+                CWU.command.Parameters.AddWithValue("@employeeno", mdl.EmployeeNO);
                 CWU.command.Parameters.AddWithValue("@Fullname", mdl.Fullname);
                 CWU.command.Parameters.AddWithValue("@Email", mdl.Email);
-                CWU.command.Parameters.Add("@ExpiredDate", sqldatetime).Value = Convert.ToDateTime(mdl.ExpiredDate);
+                CWU.command.Parameters.AddWithValue("@userpicture", mdl.UserPicturebyte);
                 CWU.command.Parameters.AddWithValue("@IDRole", mdl.IDRole);
-                CWU.command.Parameters.AddWithValue("@IDWorkHour", mdl.IDWorkHour);
-                CWU.command.Parameters.AddWithValue("@LastLogin", DBNull.Value);
-                CWU.command.Parameters.AddWithValue("@LastPasswordChange", DBNull.Value);
                 CWU.command.Parameters.AddWithValue("@UserLastMaintanance", mdl.UserLastMaintenance);
-                CWU.command.Parameters.AddWithValue("@DateLastMaintanance", DBNull.Value);
                 try
                 {
                     int ret = CWU.command.ExecuteNonQuery();

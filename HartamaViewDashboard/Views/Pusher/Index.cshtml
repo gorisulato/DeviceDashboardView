@@ -1,0 +1,191 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Technician ReportLogs</title>
+</head>
+<body>
+    <div>
+
+
+
+        <div class="wrapper-md-expanded wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h3> Report Log </h3>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-horizontal">
+                                        <div class="form-group" style="margin-bottom:0px">
+                                            <label class="col-sm-3 col-lg-2 control-label">@Resources.Resource.LabelSite</label>
+                                            <div class="col-sm-9 col-lg-9">
+
+
+                                                @Html.DropDownList("SiteReportLog", new SelectList(""), "", new { @class = "form-control m-b ignore", @required = "" })
+
+
+
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <div class="form-horizontal">
+                                        <div class="form-group" style="margin-bottom:0px">
+                                            <label class="col-sm-3 col-lg-1 control-label">@Resources.Resource.labelDevice</label>
+                                            <div class="col-sm-9 col-lg-11">
+                                                <div class="input-group">
+
+                                                    @Html.TextBox("DevieNameReportLog", "", new { @class = "date-model form-control required", @readonly = "" })
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-outline btn-default" type="button" id="frm-btn-DeviceReportLog"><i class="fa fa-search"></i></button>
+                                                    </span>
+                                                    @Html.Hidden("DeviceIDReportLog")
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-4">
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Periode</label>
+                                        <div class="col-lg-9">
+                                            <div class=" input-daterange input-group" id="datepicker">
+                                                <input type="text" class="input-sm form-control m-b" name="PeriodeAwal" id="PeriodeAwal" value="@DateTime.Now.ToString("dd MMMM yyyy")" />
+                                                <span class="input-group-addon">s/d</span>
+                                                <input type="text" class="input-sm form-control m-b" name="PeriodeAkhir" id="PeriodeAkhir" value="@DateTime.Now.ToString("dd MMMM yyyy")" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="row btn-rpt-log">
+
+                                <div class="form-group ">
+
+                                    <div class="pull-left col-md-8 ">
+                                        <button class="btn btn-primary" type="button" id="btnSubmitpusher"><i class="fa fa-print"></i> @Resources.Resource.labelShowReport</button>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <iframe src="" id="frameReportLog" width="100%" height="500px" frameborder="0" style="padding:0;margin:0;"></iframe>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+  
+
+
+    <script src="~/Scripts/Pusher.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            Pusher.logToConsole = true;
+
+            var pusher = new Pusher('4d57b796a305ad74611d', {
+                cluster: 'ap1'
+            });
+
+            var channel = pusher.subscribe('Dashboard-device');
+            channel.bind('my-event', function (data) {
+                console.log(data);
+            });
+
+            $("#btnSubmitpusher").on('click', function () {
+                $.ajax({
+
+                    url: "/Pusher/HelloWorld",
+
+                    type: "POST",
+                    dataType: "html",
+
+                    success: function (Data) {
+
+
+
+
+
+                    },
+                    error: function (xhr, status) {
+                        //toastr.remove()
+
+                        //toastr.error("Transaction Has been Failed TO Post ");
+                    },
+                })
+
+            })
+
+        });
+
+        
+
+
+
+    </script>
+    
+
+</body>
+</html>

@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Hartama_IOTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Hartama_IOT.dbo.Options' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Options">
+          <Key>
+            <PropertyRef Name="OptionsID" />
+            <PropertyRef Name="OptionsName" />
+          </Key>
+          <Property Name="OptionsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OptionsName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OptionsValue" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="TAction">
           <Key>
             <PropertyRef Name="Action_ID" />
@@ -76,6 +87,11 @@
           <Parameter Name="offset" Type="int" Mode="In" />
           <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="GetRoleDatatable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="offset" Type="int" Mode="In" />
+          <Parameter Name="limit" Type="int" Mode="In" />
+          <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
+        </Function>
         <Function Name="GETSENSORDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idmainparam" Type="nvarchar" Mode="In" />
         </Function>
@@ -86,6 +102,11 @@
         </Function>
         <Function Name="GETSiteByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetuserNew" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="offset" Type="int" Mode="In" />
+          <Parameter Name="limit" Type="int" Mode="In" />
+          <Parameter Name="keyword" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="InsertCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="nvarchar" Mode="In" />
@@ -106,6 +127,11 @@
           <Parameter Name="MacAdress1" Type="nvarchar" Mode="In" />
           <Parameter Name="MacAdress2" Type="nvarchar" Mode="In" />
           <Parameter Name="MacAdress3" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertToLogTemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startdate" Type="datetime" Mode="In" />
+          <Parameter Name="enddate" Type="datetime" Mode="In" />
+          <Parameter Name="pathServer" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="P_NumberSeri" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MODUL" Type="nvarchar" Mode="In" />
@@ -437,12 +463,13 @@
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
           <Parameter Name="Fullname" Type="nvarchar" Mode="In" />
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
-          <Parameter Name="ExpiredDate" Type="datetime" Mode="In" />
           <Parameter Name="Locked" Type="bit" Mode="In" />
           <Parameter Name="IDRole" Type="nvarchar" Mode="In" />
-          <Parameter Name="IDWorkHour" Type="nvarchar" Mode="In" />
           <Parameter Name="UserEntry" Type="nvarchar" Mode="In" />
           <Parameter Name="DateEntry" Type="datetime" Mode="In" />
+          <Parameter Name="site" Type="nvarchar" Mode="In" />
+          <Parameter Name="userPicture" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="employeeNo" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="PTUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
@@ -461,16 +488,12 @@
           <Parameter Name="IDUser" Type="nvarchar" Mode="In" />
           <Parameter Name="UserCode" Type="nvarchar" Mode="In" />
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
-          <Parameter Name="Password" Type="nvarchar" Mode="In" />
           <Parameter Name="Fullname" Type="nvarchar" Mode="In" />
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
-          <Parameter Name="ExpiredDate" Type="datetime" Mode="In" />
+          <Parameter Name="userpicture" Type="varbinary(max)" Mode="In" />
           <Parameter Name="IDRole" Type="nvarchar" Mode="In" />
-          <Parameter Name="IDWorkHour" Type="nvarchar" Mode="In" />
-          <Parameter Name="LastLogin" Type="datetime" Mode="In" />
-          <Parameter Name="LastPasswordChange" Type="datetime" Mode="In" />
+          <Parameter Name="employeeno" Type="nvarchar" Mode="In" />
           <Parameter Name="UserLastMaintanance" Type="nvarchar" Mode="In" />
-          <Parameter Name="DateLastMaintanance" Type="datetime" Mode="In" />
         </Function>
         <Function Name="PTUserUpdateLastLoginSite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDUser" Type="nvarchar" Mode="In" />
@@ -504,8 +527,20 @@
           <Parameter Name="Description" Type="nvarchar" Mode="In" />
           <Parameter Name="UserLastMaintenance" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="UpdateStatusLocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="iduser" Type="nvarchar" Mode="In" />
+          <Parameter Name="type" Type="int" Mode="In" />
+          <Parameter Name="userupdateby" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="Hartama_IOTModelStoreContainer">
           <EntitySet Name="TAction" EntityType="Self.TAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Options" EntityType="Self.Options" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Options].[OptionsID] AS [OptionsID], 
+    [Options].[OptionsName] AS [OptionsName], 
+    [Options].[OptionsValue] AS [OptionsValue]
+    FROM [dbo].[Options] AS [Options]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -527,12 +562,13 @@
             <Parameter Name="Password" Mode="In" Type="String" />
             <Parameter Name="Fullname" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
-            <Parameter Name="ExpiredDate" Mode="In" Type="DateTime" />
             <Parameter Name="Locked" Mode="In" Type="Boolean" />
             <Parameter Name="IDRole" Mode="In" Type="String" />
-            <Parameter Name="IDWorkHour" Mode="In" Type="String" />
             <Parameter Name="UserEntry" Mode="In" Type="String" />
             <Parameter Name="DateEntry" Mode="In" Type="DateTime" />
+            <Parameter Name="site" Mode="In" Type="String" />
+            <Parameter Name="userPicture" Mode="In" Type="Binary" />
+            <Parameter Name="employeeNo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="PTUserLogin" ReturnType="Collection(Hartama_IOTModel.PTUserLogin_Result)">
             <Parameter Name="Username" Mode="In" Type="String" />
@@ -545,16 +581,12 @@
             <Parameter Name="IDUser" Mode="In" Type="String" />
             <Parameter Name="UserCode" Mode="In" Type="String" />
             <Parameter Name="Username" Mode="In" Type="String" />
-            <Parameter Name="Password" Mode="In" Type="String" />
             <Parameter Name="Fullname" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
-            <Parameter Name="ExpiredDate" Mode="In" Type="DateTime" />
+            <Parameter Name="userpicture" Mode="In" Type="Binary" />
             <Parameter Name="IDRole" Mode="In" Type="String" />
-            <Parameter Name="IDWorkHour" Mode="In" Type="String" />
-            <Parameter Name="LastLogin" Mode="In" Type="DateTime" />
-            <Parameter Name="LastPasswordChange" Mode="In" Type="DateTime" />
+            <Parameter Name="employeeno" Mode="In" Type="String" />
             <Parameter Name="UserLastMaintanance" Mode="In" Type="String" />
-            <Parameter Name="DateLastMaintanance" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="PTUserSelectByKeyword" ReturnType="Collection(Hartama_IOTModel.PTUserSelectByKeyword_Result)">
             <Parameter Name="OrderBy" Mode="In" Type="String" />
@@ -904,9 +936,6 @@
             <Parameter Name="offset" Mode="In" Type="Int32" />
             <Parameter Name="limit" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetDeviceChartByID" ReturnType="Collection(Hartama_IOTModel.GetDeviceChartByID_Result)">
-          <Parameter Name="DeviceID" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="GetDeviceCategory" ReturnType="Collection(Hartama_IOTModel.GetDeviceCategory_Result)">
             <Parameter Name="offset" Mode="In" Type="Int32" />
             <Parameter Name="limit" Mode="In" Type="Int32" />
@@ -999,7 +1028,31 @@
             <Parameter Name="keyword" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetAllChart" ReturnType="Collection(Hartama_IOTModel.GetAllChart_Result)">
-            <Parameter Name="DeviceID" Mode="In" Type="String" />
+          <Parameter Name="DeviceID" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Options" EntityType="Hartama_IOTModel.Options" />
+          <FunctionImport Name="GetDeviceChartByID" ReturnType="Collection(Hartama_IOTModel.GetDeviceChartByID_Result)">
+          <Parameter Name="DeviceID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetRoleDatatable" ReturnType="Collection(Hartama_IOTModel.GetRoleDatatable_Result)">
+            <Parameter Name="offset" Mode="In" Type="Int32" />
+            <Parameter Name="limit" Mode="In" Type="Int32" />
+            <Parameter Name="keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetuserNew" ReturnType="Collection(Hartama_IOTModel.GetuserNew_Result)">
+            <Parameter Name="offset" Mode="In" Type="Int32" />
+            <Parameter Name="limit" Mode="In" Type="Int32" />
+            <Parameter Name="keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateStatusLocked" ReturnType="Collection(Hartama_IOTModel.UpdateStatusLocked_Result)">
+            <Parameter Name="iduser" Mode="In" Type="String" />
+            <Parameter Name="type" Mode="In" Type="Int32" />
+            <Parameter Name="userupdateby" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertToLogTemp">
+            <Parameter Name="startdate" Mode="In" Type="DateTime" />
+            <Parameter Name="enddate" Mode="In" Type="DateTime" />
+            <Parameter Name="pathServer" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="PTUserLogin_Result">
@@ -1513,13 +1566,6 @@
           <Property Type="Int32" Name="unreadmessages" Nullable="true" />
           <Property Type="String" Name="Device_ID" Nullable="true" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="GetDeviceChartByID_Result">
-          <Property Type="String" Name="ID_DataLog" Nullable="true" MaxLength="300" />
-          <Property Type="String" Name="device_id" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Warning" Nullable="true" />
-          <Property Type="Decimal" Name="value" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="Title" Nullable="true" MaxLength="51" />
-        </ComplexType>
         <ComplexType Name="GetDeviceCategory_Result">
           <Property Type="String" Name="Category_ID" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Category_Name" Nullable="false" MaxLength="50" />
@@ -1631,6 +1677,49 @@
           <Property Type="String" Name="ID_Device" Nullable="true" MaxLength="50" />
           <Property Type="Decimal" Name="lower" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="upper" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <EntityType Name="Options">
+          <Key>
+            <PropertyRef Name="OptionsID" />
+            <PropertyRef Name="OptionsName" />
+          </Key>
+          <Property Name="OptionsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OptionsName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OptionsValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="GetDeviceChartByID_Result">
+          <Property Type="String" Name="ID_DataLog" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="device_id" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Warning" Nullable="true" />
+          <Property Type="Decimal" Name="value" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="51" />
+          <Property Type="Decimal" Name="lower" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="upper" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="GetRoleDatatable_Result">
+          <Property Type="String" Name="IDRole" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="Rolename" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetuserNew_Result">
+          <Property Type="String" Name="IDUser" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="EmployeeNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Fullname" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Rolename" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="SiteName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LockedDescription" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="IDRole" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="IDSite" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="Locked" Nullable="false" />
+          <Property Type="String" Name="UserCode" Nullable="false" MaxLength="20" />
+          <Property Type="Binary" Name="UserPicture" Nullable="true" />
+          <Property Type="Int32" Name="TotalRecords" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="UpdateStatusLocked_Result">
+          <Property Type="String" Name="Pesan" Nullable="true" />
+          <Property Type="Int32" Name="Error" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2378,17 +2467,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetDeviceChartByID" FunctionName="Hartama_IOTModel.Store.GetDeviceChartByID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceChartByID_Result">
-                <ScalarProperty Name="ID_DataLog" ColumnName="ID_DataLog" />
-                <ScalarProperty Name="device_id" ColumnName="device_id" />
-                <ScalarProperty Name="Warning" ColumnName="Warning" />
-                <ScalarProperty Name="value" ColumnName="value" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetDeviceCategory" FunctionName="Hartama_IOTModel.Store.GetDeviceCategory">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceCategory_Result">
@@ -2569,6 +2647,66 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Options">
+            <EntityTypeMapping TypeName="Hartama_IOTModel.Options">
+              <MappingFragment StoreEntitySet="Options">
+                <ScalarProperty Name="OptionsValue" ColumnName="OptionsValue" />
+                <ScalarProperty Name="OptionsName" ColumnName="OptionsName" />
+                <ScalarProperty Name="OptionsID" ColumnName="OptionsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetDeviceChartByID" FunctionName="Hartama_IOTModel.Store.GetDeviceChartByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Hartama_IOTModel.GetDeviceChartByID_Result">
+                <ScalarProperty Name="ID_DataLog" ColumnName="ID_DataLog" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="Warning" ColumnName="Warning" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="lower" ColumnName="lower" />
+                <ScalarProperty Name="upper" ColumnName="upper" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetRoleDatatable" FunctionName="Hartama_IOTModel.Store.GetRoleDatatable">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Hartama_IOTModel.GetRoleDatatable_Result">
+                <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+                <ScalarProperty Name="Rolename" ColumnName="Rolename" />
+                <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetuserNew" FunctionName="Hartama_IOTModel.Store.GetuserNew">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Hartama_IOTModel.GetuserNew_Result">
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Rolename" ColumnName="Rolename" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LockedDescription" ColumnName="LockedDescription" />
+                <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+                <ScalarProperty Name="IDSite" ColumnName="IDSite" />
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="UserPicture" ColumnName="UserPicture" />
+                <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateStatusLocked" FunctionName="Hartama_IOTModel.Store.UpdateStatusLocked">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Hartama_IOTModel.UpdateStatusLocked_Result">
+                <ScalarProperty Name="Pesan" ColumnName="Pesan" />
+                <ScalarProperty Name="Error" ColumnName="Error" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertToLogTemp" FunctionName="Hartama_IOTModel.Store.InsertToLogTemp" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -18,5 +18,7 @@ namespace HartamaViewDashboard.DB
         public Nullable<int> Warning { get; set; }
         public Nullable<decimal> value { get; set; }
         public string Title { get; set; }
+        public Nullable<decimal> lower { get; set; }
+        public Nullable<decimal> upper { get; set; }
     }
 }

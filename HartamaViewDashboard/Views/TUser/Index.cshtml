@@ -1,0 +1,348 @@
+﻿@model HartamaViewDashboard.Models.TUserModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Resources.Resource.labelDevice</title>
+</head>
+<body>
+    @*<input id="IDRole" type="text" value="@(ViewBag.Role.IDRole)" hidden />
+
+        <input id="PathApp" type="text" value="@(ViewBag.Role.PathApp)" hidden />
+
+        <input id="View" type="text" value="@(ViewBag.Role.BindView)" hidden />
+
+        <input id="New" type="text" value="@(ViewBag.Role.BindNew)" hidden />
+
+        <input id="Edit" type="text" value="@(ViewBag.Role.BindEdit)" hidden />
+
+        <input id="Delete" type="text" value="@(ViewBag.Role.BindDelete)" hidden />
+
+        <input id="Print" type="text" value="@(ViewBag.Role.BindPrintable)" hidden />*@
+
+    <div id="body">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-8">
+                <h2>@Resources.Resource.LabelUser</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#" onclick="utility._loadMenu('../Dashboards/Home')">@Resources.Resource.LabelHome</a>
+                    </li>
+                    <li class="active" id="ftr-name">
+                        <strong>@Resources.Resource.LabelUser</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="ibox-tools">
+                <a><i class="fa fa-question"></i></a>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeIn">
+            <div class="row" id="render-body">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins" id="box-content">
+                        <div class="ibox-title">
+                            <h5> @Resources.Resource.DataList </h5>
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div id="userMessage" class="col-sm-12">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-primary" type="button" id="btnAddUser"><i class="fa fa-plus"></i> @Resources.Resource.ButtonAdd </button>
+                                        <button class="btn btn-primary" type="button" id="btnLockUser"><i class="fa fa-lock"></i> @Resources.Resource.ButtonLocked </button>
+                                        <button class="btn btn-primary" type="button" id="btnUnLockUser"><i class="fa fa-unlock"></i> @Resources.Resource.ButtonUnlocked </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding:0 15px">
+                                <div class="col-sm-3">
+                                    <label for="Keyword" class="sr-only"> Keyword </label>
+                                    <input type="text" placeholder="Keyword" id="keywordUser" class="form-control">
+                                </div>
+                                <div class="col-sm-9">
+                                    <button class="btn btn-white" id="btnSearchUser">Search</button>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-8 col-lg-9" style="display:contents;">
+
+                                        <div class="alert alert-danger alert-dismissable " aria-hidden="true" style="display :none;" id="errorDivUpdate">
+                                            <button class="close" type="button" data-ng-hide="alert" aria-hidden="true">×</button>
+                                            <div id="errorMsgDivUpdate"></div>
+                                        </div>
+                                        <div class="alert alert-success" id="successDiv"></div>
+                                        <input type="hidden" id="hiddenIDFeature" value="" />
+                                        <table id="TUSERTUSER" class="table table-striped table-bordered table-hover dataTables-example custom_table_scroll" tabindex="1">
+                                            <thead>
+                                                <tr>
+                                                    <th>@Resources.Resource.EmployeeLabelIDEmployee</th>
+                                                    <th>@Resources.Resource.LabelUserName</th>
+                                                    <th>@Resources.Resource.LabelSite</th>
+                                                    <th>@Resources.Resource.Name</th>
+                                                    <th>@Resources.Resource.Email</th>
+                                                    <th>@Resources.Resource.LabelRoleName</th>
+                                                    <th>@Resources.Resource.LabelUserLocked</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ibox float-e-margins" id="UserInformation">
+                        <div class="ibox-title">
+                            <h3>@Resources.Resource.Information</h3>
+                        </div>
+                        <div class="ibox-content">
+
+                            @using (Html.BeginForm("Create", null, FormMethod.Post, new { name = "Form-User", id = "Form-User", @enctype = "multipart/form-data", @xxx = "Create" }))
+                            {
+                                <div class="form-horizontal">
+                                    @Html.HiddenFor(model => Model.UserID)
+                                    @Html.HiddenFor(x=>x.UserPicture)
+                                    @Html.HiddenFor(x=>x.Locked)
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.Code</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.UserCode, new { @class = "form-control", @MaxLength = "100" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.EmployeeLabelIDEmployee</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.EmployeeNO, new { @class = "form-control", @MaxLength = "50" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.UserLabelFullname</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.Fullname, new { @class = "form-control", @MaxLength = "100" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelUserName</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.Username, new { @class = "form-control", @MaxLength = "100" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.Email</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.Email, new { @class = "form-control", @MaxLength = "100" })
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelSite</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            <div class="input-group m-b">
+
+                                                @Html.TextBox("UserSite", "", new { @class = "date-model form-control required", @required = "", @readonly = "" })
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-outline btn-default" type="button" id="btn-site-search"><i class="fa fa-search"></i></button>
+                                                </span>
+                                                @Html.HiddenFor(model => model.IDSite)
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelRole</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            <div class="input-group m-b">
+
+                                                @Html.TextBox("UserRole", "", new { @class = "date-model form-control required", @required = "", @readonly = "" })
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-outline btn-default" type="button" id="btn-role-search"><i class="fa fa-search"></i></button>
+                                                </span>
+                                                @Html.HiddenFor(model => model.IDRole)
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                   
+                                    
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.Picture</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            <input type="file" id="userPictFile">
+                                            <img src="" id="UserPictContainer" />
+                                            @Html.HiddenFor(x => x.UserPicturebyte)
+                                        </div>
+                                    </div>
+
+                                    
+
+                                    <div id="userinfo">
+                                        <div class="form-group" id="divuserentry">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelUserEntry</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                @Html.TextBoxFor(model => Model.UserEntry, new { @class = "form-control", @readonly = "readonly" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divdateentry">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelDateEntry</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                @Html.TextBoxFor(model => Model.DateEntry, new { @class = "form-control", @readonly = "readonly" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divuserlastmaintenance">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelUserLastMaintenance</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                @Html.TextBoxFor(model => Model.UserLastMaintenance, new { @class = "form-control", @readonly = "readonly" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="divdatelastmaintenance">
+                                            <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.LabelDateLastMaintenance</label>
+                                            <div class="col-sm-9 col-lg-8">
+                                                @Html.TextBoxFor(model => Model.DateLastMaintenance, new { @class = "form-control", @readonly = "readonly" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label class="col-md-4 control-label"></label>
+                                        <div class="button-custom-style pull-right col-md-8 ">
+                                            <button class="btn btn-primary" type="button" id="btnSaveRow"><i class="fa fa-save"></i> @Resources.Resource.ButtonSave </button>
+                                            @*<button class="btn btn-primary" type="button" id="btnDeleteRow"><i class="fa fa-trash"></i> @Resources.Resource.ButtonDelete </button>*@
+                                            <button class="btn btn-outline btn-default" type="button" id="btnCancelRow"><i class="fa fa-close"></i> @Resources.Resource.ButtonCancel </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+
+        <div id="ModalDataUserSite" class="modal inmodal " aria-hidden="true" role="dialog" tabindex="1" style="overflow-y: scroll; max-height:100%;  margin-top: 50px; margin-bottom:50px ; ">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content animated fadein ">
+                    <div class="modal-header">
+                        <h3>@Resources.Resource.LabelSite</h3>
+                        <div class="ibox-tools">
+                            <a class="active-tooltips" id="CloseModalUserSite">
+                                <span class="tooltipster-icon">
+                                    <i class="fa fa-close "></i>
+                                </span>
+                            </a>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-body" id="modal-Render-UbahMotorACCModal">
+
+                        <div class="panel-body">
+                            @{ Html.RenderPartial("~/Views/TUser/UserSearchSite.cshtml");  }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="ModalDataUserRole" class="modal inmodal " aria-hidden="true" role="dialog" tabindex="1" style="overflow-y: scroll; max-height:100%;  margin-top: 50px; margin-bottom:50px ; ">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content animated fadein ">
+                    <div class="modal-header">
+                        <h3>@Resources.Resource.LabelRole</h3>
+                        <div class="ibox-tools">
+                            <a class="active-tooltips" id="CloseModalUserRole">
+                                <span class="tooltipster-icon">
+                                    <i class="fa fa-close "></i>
+                                </span>
+                            </a>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-body" id="modal-Render-UbahMotorACCModal">
+
+                        <div class="panel-body">
+                            @{ Html.RenderPartial("~/Views/TUser/UserSearchRole.cshtml");  }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <script>
+        //function OnloadFunction() { }
+            $(document).ready(function () {
+                $.getScript("../Scripts/main/TUser.js", {
+                    cache: true
+                }).done(
+                    function () {
+                        @*var param = {};
+                        param.attribute = {
+
+                            "Info": "@Resources.Resource.LabelShowing",
+                            "Page": "@Resources.Resource.LabelPage",
+                            "Of": "@Resources.Resource.LabelOf",
+                            "ZeroResult": "@Resources.Resource.LabelZeroResult",
+                            "InfoEmpty": "@Resources.Resource.LabelInfoEmpty",
+                            "Previous": "@Resources.Resource.LabelPrev",
+                            "Next": "@Resources.Resource.LabelNext",
+                            "Last": "@Resources.Resource.LabelLastPage",
+                            "First": "@Resources.Resource.LabelFirstPage",
+                            "To": "@Resources.Resource.LabelTo",
+                            "Entries": "@Resources.Resource.LabelEntries",
+                            "Warning": "@Resources.Resource.LabelWarning",
+                            "PickOneData": "@Resources.Resource.AlertPickOneData",
+                            "CanDelete": "@ViewBag.Role.BindDelete.ToString()",
+                            "CanSave": "@ViewBag.Role.BindNew.ToString()",
+                            "CanEdit": "@ViewBag.Role.BindEdit.ToString()",
+                            "CanView": "@ViewBag.Role.BindView.ToString()",
+                            "CanPrint": "@ViewBag.Role.BindPrintable.ToString()"
+                        }*@
+                        TUser.init();
+                    }
+                )
+            });
+        </script>
+
+        @*<style>
+               table.dataTable tbody tr.row_selected {
+            background-color: #b0bed9;
+                }
+            </style>*@
+
+</body>
+
+</html>

@@ -8305,6 +8305,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Report.
+        /// </summary>
+        internal static string labelShowReport {
+            get {
+                return ResourceManager.GetString("labelShowReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Single.
         /// </summary>
         internal static string LabelSingle {

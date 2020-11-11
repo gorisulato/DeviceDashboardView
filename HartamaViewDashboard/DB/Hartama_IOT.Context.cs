@@ -1795,7 +1795,7 @@ namespace HartamaViewDashboard.DB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UpdateStatusLocked_Result>("UpdateStatusLocked", iduserParameter, typeParameter, userupdatebyParameter);
         }
     
-        public virtual int InsertToLogTemp(Nullable<System.DateTime> startdate, Nullable<System.DateTime> enddate, string pathServer)
+        public virtual ObjectResult<string> InsertToLogTemp(Nullable<System.DateTime> startdate, Nullable<System.DateTime> enddate, string pathServer, string userID)
         {
             var startdateParameter = startdate.HasValue ?
                 new ObjectParameter("startdate", startdate) :
@@ -1809,7 +1809,11 @@ namespace HartamaViewDashboard.DB
                 new ObjectParameter("pathServer", pathServer) :
                 new ObjectParameter("pathServer", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertToLogTemp", startdateParameter, enddateParameter, pathServerParameter);
+            var userIDParameter = userID != null ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("InsertToLogTemp", startdateParameter, enddateParameter, pathServerParameter, userIDParameter);
         }
     }
 }

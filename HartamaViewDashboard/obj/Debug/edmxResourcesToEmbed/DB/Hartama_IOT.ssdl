@@ -127,6 +127,7 @@ warning 6002: The table/view 'Hartama_IOT.dbo.Options' does not have a primary k
     <Parameter Name="startdate" Type="datetime" Mode="In" />
     <Parameter Name="enddate" Type="datetime" Mode="In" />
     <Parameter Name="pathServer" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="P_NumberSeri" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="MODUL" Type="nvarchar" Mode="In" />

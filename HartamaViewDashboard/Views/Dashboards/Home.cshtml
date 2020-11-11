@@ -139,6 +139,16 @@
                                 </h3>
                             </div>
                             <div id="actionChart" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Periode</label>
+                                    <div class="col-lg-9">
+                                        <div class=" input-daterange input-group" id="datepicker">
+                                            <input type="text" class="input-sm form-control m-b" name="datestart" id="datestart" value="@DateTime.Now.ToString("dd MMMM yyyy")" />
+                                            <span class="input-group-addon">s/d</span>
+                                            <input type="text" class="input-sm form-control m-b" name="dateend" id="dateend" value="@DateTime.Now.ToString("dd MMMM yyyy")" />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="panel-body">
                                     <div class="ibox float-e-margins">
                                         <div class="ibox-content">
@@ -159,10 +169,28 @@
     <script src="~/Scripts/d3-5.8.2.min.js"></script>  
     <script src="~/Scripts/jquery.signalR-2.2.1.js" type="text/javascript"></script>
     <script src="~/signalr/hubs"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
             if ("@Session["IDUser"]" != null) {
+
+                $('#datestart').datepicker({
+                    format: 'dd MM yyyy',
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    autoclose: true
+                }).datepicker("setDate", 'now');
+
+                $('#dateend').datepicker({
+                    format: 'dd MM yyyy',
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    autoclose: true
+                }).datepicker("setDate", 'now');
+                $('#datestart').datepicker("hide")
+                $('#dateend').datepicker("hide")
+
                 $('.match-height').matchHeight();
                 $("#NotificationLoadMore").attr('data-offset', 5)
                //GenerateMaps()
@@ -173,7 +201,8 @@
 
                 window.paramdo.iddevicetodisplay = "";
                 window.paramdo.chartarray = new Array();
-
+                window.paramdo.urlparam="@ViewBag.SiteUrl";
+                //console.log(@ViewBag.SiteUrl)
                 $('#SiteDeviceFilter').on('change', function () {
                    
                     $('#DeviceListDashboard').DataTable().draw();
@@ -190,20 +219,20 @@
                 $('#DeviceListDashboard').on('click', 'tbody tr', function () {
                     if ($(this).hasClass('row_selected')) {
 
-                        GetAllChart($(this).attr("IDDevice"), $(this).find('td:eq(0)').text())
+                        //GetAllChart($(this).attr("IDDevice"), $(this).find('td:eq(0)').text())
                         GEtActionLog($(this).attr("IDDevice"))
                         $('#DashboardSensorList').DataTable().destroy();
-                        GenerateParameterTable($(this).attr("IDCategory"))
+                        GenerateParameterTable($(this).attr("IDCategory"), $(this).attr("IDDevice"))
                         $(".Device-title-dashboard").html('<i class="fa fa-fire-extinguisher"></i> Parameter For Device: ' + $(this).find('td:eq(0)').text())
                     }
                     else {
-                        GetAllChart($(this).attr("IDDevice"), $(this).find('td:eq(0)').text())
+                        //GetAllChart($(this).attr("IDDevice"), $(this).find('td:eq(0)').text())
                         $("#DeviceListDashboard tr.row_selected").removeClass('row_selected');
                         //$(this).removeClass('row_selected');
                         $(this).addClass('row_selected');
                         GEtActionLog($(this).attr("IDDevice"))
                         $('#DashboardSensorList').DataTable().destroy();
-                        GenerateParameterTable($(this).attr("IDCategory"))
+                        GenerateParameterTable($(this).attr("IDCategory"), $(this).attr("IDDevice"))
                         $(".Device-title-dashboard").html('<i class="fa fa-fire-extinguisher"></i> Parameter For Device: ' + $(this).find('td:eq(0)').text())
 
                     }
@@ -329,7 +358,7 @@
 
        
 
-        function GenerateParameterTable(idcategory) {
+        function GenerateParameterTable(idcategory,iddevice) {
             if (!$.fn.DataTable.isDataTable('#DashboardSensorList')) {
                 var table = $('#DashboardSensorList').dataTable({
                     "dom": 'r<"table-responsive responsive"t><"bottom"<"col-sm-6"i><"col-sm-6"p>><"clear">',
@@ -362,6 +391,8 @@
 
                     "fnInitComplete": function (oSettings, json) {
                         // $('#tsensorlist tbody tr:eq(0)').click();
+                        GetAllChart(iddevice, "")
+                       
                     }
 
 
@@ -372,6 +403,8 @@
             else {
                 $('#DashboardSensorList').DataTable().draw();
             }
+
+           
         }
 
         function GetDevices() {
@@ -427,7 +460,9 @@
 
         function GetAllChart(id,name) {
             var elementchart = "";
-
+           // var a = "";
+            var value = []
+            $(".chart-container").remove()
             var colorpallete = [
                                 //["#60ccc2", "#ffda1e", "#eabb37"],EDEDED
                                 ["#85BADD", "#5CC8B2", "#EDEDED"],
@@ -445,89 +480,89 @@
                                 ["#85BADD", "#5CC8B2", "#EDEDED"],
                                 ["#e3fdfd", "#cbf1f5", "#a6e3e9"],
                                 ["#b9bbdf", "#878ecd", "#dde7f2"],
-                                ]
+            ];
+            console.log( window.paramdo.urlparam)
             $.ajax({
-                url: "../Dashboards/GetAllChart?DeviceID=" + id,//FEED_URL,
                 type: "POST",
-                dataType: "html",
-                success: function (data) {
-                    var xml = $.parseJSON(data)
-                    var valuedata = new Array;
-                    var iddata = []
-                    if (xml.Data.length > 0) {
-                       var color=[]
-                        const unique = [...new Set(xml.Data.map(item => item.Date))];
-                        const unique1 = [...new Set(xml.Data.map(item => item.Detail_SensorName))];
-                        //console.log(unique1)
+                url: window.paramdo.urlparam + '/api/DeviceData/ReadFile?datestart='+$('#datestart').val()+'&dateend='+$('#dateend').val(),
 
-                        for (var xx = 0; xx < unique1.length; xx++) {
-                            var value = xml.Data.filter(obj=>obj.Detail_SensorName === unique1[xx]);
+                processData: false,
+                datatype: "json",
+                success: function (result) {
+                    //console.log(result.Result.length)
+                    for (var x = 0; x < result.Result.length; x++) {
+
+                        var resultsplit = result.Result[x].split("\n")
+                       
+                        for (var z = 0; z < resultsplit.length; z++) {
+
+                            var rowsplited = resultsplit[z].split(",");
+                          // console.log(rowsplited);
+                           if (rowsplited[0] !="") {
+
+                                if (rowsplited[0] == id ) {
+
+                                    value.push({SensorID:rowsplited[1],value:rowsplited[2],date:rowsplited[3]})
+                                }
+                            }
                             
-                            for (var z = 0; z < value.length; z++) {
-                               
+                           
 
-                                valuedata.push(value[z].average_of_day);
-                                if (iddata.length == 0) {
-                                    iddata.push({ id: value[z].Detail_SensorName, value: valuedata, lower: value[z].lower, upper: value[z].upper })
-                                }
-                                else {
-                                    let obj = iddata.find(x => x.id === value[z].Detail_SensorName);
-                                    let index = iddata.indexOf(obj);
-                                    if (index > -1) {
+                        }
+                        
+                        
+                    }
+                   // console.log(value)
+                    
+                    var valuesensor =[]
+                    const unique1 = [...new Set(value.map(item => item.SensorID))];
+                    // console.log($("#DashboardSensorList"));
+                    
+                   
+                   
+                    for (var i = 0; i < unique1.length; i++) {
+                        var sortedchart = []
+                        var xx = $("#DashboardSensorList").DataTable().rows(i).data()
+                        
+                        if (document.getElementById("chart"+ unique1[i]) == null) {
+                                                   var a = ' '+
+                                                        ' <div class="chart-container" id=' + unique1[i] + '>'
+                                                            //+ ' <h1 id="warning-chart" class="warning-blink  ">warning!!!</h1>'
+                                                            + '<h1 class="title-chart">' + xx[0][1] + '</h1> ' +
+                                                            '<canvas id="chart'+ unique1[i] +'" > ' +
 
-                                        iddata[index] = { id: value[z].Detail_SensorName, value: valuedata, lower: value[z].lower, upper: value[z].upper }
-                                    }
-                                    else {
-                                        iddata.push({ id: value[z].Detail_SensorName, value: valuedata, lower: value[z].lower, upper: value[z].upper })
-                                    }
-                                }
-                               
-                              
-                                if (document.getElementById("chart"+ value[z].Detail_SensorName) == null) {
-                                    a = ' '+
-                                        ' <div class="chart-container" id=' + value[z].Detail_SensorName + '>'
-                                            //+ ' <h1 id="warning-chart" class="warning-blink  ">warning!!!</h1>'
-                                            + '<h1 class="title-chart">' + value[z].Detail_SensorName + '</h1> ' +
-                                            '<div id="chart'+ value[z].Detail_SensorName.trim() +'" > ' +
-
-                                            '</div>' +
-                                    ' </div> ';
-                                    $("#content-chart").append(a);
+                                                            '</canvas>' +
+                                                    ' </div> ';
+                                                    $("#content-chart").append(a);
 
                                    
                                     
-                                }
+                        }
 
+                        for (var y = 0; y < value.length; y++) {
 
+                            if (value[y].SensorID == unique1[i]) {
 
-                             
+                                sortedchart.push({ ID: value[y].SensorID, Current: value[y].value, date: value[y].date, upper: xx[0][3], lower: xx[0][2] });
                                 
                             }
-                            color = colorpallete[xx];
-                            //if (xx <= 4) {
-                            //    color = ["#c6cee3", "#ddf5f9", "#f0c8c8"];
-
-                            //}
-                            //else if (xx > 4 && xx <= 9) {
-                            //    color = ["#c6cee3", "#ddf5f9", "#f0c8c8"];
-                            //}
-                            GenerateChart(iddata, unique,color)
-                           
-                            iddata=[]
-                            valuedata=[]
-                          
                         }
-                        
-                      
-                    }
-                    else {
-                        $('.chart-container').remove();
-                    }
-                   
 
-                  
+
+                        GenerateChart(sortedchart, colorpallete[i], xx[0][1])
+                       
+                    }
+                    
+                    
+                },
+                error: function (xhr, status, p3, p4) {
+                    var err = "Error " + " " + status + " " + p3 + " " + p4;
+                    if (xhr.responseText && xhr.responseText[0] == "{")
+                        err = JSON.parse(xhr.responseText).Message;
+                    console.log(err);
                 }
             });
+           
         }
         function ReloadChart(dataJson, deviceid) {
 
@@ -562,8 +597,9 @@
             //console.log(chart)
             
         }
-        function GenerateChart(dataJson, datadate,color) {
-            console.log(datadate)
+        function GenerateChart(dataJson, color,name) {
+           // console.log(dataJson.length)
+           // console.log(datadate)
             var x = []
             x[0] = "#EA7369";
             x[1] = "#AF4BCE"
@@ -571,71 +607,134 @@
             var value = []
             var lower = []
             var upper = []
-            var date=[]
+            var date = []
+            var tick=[]
+           // console.log(dataJson[0].date)
             //console.log(dataJson[1])
             //for (var z = 0; z < dataJson[0].length; z++) {
-                for (var zz = 0; zz < dataJson[0].value.length; zz++) {
+                for (var zz = 0; zz < dataJson.length; zz++) {
                     if (zz == 0) {
                         date.push('x');
-                        date.push(datadate[zz])
-                        value.push(dataJson[0].id)
-                        lower.push("Lower Limit")
-                        value.push(dataJson[0].value[zz])
-                        lower.push(dataJson[0].lower)
-                        upper.push("Upper Limit")
-                        upper.push(dataJson[0].upper)
+                        date.push(new Date(dataJson[zz].date))
+                        tick.push(dataJson[zz].date)
+                        //value.push(name)
+                        value.push(dataJson[zz].Current)
+                        //lower.push("Lower Limit")
+                       
+                        lower.push(dataJson[zz].lower)
+                        //upper.push("Upper Limit")
+                        upper.push(dataJson[zz].upper)
                     } else {
-                        value.push(dataJson[0].value[zz])
-                        upper.push(dataJson[0].upper)
-                        lower.push(dataJson[0].lower)
-                        date.push(datadate[zz])
+                        value.push(dataJson[zz].Current)
+                        upper.push(dataJson[zz].upper)
+                        lower.push(dataJson[zz].lower)
+                        date.push(new Date(dataJson[zz].date))
+                        tick.push(dataJson[zz].date)
                     }
                 }
+            //console.log(value)
+                var ctx = document.getElementById('chart' + dataJson[0].ID).getContext('2d');
+                var myChart = new Chart(ctx, {
+                   type: 'line',
+                    data: {
+                        labels: tick,
+                        datasets: [{
+                            label: name,
+                            data: value,
+                            backgroundColor: '#fff',
+                            borderColor: color[1]
+                            
+                           
+                        },
+                        {
+                            label: 'upper',
+                            data: upper,
+                            backgroundColor: '#fff',
+                            borderColor: color[2],
+                            lineTension: 10
+
+
+                        },
+                        {
+                            label: 'lower',
+                            data: lower,
+                            backgroundColor: '#fff',
+                            borderColor: color[0],
+                            lineTension: 40
+
+
+                        }
+
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    autoSkip: false
+                                }
+                            }],
+                            xAxes: [{
+                               
+                                ticks: {
+                                    maxTicksLimit: 1,
+                                    min: 0,
+                                    autoSkip: false,
+                                    display:false
+                                }
+                            }]
+                        }
+                        
+                    }
+                });
                
             //}
           
             //console.log(value)
 
-            var chart = c3.generate({
-                bindto: "#chart" + dataJson[0].id,
+//            var chart = c3.generate({
+//                bindto: "#chart" + dataJson[0].ID,
               
-                data: {
-                    x: 'x',
-                    columns: [
-                        date,
-                        lower,
-                        value,
-                        upper
+//                data: {
+//                    x: 'x',
+//                    columns: [
+//                        date,
+//                        lower,
+//                        value,
+//                        upper
                         
                         
-                    ],
-                    type: 'area-spline'
+//                    ],
+//                    type: 'area-spline'
                        
                     
-                },
-                axis : {
-                    x : {
-                        type : 'timeseries',
-                        tick: {
-                            format: '%Y-%m-%d',
-                            rotate: -30,
-                            multiline: false
+//                },
+//                axis : {
+//                    x : {
+//                        type : 'timeseries',
+//                        tick: {
+//                            format: '%Y-%m-%d %H:%M:%S',
+//                           // values:tick,
+//                            rotate: -30,
+//                            multiline: false,
+                          
                            
-                        }
-                    }
-                },
+//                        }
+//                    }
+//                },
               
-                color: {
-                    pattern: color,
-//                    
-                },
-                padding: {
-                    bottom: 20 //adjust chart padding bottom
-                }
+//                color: {
+//                    pattern: color,
+////                    
+//                },
+//                padding: {
+//                    bottom: 20 //adjust chart padding bottom
+//                }
 
-            });
+//            });
             //console.log(chart);
-           // paramdo.chartarray.push({ id: deviceid, obj: chart });
+            //paramdo.chartarray.push({ id: deviceid, obj: chart });
             
         }
 
@@ -649,6 +748,9 @@
 
                 
         }
+        canvas{
+            width :100% !important
+        }
         #content-chart{
             flex-wrap: wrap;
             display: flex;
@@ -660,6 +762,10 @@
 				  width: 100%;
 				}
 			}
+        .chart-container{
+           
+            overflow-x:scroll;
+        }
         .title-chart{
             text-decoration:underline;
             text-align:center;

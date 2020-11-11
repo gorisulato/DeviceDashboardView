@@ -10058,5 +10058,6 @@ nav.navbar.navbar-static-top .navbar-header a:hover {
 .chart-container {
   margin-bottom: 40px;
   margin-right: 40px;
-  width: calc( ( 100% / 3 ) - 40px );
+  width:100%;
+  /*width: calc( ( 100% / 3 ) - 40px );*/
 }

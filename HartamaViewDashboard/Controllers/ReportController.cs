@@ -31,8 +31,9 @@ namespace HartamaViewDashboard.Controllers
                 {
                     var date1 = Convert.ToDateTime(datestart);
                     var date2 = Convert.ToDateTime(enddate);
+                    
                     // ret = EMC.EmployeeInsert(ins, IsActive);
-                    ret = db.InsertToLogTemp(date1,date2, "D:/DeviceWebAPI/HartamaDeviceAPI/DeviceWebAPI/File/Log").ToString();
+                    ret = db.InsertToLogTemp(date1,date2, "D:/DeviceWebAPI/HartamaDeviceAPI/DeviceWebAPI/File/Log",Session["IDUser"].ToString()).ToString();
 
                 }
                 catch (Exception err)

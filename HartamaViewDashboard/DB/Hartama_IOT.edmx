@@ -132,6 +132,7 @@ warning 6002: The table/view 'Hartama_IOT.dbo.Options' does not have a primary k
           <Parameter Name="startdate" Type="datetime" Mode="In" />
           <Parameter Name="enddate" Type="datetime" Mode="In" />
           <Parameter Name="pathServer" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="UserID" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="P_NumberSeri" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MODUL" Type="nvarchar" Mode="In" />
@@ -1049,10 +1050,11 @@ warning 6002: The table/view 'Hartama_IOT.dbo.Options' does not have a primary k
             <Parameter Name="type" Mode="In" Type="Int32" />
             <Parameter Name="userupdateby" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="InsertToLogTemp">
+          <FunctionImport Name="InsertToLogTemp" ReturnType="Collection(String)">
             <Parameter Name="startdate" Mode="In" Type="DateTime" />
             <Parameter Name="enddate" Mode="In" Type="DateTime" />
             <Parameter Name="pathServer" Mode="In" Type="String" />
+            <Parameter Name="UserID" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="PTUserLogin_Result">

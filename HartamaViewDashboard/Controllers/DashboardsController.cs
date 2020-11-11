@@ -216,6 +216,9 @@ namespace HartamaViewDashboard.Controllers
         {
             if ((Session["UserName"] == null) || (Session["IDSite"] == null)) { return RedirectToAction("Index", "Login"); }
             ViewBag.Dashboard = "";
+            Hartama_IOTEntities db = new Hartama_IOTEntities();
+            var res = db.Options.Where(x => x.OptionsName == "SiteURL").FirstOrDefault();
+            ViewBag.SiteUrl = res.OptionsValue;
             //GetSiteList();
             return View();
         }
@@ -393,7 +396,39 @@ namespace HartamaViewDashboard.Controllers
         }
 
 
+        [HttpPost]
+        public ActionResult ReadImportedFiles()
+        {
 
+            try
+            {
+                var date = Convert.ToDateTime("2020-11-09");
+                var date2 = Convert.ToDateTime("2020-11-09");
+                List<string> reader = new List<string>();
+                var  contents = Directory.GetFiles(@"D:\DeviceWebAPI\HartamaDeviceAPI\DeviceWebAPI\File");//System.IO.File.ReadAllText(Server.MapPath("D:/DeviceWebAPI/HartamaDeviceAPI/DeviceWebAPI/File/Log2020-11-03"));
+                foreach(var x in contents)
+                {
+                    var tes = System.IO.File.GetCreationTime(@"" + x);
+                    if (tes.Date>=date.Date && tes.Date<=date2.Date)
+                    {
+                        string contents2 = System.IO.File.ReadAllText(@"" + x);
+                        reader.Add(contents2);
+                    }
+                   
+                   // if()
+                    
+                }
+
+                return Json(new { hasil = reader });
+
+            }
+            catch (Exception e)
+            {
+
+                return Json(new { hasil = e.Message });
+            }
+
+        }
         public ActionResult notifchart()
         {
 

@@ -71,16 +71,60 @@
         ////    }
         ////});
 
+       
+        
+
+        //setInterval(function () {
+        //    var connection;
+        //    var host = "ws://103.195.90.72:9096";
+
+        //    connection = new WebSocket(host);
+
+        //    connection.onmessage = function (message) {
+        //        var ret = JSON.parse(message.data);
+        //        //var simpleStatus = window.JSON.parse(message.data);
+        //        //startAnimation(simpleStatus.User, simpleStatus.Status);
+        //        console.log(message)
+        //        var deviceid = ret[0].DeviceID
+
+        //        if (deviceid == $("#DeviceIDDashboard").val()) {
+
+        //            if (document.getElementById("chart-detail" + ret[0].SensorName) == null) {
+        //                a = ' <div class="chart-container-detail animated fadeInRight">'
+        //                       // + ' <h1 id="warning-chart' + ret[0].DeviceID + '" class="warning-blink-detail ' + warning + ' ">Warning!!!</h1>'
+        //                        + '<h1 class="title-chart">' + ret[0].SensorName + '</h1> ' +
+        //                        '<div id="chart-detail' + ret[0].SensorName + '" > ' +
+
+        //                        '</div>' +
+        //                ' </div>';
+        //                $("#content-chart-detail").append(a);
+
+        //                var color = [""]
+        //                Dashboard2.GenerateChartDetail(ret[0].SensorName, ret[0].lower, ret[0].upper, ret[0].Value)
+        //            }
+        //            else {
+        //                Dashboard2.UpdateChart(ret[0].SensorName, ret[0].lower, ret[0].upper, ret[0].Value)
+        //            }
+        //        }
+        //    }
+        //}, 60000);
+
+        Dashboard2.connectws();
+    }
+
+    this.connectws = function () {
         var connection;
-        var host = "ws://localhost:9096";
+        var host = "ws://103.195.90.72:9096";
 
         connection = new WebSocket(host);
-
+        connection.onopen = function () {
+           console.log("its Connected Have fun")
+        };
         connection.onmessage = function (message) {
             var ret = JSON.parse(message.data);
             //var simpleStatus = window.JSON.parse(message.data);
             //startAnimation(simpleStatus.User, simpleStatus.Status);
-            console.log(ret[0])
+            console.log(message)
             var deviceid = ret[0].DeviceID
 
             if (deviceid == $("#DeviceIDDashboard").val()) {
@@ -104,7 +148,17 @@
             }
         }
 
-       
+        connection.onclose = function (e) {
+            console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+            setTimeout(function () {
+                Dashboard2.connectws();
+            }, 1000);
+        };
+
+        connection.onerror = function (err) {
+            console.error('Socket encountered error: ', err.message, 'Closing socket');
+            ws.close();
+        };
     }
 
     this.UpdateChart = function (Sensorname,lower,upper,valuecurrent) {

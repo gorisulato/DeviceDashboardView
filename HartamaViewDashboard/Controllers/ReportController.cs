@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,26 +16,32 @@ namespace HartamaViewDashboard.Controllers
         // GET: Report
         public ActionResult ReportLog()
         {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult writeReport(string datestart, string enddate)
-        {
+            
+            
             Hartama_IOTEntities db = new Hartama_IOTEntities();
-            string ret = "";
-            //ins.UserEntry = Session["IDUser"].ToString();
+            var x = db.Options.Where(y => y.OptionsName == "SiteURL").FirstOrDefault();
+            ViewBag.paramfile = x.OptionsValue;
+            return View();
 
-            // ins.SiteCode = Session["IDSite"].ToString();
+        }
+        
+        [HttpPost]
+        public ActionResult writeReport(DateTime datestart, DateTime dateend,string filepath)
+        {
+          
+            string ret = "";
+            Hartama_IOTEntities db = new Hartama_IOTEntities();
             if (ModelState.IsValid)
             {
 
                 try
                 {
-                    var date1 = Convert.ToDateTime(datestart);
-                    var date2 = Convert.ToDateTime(enddate);
-                    
-                    // ret = EMC.EmployeeInsert(ins, IsActive);
-                    ret = db.InsertToLogTemp(date1,date2, "D:/DeviceWebAPI/HartamaDeviceAPI/DeviceWebAPI/File/Log",Session["IDUser"].ToString()).ToString();
+
+
+                    var ss = db.InsertToLogTemp(filepath, Session["IDUser"].ToString(), datestart, dateend);
+
+
+
 
                 }
                 catch (Exception err)

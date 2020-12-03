@@ -1795,16 +1795,8 @@ namespace HartamaViewDashboard.DB
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UpdateStatusLocked_Result>("UpdateStatusLocked", iduserParameter, typeParameter, userupdatebyParameter);
         }
     
-        public virtual ObjectResult<string> InsertToLogTemp(Nullable<System.DateTime> startdate, Nullable<System.DateTime> enddate, string pathServer, string userID)
+        public virtual int InsertToLogTemp(string pathServer, string userID, Nullable<System.DateTime> datestart, Nullable<System.DateTime> dateend)
         {
-            var startdateParameter = startdate.HasValue ?
-                new ObjectParameter("startdate", startdate) :
-                new ObjectParameter("startdate", typeof(System.DateTime));
-    
-            var enddateParameter = enddate.HasValue ?
-                new ObjectParameter("enddate", enddate) :
-                new ObjectParameter("enddate", typeof(System.DateTime));
-    
             var pathServerParameter = pathServer != null ?
                 new ObjectParameter("pathServer", pathServer) :
                 new ObjectParameter("pathServer", typeof(string));
@@ -1813,7 +1805,15 @@ namespace HartamaViewDashboard.DB
                 new ObjectParameter("UserID", userID) :
                 new ObjectParameter("UserID", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("InsertToLogTemp", startdateParameter, enddateParameter, pathServerParameter, userIDParameter);
+            var datestartParameter = datestart.HasValue ?
+                new ObjectParameter("datestart", datestart) :
+                new ObjectParameter("datestart", typeof(System.DateTime));
+    
+            var dateendParameter = dateend.HasValue ?
+                new ObjectParameter("dateend", dateend) :
+                new ObjectParameter("dateend", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertToLogTemp", pathServerParameter, userIDParameter, datestartParameter, dateendParameter);
         }
     }
 }

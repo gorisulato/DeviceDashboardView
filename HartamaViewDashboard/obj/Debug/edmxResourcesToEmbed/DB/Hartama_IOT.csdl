@@ -503,11 +503,11 @@
       <Parameter Name="type" Mode="In" Type="Int32" />
       <Parameter Name="userupdateby" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="InsertToLogTemp" ReturnType="Collection(String)">
-      <Parameter Name="startdate" Mode="In" Type="DateTime" />
-      <Parameter Name="enddate" Mode="In" Type="DateTime" />
+    <FunctionImport Name="InsertToLogTemp">
       <Parameter Name="pathServer" Mode="In" Type="String" />
       <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="datestart" Mode="In" Type="DateTime" />
+      <Parameter Name="dateend" Mode="In" Type="DateTime" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="PTUserLogin_Result">

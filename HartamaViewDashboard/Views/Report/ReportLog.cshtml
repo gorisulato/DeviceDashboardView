@@ -80,8 +80,11 @@
                                         <div class="col-lg-9">
                                             <div class=" input-daterange input-group" id="datepicker">
                                                 <input type="text" class="input-sm form-control m-b" name="PeriodeAwal" id="PeriodeAwal" value="@DateTime.Now.ToString("dd MMMM yyyy")" />
+                                                <input type="time"  class="input-sm form-control m-b" id="PeriodeAwalTime">
                                                 <span class="input-group-addon">s/d</span>
+                                                
                                                 <input type="text" class="input-sm form-control m-b" name="PeriodeAkhir" id="PeriodeAkhir" value="@DateTime.Now.ToString("dd MMMM yyyy")" />
+                                                <input type="time" class="input-sm form-control m-b" id="PeriodeAkhirTime">
                                             </div>
                                         </div>
                                     </div>
@@ -173,18 +176,18 @@
                 cache: true
             }).done(
                 function () {
-                   
-                    
-                   
+
+
+                    window.paramdo.filepath = "@ViewBag.paramfile";
                     ReportLog.init();
-                   
+
 
                 }
             )
 
-           
+
         });
-       
+
 
 
 

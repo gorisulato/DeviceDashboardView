@@ -2,14 +2,14 @@
     arrayDevice=[]
     this.init = function () {
         $('#PeriodeAwal').datepicker({
-            format: 'dd MM yyyy',
+            dateFormat: 'dd MM yyyy hh:mm:ss',
             keyboardNavigation: false,
             forceParse: false,
             autoclose: true
         }).datepicker("setDate", 'now');
 
         $('#PeriodeAkhir').datepicker({
-            format: 'dd MM yyyy',
+            dateFormat: 'dd MM yyyy',
             keyboardNavigation: false,
             forceParse: false,
             autoclose: true
@@ -81,27 +81,26 @@
                 }
 
             }
-            $('#frameReportLog').attr('src', "/WebForm/ReeportMaster.aspx?param=ReportLog" + "," + $('#SiteReportLog').val() + "," + $('#PeriodeAwal').val() + "," + $('#PeriodeAkhir').val() + "," + device);
+           
             //console.log(device)
-           // ReportLog.populateReportData(device)
+            ReportLog.requestFilePath(device)
+            console.log($('#PeriodeAkhirTime').val())
            
         })
     }
 
-    this.populateReportData = function (device) {
-        //console.log($('#PeriodeAkhir').datepicker({ dateFormat: 'dd-mm-yy' }).val())
+    this.requestFilePath = function (device) {
         $.ajax({
 
-            url: "/Report/writeReport?datestart=" + $('#PeriodeAwal').val() + "&enddate=" + $('#PeriodeAkhir').val(),
+            url: window.paramdo.filepath + "/api/DeviceData/ReadFilePath",
 
             type: "POST",
-            dataType: "html",
+            dataType: "json",
 
             success: function (Data) {
-             
-                
 
-
+                console.log(Data)
+                ReportLog.populateReportData(device,Data.Result[0])
 
             },
             error: function (xhr, status) {
@@ -110,6 +109,38 @@
                 //toastr.error("Transaction Has been Failed TO Post ");
             },
         })
+    }
+
+   
+
+    this.populateReportData = function (device,filedata) {
+        //console.log($('#PeriodeAkhir').datepicker({ dateFormat: 'dd-mm-yy' }).val())
+        $.ajax({
+            type: "POST",
+            url: '/Report/writeReport?datestart=' + $('#PeriodeAwal').val() + '&dateend=' + $('#PeriodeAkhir').val() + "&filepath="+filedata,
+
+            processData: false,
+            datatype: "json",
+            success: function (result) {
+              
+
+               
+
+
+            },
+            complete: function () {
+                // alert('complete')
+                var awal = $('#PeriodeAwal').val() + ' ' + $('#PeriodeAwalTime').val()
+                var akhir = $('#PeriodeAkhir').val() + ' ' + $('#PeriodeAkhirTime').val()
+                $('#frameReportLog').attr('src', "/WebForm/ReeportMaster.aspx?param=ReportLog" + "," + $('#SiteReportLog').val() + "," + awal + "," + akhir + "," + device);
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3 + " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                console.log(err);
+            }
+        });
     }
     this.getAllDevices = function () {
         $.ajax({

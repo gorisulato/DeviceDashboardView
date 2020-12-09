@@ -20,7 +20,9 @@ namespace HartamaViewDashboard.Controllers
             
             Hartama_IOTEntities db = new Hartama_IOTEntities();
             var x = db.Options.Where(y => y.OptionsName == "SiteURL").FirstOrDefault();
+            var logo= db.Options.Where(y => y.OptionsName == "LogoArray").FirstOrDefault();
             ViewBag.paramfile = x.OptionsValue;
+            ViewBag.Logo = logo.OptionsValue;
             return View();
 
         }

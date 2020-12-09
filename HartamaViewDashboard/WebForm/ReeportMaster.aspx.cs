@@ -4,6 +4,7 @@ using CrystalDecisions.Web;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -82,6 +83,7 @@ namespace HartamaViewDashboard.WebForm
                     DateTime startdate = Convert.ToDateTime(a[2].ToString());
                     DateTime enddate = Convert.ToDateTime(a[3].ToString());
                     string DeviceID = a[4].ToString();
+                    string logo = a[5].ToString();
                    
 
                     cryRpt.Load(Server.MapPath("~/Report/") + "ReportLog.rpt");
@@ -115,7 +117,10 @@ namespace HartamaViewDashboard.WebForm
                     pfDeviceID.Name = "@DeviceID";
                     pfDeviceID.CurrentValues.Add(pdDeviceID);
 
+                    var imagepath = Path.Combine(Server.MapPath("~/Images/"), logo);
+                    cryRpt.SetParameterValue("imagepath", imagepath);
                    
+                    
 
                     pfields.Add(pfStartDate);
                     pfields.Add(pfEndDate);

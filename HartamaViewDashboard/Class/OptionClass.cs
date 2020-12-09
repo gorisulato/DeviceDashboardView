@@ -222,5 +222,29 @@ namespace HartamaViewDashboard.Class
             CWU.command.Connection.Close();
             return _value;
         }
+
+        public string getOptionsByName2(string[] _OptionName)
+        {
+            string _value = "";
+            if (CWU.OpenConnection())
+            {
+
+                sql = " SELECT " +
+                    " a.OptionsValue " +
+                    " From dbo.Options a " +
+                " where a.optionsName  = '" + _OptionName + "'";
+                CWU.command.CommandType = System.Data.CommandType.Text;
+                CWU.command.CommandText = sql;
+                CWU.command.Connection = CWU.connection;
+                CWU.dtreader = CWU.command.ExecuteReader();
+                while (CWU.dtreader.Read())
+                {
+                    _value = CWU.dtreader[0].ToString();
+                }
+            }
+            CWU.dtreader.Close();
+            CWU.command.Connection.Close();
+            return _value;
+        }
     }
 }

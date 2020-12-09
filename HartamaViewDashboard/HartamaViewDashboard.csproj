@@ -273,6 +273,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModuleController.cs" />
+    <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\PusherController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RoleAccessController.cs" />
@@ -547,6 +548,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OptionModel.cs" />
+    <Compile Include="Models\OptionModel2.cs" />
     <Compile Include="Models\SensorDetailModel.cs" />
     <Compile Include="Models\TFeatureAccessModel.cs" />
     <Compile Include="Models\TFeatureModel.cs" />
@@ -2504,6 +2506,7 @@
     <Content Include="fonts\font-awesome\scss\_screen-reader.scss" />
     <Content Include="fonts\font-awesome\scss\_stacked.scss" />
     <Content Include="fonts\font-awesome\scss\_variables.scss" />
+    <Content Include="Scripts\main\Option.js" />
     <Content Include="Scripts\main\ReportLog.js" />
     <Content Include="Scripts\main\service-worker.js" />
     <Content Include="Scripts\main\TUser.js" />
@@ -3086,6 +3089,7 @@
     <Content Include="Views\TUser\UserSearchSite.cshtml" />
     <Content Include="Views\TUser\UserSearchRole.cshtml" />
     <Content Include="Views\Pusher\Index.cshtml" />
+    <Content Include="Views\Options\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,5 +11,7 @@ namespace HartamaViewDashboard.Models
         public string OptionsName { get; set; }
         public string OptionsValue { get; set; }
         public int TotalRecords { get; set; }
+        public byte[] imagelogo { get; set; }
+
     }
 }

@@ -1,0 +1,224 @@
+﻿@model HartamaViewDashboard.Models.OptionModel2
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Resources.Resource.Option</title>
+</head>
+<body>
+    @*<input id="IDRole" type="text" value="@(ViewBag.Role.IDRole)" hidden />
+
+        <input id="PathApp" type="text" value="@(ViewBag.Role.PathApp)" hidden />
+
+        <input id="View" type="text" value="@(ViewBag.Role.BindView)" hidden />
+
+        <input id="New" type="text" value="@(ViewBag.Role.BindNew)" hidden />
+
+        <input id="Edit" type="text" value="@(ViewBag.Role.BindEdit)" hidden />
+
+        <input id="Delete" type="text" value="@(ViewBag.Role.BindDelete)" hidden />
+
+        <input id="Print" type="text" value="@(ViewBag.Role.BindPrintable)" hidden />*@
+
+    <div id="body">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-8">
+                <h2>@Resources.Resource.labelDevice</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#" onclick="utility._loadMenu('../Dashboards/Home')">@Resources.Resource.LabelHome</a>
+                    </li>
+                    <li class="active" id="ftr-name">
+                        <strong>@Resources.Resource.Option</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="ibox-tools">
+                <a><i class="fa fa-question"></i></a>
+            </div>
+        </div>
+        <div class="wrapper wrapper-content animated fadeIn">
+            <div class="row" id="render-body">
+                <div class="col-lg-12">
+                    
+
+                    <div class="ibox float-e-margins" id="DeviceInformation">
+                        <div class="ibox-title">
+                            <h3>@Resources.Resource.Information</h3>
+                        </div>
+                        <div class="ibox-content">
+
+                            @using (Html.BeginForm("Create", null, FormMethod.Post, new { name = "Form-Option", id = "Form-Option", @enctype = "multipart/form-data", @xxx = "Create" }))
+                            {
+                                <div class="form-horizontal">
+                                
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.ManufacturerLabelManufacturerCompanyName</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.CompanyName, new { @class = "form-control", @required = "required", @MaxLength = "50" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.Address</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.CompanyAddress, new { @class = "form-control", @required = "required", @MaxLength = "100" })
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">@Resources.Resource.PhoneNumber</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.CompanyPhone, new { @class = "form-control", @required = "required", @MaxLength = "100" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group" id="API">
+                                        <label class="col-sm-3 col-lg-4 control-label">API Url</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            @Html.TextBoxFor(model => Model.ApiUri, new { @class = "form-control", @required = "required", @MaxLength = "100" })
+                                        </div>
+                                    </div>
+
+                                    @Html.Hidden("RoleID")
+                                    <div class="form-group">
+                                        <label class="col-sm-3 col-lg-4 control-label">Company Logo</label>
+                                        <div class="col-sm-9 col-lg-8">
+                                            <input type="file" id="compLogo">
+                                            <img src="@Server.MapPath("~/Images/")" id="compLogoContainer" />
+                                            @Html.HiddenFor(x => x.CompanyLogo)
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group ">
+                                        <label class="col-md-4 control-label"></label>
+                                        <div class="button-custom-style pull-right col-md-8 ">
+                                            <button class="btn btn-primary" type="button" id="btnSaveRowsite"><i class="fa fa-save"></i> @Resources.Resource.ButtonSave </button>
+                                            <button class="btn btn-primary" type="button" id="btnDeleteRowsite"><i class="fa fa-trash"></i> @Resources.Resource.ButtonDelete </button>
+                                            <button class="btn btn-outline btn-default" type="button" id="btnCancelRowsite"><i class="fa fa-close"></i> @Resources.Resource.ButtonCancel </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*<div id="ModalDataCategory" class="modal inmodal " aria-hidden="true" role="dialog" tabindex="1" style="overflow-y: scroll; max-height:100%;  margin-top: 50px; margin-bottom:50px ; ">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content animated fadein ">
+                    <div class="modal-header">
+                        <h3>@Resources.Resource.labelDeviceCategory</h3>
+                        <div class="ibox-tools">
+                            <a class="active-tooltips" id="CloseModalCategory">
+                                <span class="tooltipster-icon">
+                                    <i class="fa fa-close "></i>
+                                </span>
+                            </a>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-body" id="modal-Render-UbahMotorACCModal">
+
+                        <div class="panel-body">
+                            @{ Html.RenderPartial("~/Views/Device/SearchCategoryDevice.cshtml");  }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="ModalDataSite" class="modal inmodal " aria-hidden="true" role="dialog" tabindex="1" style="overflow-y: scroll; max-height:100%;  margin-top: 50px; margin-bottom:50px ; ">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content animated fadein ">
+                    <div class="modal-header">
+                        <h3>@Resources.Resource.labelDeviceSite</h3>
+                        <div class="ibox-tools">
+                            <a class="active-tooltips" id="CloseModalSite">
+                                <span class="tooltipster-icon">
+                                    <i class="fa fa-close "></i>
+                                </span>
+                            </a>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-body" id="modal-Render-UbahMotorACCModal">
+
+                        <div class="panel-body">
+                            @{ Html.RenderPartial("~/Views/Device/SearchSiteDevice.cshtml");  }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+
+
+
+        <script>
+        //function OnloadFunction() { }
+        $(document).ready(function () {
+
+            $('#Form-Option #RoleID').val("@ViewBag.Role")
+            $.getScript("../Scripts/main/Option.js", {
+                cache: true
+            }).done(
+                function () {
+                    @*var param = {};
+                    param.attribute = {
+
+                        "Info": "@Resources.Resource.LabelShowing",
+                        "Page": "@Resources.Resource.LabelPage",
+                        "Of": "@Resources.Resource.LabelOf",
+                        "ZeroResult": "@Resources.Resource.LabelZeroResult",
+                        "InfoEmpty": "@Resources.Resource.LabelInfoEmpty",
+                        "Previous": "@Resources.Resource.LabelPrev",
+                        "Next": "@Resources.Resource.LabelNext",
+                        "Last": "@Resources.Resource.LabelLastPage",
+                        "First": "@Resources.Resource.LabelFirstPage",
+                        "To": "@Resources.Resource.LabelTo",
+                        "Entries": "@Resources.Resource.LabelEntries",
+                        "Warning": "@Resources.Resource.LabelWarning",
+                        "PickOneData": "@Resources.Resource.AlertPickOneData",
+                        "CanDelete": "@ViewBag.Role.BindDelete.ToString()",
+                        "CanSave": "@ViewBag.Role.BindNew.ToString()",
+                        "CanEdit": "@ViewBag.Role.BindEdit.ToString()",
+                        "CanView": "@ViewBag.Role.BindView.ToString()",
+                        "CanPrint": "@ViewBag.Role.BindPrintable.ToString()"
+                    }*@
+                    Option.init();
+                }
+            )
+        });
+        </script>
+
+        @*<style>
+               table.dataTable tbody tr.row_selected {
+            background-color: #b0bed9;
+                }
+            </style>*@
+
+</body>
+
+</html>

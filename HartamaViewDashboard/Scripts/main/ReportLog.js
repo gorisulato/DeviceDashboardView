@@ -84,7 +84,6 @@
            
             //console.log(device)
             ReportLog.requestFilePath(device)
-            console.log($('#PeriodeAkhirTime').val())
            
         })
     }
@@ -129,10 +128,11 @@
 
             },
             complete: function () {
+                var logo = $('#RPT_LogoName').val();
                 // alert('complete')
                 var awal = $('#PeriodeAwal').val() + ' ' + $('#PeriodeAwalTime').val()
                 var akhir = $('#PeriodeAkhir').val() + ' ' + $('#PeriodeAkhirTime').val()
-                $('#frameReportLog').attr('src', "/WebForm/ReeportMaster.aspx?param=ReportLog" + "," + $('#SiteReportLog').val() + "," + awal + "," + akhir + "," + device);
+                $('#frameReportLog').attr('src', "/WebForm/ReeportMaster.aspx?param=ReportLog" + "," + $('#SiteReportLog').val() + "," + awal + "," + akhir + "," + device+","+logo);
             },
             error: function (xhr, status, p3, p4) {
                 var err = "Error " + " " + status + " " + p3 + " " + p4;

@@ -1,6 +1,10 @@
 ﻿var ReportLog = new function () {
-    arrayDevice=[]
+    arrayDevice = []
+    
     this.init = function () {
+
+        var arraynamedevice = [];
+        
         $('#PeriodeAwal').datepicker({
             dateFormat: 'dd MM yyyy hh:mm:ss',
             keyboardNavigation: false,
@@ -26,20 +30,38 @@
 
         $("#CloseModalDeviceReportLog").on('click', function () {
             $("#ModalDataDeviceReportLog").hide();
+            var device = "";
+            for (var x = 0; x < arraynamedevice.length; x++) {
+                //console.log(arrayDevice[x].id)
+                if (x == 0) {
+                    device = arraynamedevice[x].name
+                }
+                else {
+                    device = device + ", " + arraynamedevice[x].name
+                }
+
+            }
+            $("#DevieNameReportLog").val(device)
         })
 
         $("#DeviceListReportLog").on('change', "input[type='checkbox'] ", function (e) {
         
             
             var splited = this.id.split('-');
-            
+           
             if (this.checked) {
                 var findID = arrayDevice.findIndex(find => find.id == splited[1]);
                 if (findID == -1) {
 
                     arrayDevice.push({ id: splited[1] })
+                    
                 }
-               
+                var FindName = arraynamedevice.findIndex(find => find.name == this.name);
+                if (FindName == -1) {
+
+                    
+                    arraynamedevice.push({ name: this.name })
+                }
 
             }
 
@@ -47,6 +69,13 @@
                 var findID = arrayDevice.findIndex(find => find.id == splited[1]);
                 if (findID != -1) {
                     arrayDevice.splice(findID, 1)
+                    
+                }
+                var FindName = arraynamedevice.findIndex(find => find.name == this.name);
+                if (FindName == -1) {
+
+
+                    arraynamedevice.splice(FindName, 1)
                 }
 
 
@@ -64,7 +93,9 @@
 
                 for (var x = 0; x < arrayDevice.length; x++) {
                     $("#chck-" + arrayDevice[x].id).attr("checked", false)
+                    
                 }
+                arraynamedevice = [];
                 arrayDevice = [];
             }
         })
@@ -155,11 +186,12 @@
                 var ret = JSON.parse(Data);
                 var result= ret.aaData
                
-                console.log(result)
+               
                 for (var x = 0; x < result.length; x++) {
 
                     arrayDevice.push({ id: result[x][3] })
                     $("#chck-" + result[x][3]).attr("checked", true)
+                    $("#chck-" + result[x][3]).change()
                 }
 
 
@@ -227,7 +259,7 @@
                              render: function (data, type, row, meta) {
 
                                  if (data[0] != "") {
-                                     return '<input type = "checkbox" class="form-control amount-satuan" name="' + data[3] + '" id="' + "chck-" + data[3] + '" />';
+                                     return '<input type = "checkbox" class="form-control amount-satuan" name="' + data[0] + '" id="' + "chck-" + data[3] + '" />';
 
                                  }
                              }
